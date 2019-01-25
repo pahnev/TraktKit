@@ -1,0 +1,32 @@
+name: TraktKit
+options:
+  bundleIdPrefix: com.pahnev.TraktKit
+targets:
+  TraktKit:
+    type: framework
+    deploymentTarget: "10.0"
+    platform: iOS
+    sources: TraktKit
+    scheme:
+      testTargets:
+        - TraktKitTests
+    dependencies:
+      - carthage: Cache
+  TraktKitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: TraktKitTests
+    scheme:
+      testTargets:
+        - TraktKitTests
+    gatherCoverageData: true
+    dependencies:
+      - target: TraktKit
+      - carthage: Nimble
+      - carthage: OHHTTPStubs
+  TraktDemo:
+    type: application
+    platform: iOS
+    sources: TraktDemo
+    dependencies:
+      - target: TraktKit      

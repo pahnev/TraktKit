@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2d40b69b-cc4f-4991-adb2-8672ea093283" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/TraktKit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/TraktKitTests.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktDemo/AppDelegate.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktDemo/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktDemo/Assets.xcassets/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktDemo/Base.lproj/LaunchScreen.storyboard" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktDemo/Base.lproj/Main.storyboard" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktDemo/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktDemo/ViewController.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Extensions/URL+QueryItem.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Calendar/CalendarMovie.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Calendar/CalendarShow.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Certifications/Certification.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Checkin/Checkin.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/CodableEquatable.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Comments/AttachedMediaItem.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Comments/Comment.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Comments/CommentLikedUser.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Filters.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Genres/Genre.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/AnticipatedMovie.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/BoxOfficeMovie.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/DVDReleaseMovie.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/MostMovie.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/Movie.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/MovieRelease.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/MovieTranslation.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/TrendingMovie.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Movies/WatchedMovie.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Pagination.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/People/CastAndCrew.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/People/CastMember.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/People/CrewMember.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/People/Person.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Scrobbble/ScrobbleResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/SearchResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shared/Alias.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shared/RatingDistribution.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shared/Update.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/AnticipatedShow.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/Episode.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/EpisodeTranslation.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/MostShow.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/Season.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/Show.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/ShowCollectionProgress.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/ShowTranslation.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/TrendingShow.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/WatchedEpisodes.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/WatchedProgress.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/WatchedSeason.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Shows/WatchedShow.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Structures.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/AddRatingsResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/AddToCollectionResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/CollectedItem.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/HistoryItem.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/PlaybackProgress.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/Rating.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/RemoveFromCollectionResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/RemoveFromWatchlistResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Sync/RemoveRatingsResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/AccountSettings.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/FollowRequest.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/FollowUserResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/Friend.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/HiddenItem.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/HideItemResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/Likes.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/List.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/ListItem.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/ListItemPostResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/RemoveListItemResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/UnhideItemResult.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/User.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/UserStats.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/UsersCollection.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/UsersComments.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/WatchedItem.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Model/Users/Watching.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/APIClient/Authenticator.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/APIClient/Trakt+Movies.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/APIClient/Trakt.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/Endpoints/Endpoint.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/Endpoints/Movies.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/HTTPLogger.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/HTTPResponseHeaders.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/NetworkClient.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/PopularMoviesResponse.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Networking/TraktError.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKit/Protocols/Sourcery.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKitTests/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TraktKitTests/TraktKitTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TraktKit.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/TraktKit.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TraktKit.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/TraktKit.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TraktKit.xcodeproj/xcuserdata/kirill.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/TraktKit.xcodeproj/xcuserdata/kirill.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+    </list>
+    <ignored path="$USER_HOME$/Library/Developer/Xcode/DerivedData/TraktKit-cbvtekgjxshyajfvmzyvvlpvjznj/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_8567157B-DE3C-4F1A-8774-506B582C997E" />
+  <component name="FUSProjectUsageTrigger">
+    <session id="216504914">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="swift" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Swift" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="swift" value="239" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Swift" value="239" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.cidr.testingFrameworks.usages" />
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TraktKit/Networking/Endpoints/Endpoint.swift">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TraktKit/Networking/Endpoints/Movies.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Projects/Personal/TMDBKit/TMDBKit/Caching/CacheConfig+Movies.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1015">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TraktKit/Caching/Cache.swift">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TraktKit/Caching/CacheConfig+Movies.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TraktKit/Networking/APIClient/Trakt.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="93" column="55" selection-start-line="93" selection-start-column="55" selection-end-line="93" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/TraktKit/Networking/Endpoints/Movies.swift" />
+        <option value="$USER_HOME$/Projects/Personal/TMDBKit/TMDBKit/Caching/CacheConfig+Movies.swift" />
+        <option value="$PROJECT_DIR$/TraktKit/Caching/CacheConfig+Movies.swift" />
+        <option value="$PROJECT_DIR$/TraktKit/Networking/APIClient/Trakt.swift" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="520" />
+    <option name="y" value="347" />
+    <option name="width" value="1920" />
+    <option name="height" value="1004" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Cidr.FilesView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TraktKit" type="1d218c8b:XcodeProjectNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TraktKit" type="1d218c8b:XcodeProjectNode" />
+              <item name="TraktKit" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TraktKit" type="1d218c8b:XcodeProjectNode" />
+              <item name="TraktKit" type="fcab9f18:XcodeViewNode" />
+              <item name="Caching" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TraktKit" type="1d218c8b:XcodeProjectNode" />
+              <item name="TraktKit" type="fcab9f18:XcodeViewNode" />
+              <item name="Networking" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TraktKit" type="1d218c8b:XcodeProjectNode" />
+              <item name="TraktKit" type="fcab9f18:XcodeViewNode" />
+              <item name="Networking" type="fcab9f18:XcodeViewNode" />
+              <item name="APIClient" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="TraktKit" type="1d218c8b:XcodeProjectNode" />
+              <item name="TraktKit" type="fcab9f18:XcodeViewNode" />
+              <item name="Networking" type="fcab9f18:XcodeViewNode" />
+              <item name="Endpoints" type="fcab9f18:XcodeViewNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.TraktKit">
+    <list>
+      <item itemvalue="Application.TraktKit" />
+      <item itemvalue="XCTest.TraktKitTests" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2d40b69b-cc4f-4991-adb2-8672ea093283" name="Default Changelist" comment="" />
+      <created>1533198093757</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1533198093757</updated>
+      <workItem from="1533198095541" duration="1888000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1888000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="520" y="347" width="1920" height="1004" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/TraktKit/Networking/Endpoints/Endpoint.swift">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TraktKit/Networking/Endpoints/Movies.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Projects/Personal/TMDBKit/TMDBKit/Caching/CacheConfig+Movies.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1015">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TraktKit/Caching/Cache.swift">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TraktKit/Caching/CacheConfig+Movies.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TraktKit/Networking/APIClient/Trakt.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="93" column="55" selection-start-line="93" selection-start-column="55" selection-end-line="93" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
