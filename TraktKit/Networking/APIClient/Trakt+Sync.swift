@@ -50,7 +50,7 @@ extension Trakt {
     /// 🔒 OAuth Required
     ///
     /// - Parameter id: The id of the `PlaybackProgress` item to be removed.
-    func removePlaybackItemWith(_ id: PlaybackProgressId, completion: @escaping RequestResult<Void>) {
+    public func removePlaybackItemWith(_ id: PlaybackProgressId, completion: @escaping RequestResult<Void>) {
         assertLoggedInUser()
 
         authenticatedRequest(for: Sync.removePlayback(id), completion: { result in
@@ -71,7 +71,7 @@ extension Trakt {
     /// - Parameters:
     ///   - infoLevel: The info level of the items.
     ///   - completion: The closure called on completion with a list of `CollectedMovie` items or `TraktError`.
-    func getCollectedMovies(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedMovie]>) {
+    public func getCollectedMovies(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedMovie]>) {
         assertLoggedInUser()
 
         fetchObject(ofType: [CollectedMovie].self,
@@ -88,13 +88,24 @@ extension Trakt {
     /// - Parameters:
     ///   - infoLevel: The info level of the items.
     ///   - completion: The closure called on completion with a list of `CollectedShow` items or `TraktError`.
-    func getCollectedShows(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedShow]>) {
+    public func getCollectedShows(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedShow]>) {
         assertLoggedInUser()
 
         fetchObject(ofType: [CollectedShow].self,
                     cacheConfig: Sync.getCollection(type: .shows, infoLevel: infoLevel),
                     endpoint: Sync.getCollection(type: .shows, infoLevel: infoLevel),
                     completion: completion)
+    }
+
+    func addToCollection() {
+        // TODO:
+    }
+    func removeFromCollection() {
+        // TODO:
+    }
+
+    func getWatched() {
+        // TODO:
     }
 
     /// Returns movies and episodes that a user has watched, sorted by most recent.
@@ -132,6 +143,46 @@ extension Trakt {
 
         let data = syncPayload(movies: movies, shows: shows, episodes: episodes, items: items)
         authenticatedRequestAndParse(Sync.removeFromHistory(data), completion: completion)
+    }
+
+    func getRatings() {
+        // TODO:
+    }
+
+    func addRatings() {
+        // TODO:
+    }
+
+    func removeRatings() {
+        // TODO:
+    }
+
+    /// Returns all items in a user's watchlist. By default returns items of all types.
+    /// All list items are sorted by ascending `ListItem.rank`.
+    ///
+    /// 🔒 OAuth Required 📄 Pagination Optional ✨ Extended Info
+    ///
+    /// - Parameters:
+    ///   - type: The specifi type of the items. Defaults to `all`.
+    ///   - infoLevel: The info level of the items. Defaults to `min`.
+    ///   - page: The page of the results.
+    ///   - resultsPerPage: The amount of results per page should be returned. Defaults to 10 results.
+    ///   - completion: The closure called on completion with a list of `ListItem`s or `TraktError`.
+    public func getWatchlist(type: ContentType = .all, infoLevel: InfoLevel = .min, page: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[ListItem]>) {
+        assertLoggedInUser()
+        let getWatchlist = Sync.getWatchlist(type: type, infoLevel: infoLevel, pagination: Pagination(page: page, limit: resultsPerPage))
+        fetchObject(ofType: [ListItem].self,
+                    cacheConfig: getWatchlist,
+                    endpoint: getWatchlist,
+                    completion: completion)
+    }
+
+    public func addToWatchlist() {
+        // TODO:
+    }
+
+    public func removeFromWatchlist() {
+        // TODO:
     }
 
 }

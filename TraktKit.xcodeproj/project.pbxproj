@@ -131,6 +131,7 @@
 		ED1755E321367C1600C07C73 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1755E221367C1600C07C73 /* TokenResponse.swift */; };
 		ED189AC721FB47C300C87B72 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189AC621FB47C300C87B72 /* Config.swift */; };
 		ED189AC821FB4C4600C87B72 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189AC621FB47C300C87B72 /* Config.swift */; };
+		ED28F0F022045A0B00D7AB05 /* sync_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */; };
 		ED2A79D32136B24A006FBEBD /* CacheConfig+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79D22136B24A006FBEBD /* CacheConfig+Sync.swift */; };
 		ED2A79D92136DA58006FBEBD /* RemovedFromHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */; };
 		ED2A79DB2136DA6D006FBEBD /* AddedToHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */; };
@@ -209,6 +210,7 @@
 		ED1755E0213679E600C07C73 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		ED1755E221367C1600C07C73 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		ED189AC621FB47C300C87B72 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist.json; sourceTree = "<group>"; };
 		ED2A79D22136B24A006FBEBD /* CacheConfig+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CacheConfig+Sync.swift"; sourceTree = "<group>"; };
 		ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovedFromHistory.swift; sourceTree = "<group>"; };
 		ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedToHistory.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				EDC232E62201861F008C65CB /* sync_history_shows.json */,
 				EDC232FC2201D792008C65CB /* sync_last_activities.json */,
 				EDC232FE22042161008C65CB /* sync_playback.json */,
+				ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -942,6 +945,7 @@
 				BF_889152302242 /* movies_120_related.json in Resources */,
 				BF_109652539957 /* movies_120_releases.json in Resources */,
 				EDC232D8220098E1008C65CB /* addToHistory_movie.json in Resources */,
+				ED28F0F022045A0B00D7AB05 /* sync_watchlist.json in Resources */,
 				EDC2330122044236008C65CB /* sync_collection_movies.json in Resources */,
 				EDC232DC22009C0F008C65CB /* addToHistory_show.json in Resources */,
 				BF_762200467390 /* movies_120_stats.json in Resources */,

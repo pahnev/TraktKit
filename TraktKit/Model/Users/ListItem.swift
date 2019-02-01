@@ -12,9 +12,9 @@ public struct ListItem: CodableEquatable {
     public let rank: Int
     public let listedAt: Date
     public let type: String
-    public var show: Show? = nil
-    public var season: Season? = nil
-    public var episode: Episode? = nil
-    public var movie: Movie? = nil
-    public var person: Person? = nil
+    public let show: Show?
+    public let season: Season?
+    public let episode: Episode?
+    public let movie: Movie?
+    public let person: Person?
 }

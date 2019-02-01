@@ -346,4 +346,20 @@ class SyncEndpointTests: XCTestCase {
         expect(result?.notFound.ids.count).toEventually(be(1))
     }
 
+    func testGetWatchlist() {
+        stubHelper.stubWithLocalFile(Sync.getWatchlist(type: .all, infoLevel: .min, pagination: Pagination(page: 1, limit: 1)))
+        var results: [ListItem]?
+        trakt.getWatchlist(page: 1) { res in
+            results = res.value
+        }
+        expect(results).toEventuallyNot(beNil())
+    }
+
+    func testWatchlistURL() {
+        let moviesEndpoint = Sync.getWatchlist(type: .movies, infoLevel: .min, pagination: Pagination(page: 1, limit: 1))
+        XCTAssertEqual(moviesEndpoint.url.absoluteString, "https://api.trakt.tv/sync/watchlist/movies?extended=min&page=1&limit=1")
+        let allTypesEndpoint = Sync.getWatchlist(type: .all, infoLevel: .metadata, pagination: Pagination(page: 1, limit: 1))
+        XCTAssertEqual(allTypesEndpoint.url.absoluteString, "https://api.trakt.tv/sync/watchlist/?extended=metadata&page=1&limit=1")
+    }
+
 }

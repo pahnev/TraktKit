@@ -43,7 +43,7 @@ enum Sync: Endpoint {
     case addRatings(Payload)
     case removeRatings(Payload)
 
-    case getWatchlist(type: ContentType)
+    case getWatchlist(type: ContentType, infoLevel: InfoLevel, pagination: Pagination)
     case addToWatchlist(Payload)
     case removeFromWatchlist(Payload)
 
@@ -137,8 +137,10 @@ enum Sync: Endpoint {
             return sync.appendingPathComponent("rating")
         case .removeRatings(_):
             return sync.appendingPathComponent("rating/remove")
-        case .getWatchlist(let type):
-            return sync.appendingPathComponent("watchlist/\(type.rawValue)")
+        case .getWatchlist(let params):
+            return sync.appendingPathComponent("watchlist/\(params.type.rawValue)")
+                .appendingInfo(params.infoLevel)
+                .appendingPagination(params.pagination)
         case .addToWatchlist(_):
             return sync.appendingPathComponent("watchlist")
         case .removeFromWatchlist(_):
