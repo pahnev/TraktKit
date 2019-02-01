@@ -63,12 +63,8 @@ enum Sync: Endpoint {
 
     var httpBody: Data? {
         switch self {
-        case .lastActivities, .getPlaybackProgress, .getCollection, .getHistory, .getRatings, .getWatchlist:
+        case .lastActivities, .getPlaybackProgress, .removePlayback, .getCollection, .getHistory, .getRatings, .getWatchlist:
             return nil
-        case .removePlayback(let params):
-            let encoder = JSONEncoder()
-            encoder.keyEncodingStrategy = .convertToSnakeCase
-            return try! encoder.encode(params)
         case .addToCollection(let params),
              .removeFromCollection(let params),
              .addToHistory(let params),

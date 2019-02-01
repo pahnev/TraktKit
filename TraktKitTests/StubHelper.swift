@@ -11,6 +11,13 @@ import XCTest
 @testable import TraktKit
 
 class StubHelper {
+    func stubWithResponseCode(_ code: Int, endpoint: Endpoint) {
+        stub(condition: isPath(endpoint.url.path), response: { _ in
+            let stubData = "".data(using: .utf8)
+            return OHHTTPStubsResponse(data: stubData!, statusCode: Int32(code), headers: nil)
+        })
+    }
+    
     func stubWithLocalFile(_ endpoint: Endpoint, info: MovieInfo? = nil) {
         print("---- Stubbing URL path: \(endpoint.url.path) with local file ----")
         var fileName = endpoint.url.path.dropFirst().replacingOccurrences(of: "/", with: "_")

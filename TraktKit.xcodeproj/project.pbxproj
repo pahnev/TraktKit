@@ -160,6 +160,7 @@
 		EDC232F92201C226008C65CB /* removeHistory_movie.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232F82201C226008C65CB /* removeHistory_movie.json */; };
 		EDC232FB2201C2FE008C65CB /* removeHistory_notFound.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232FA2201C2FE008C65CB /* removeHistory_notFound.json */; };
 		EDC232FD2201D792008C65CB /* sync_last_activities.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232FC2201D792008C65CB /* sync_last_activities.json */; };
+		EDC232FF22042161008C65CB /* sync_playback.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232FE22042161008C65CB /* sync_playback.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +236,7 @@
 		EDC232F82201C226008C65CB /* removeHistory_movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = removeHistory_movie.json; sourceTree = "<group>"; };
 		EDC232FA2201C2FE008C65CB /* removeHistory_notFound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = removeHistory_notFound.json; sourceTree = "<group>"; };
 		EDC232FC2201D792008C65CB /* sync_last_activities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_last_activities.json; sourceTree = "<group>"; };
+		EDC232FE22042161008C65CB /* sync_playback.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_playback.json; sourceTree = "<group>"; };
 		FR_100428954135 /* RemoveFromCollectionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromCollectionResult.swift; sourceTree = "<group>"; };
 		FR_108688034233 /* Certification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certification.swift; sourceTree = "<group>"; };
 		FR_134760935659 /* MovieTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTranslation.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				EDC232F022018CD6008C65CB /* sync_history_shows_119095.json */,
 				EDC232E62201861F008C65CB /* sync_history_shows.json */,
 				EDC232FC2201D792008C65CB /* sync_last_activities.json */,
+				EDC232FE22042161008C65CB /* sync_playback.json */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -924,6 +927,7 @@
 				BF_552395504569 /* movies_120_full.json in Resources */,
 				BF_438815207897 /* movies_120_lists_.json in Resources */,
 				EDC232FB2201C2FE008C65CB /* removeHistory_notFound.json in Resources */,
+				EDC232FF22042161008C65CB /* sync_playback.json in Resources */,
 				EDC232EB220186DC008C65CB /* sync_history_seasons.json in Resources */,
 				BF_676201450828 /* movies_120_min.json in Resources */,
 				BF_440062734471 /* movies_120_people.json in Resources */,

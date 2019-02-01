@@ -50,6 +50,37 @@ class SyncEndpointTests: XCTestCase {
         XCTAssertEqual(expectedDate, date)
     }
 
+    func testGetPlaybackProgress() {
+        stubHelper.stubWithLocalFile(Sync.getPlaybackProgress(type: .all, limit: 0))
+
+        var progress: [PlaybackProgress]?
+        trakt.getPlaybackProgress(type: .all, limit: 0) { res in
+            progress = res.value
+        }
+        expect(progress).toEventuallyNot(beNil())
+    }
+
+    func testPlaybackProgressURL() {
+        let endpointWithoutLimit = Sync.getPlaybackProgress(type: .movies, limit: nil)
+        XCTAssertEqual(endpointWithoutLimit.url.absoluteString, "https://api.trakt.tv/sync/playback/movies?limit=")
+
+        let endpointWithLimit = Sync.getPlaybackProgress(type: .episodes, limit: 1)
+        XCTAssertEqual(endpointWithLimit.url.absoluteString, "https://api.trakt.tv/sync/playback/episodes?limit=1")
+
+        let endpointWithTypeAll = Sync.getPlaybackProgress(type: .all, limit: nil)
+        XCTAssertEqual(endpointWithTypeAll.url.absoluteString, "https://api.trakt.tv/sync/playback/?limit=")
+    }
+
+    func testRemovePlaybackItem() {
+        stubHelper.stubWithResponseCode(204, endpoint: Sync.removePlayback(1))
+
+        var error: TraktError? = TraktError.emptyDataReceivedError
+        trakt.removePlaybackItemWith(PlaybackProgressId(1)) { res in
+            error = res.error
+        }
+        expect(error).toEventually(beNil())
+    }
+
     func testAddingMovieToHistoryHasCorrectBody() {
         stubHelper.stubPOSTRequest(expectedBody: """
         {

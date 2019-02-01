@@ -28,13 +28,41 @@ extension Trakt {
         fetchObject(ofType: LastActivities.self, cacheConfig: Sync.lastActivities, endpoint: Sync.lastActivities, completion: completion)
     }
 
-    public func getPlaybackProgress(type: WatchedType, limit: Int, completion: @escaping TraktResult<PlaybackProgress>) {
+
+    /// Whenever a scrobble is paused, the playback progress is saved. Use this progress to sync up playback across different media centers or apps. For example, you can start watching a movie in a media center, stop it, then resume on your tablet from the same spot. Each item will have the progress percentage between 0 and 100.
+    ///
+    /// 🔒 OAuth Required
+    ///
+    /// - Parameters:
+    ///   - type: You can pass specific type to only get those items.
+    ///   - limit: Limit the amount of items returned. By default all results will be returned.
+    ///   - completion: The closure called on completion with a list of `PlaybackProgress` items or `TraktError`.
+    public func getPlaybackProgress(type: WatchedType = .all, limit: Int, completion: @escaping TraktResult<[PlaybackProgress]>) {
         assertLoggedInUser()
 
-        fetchObject(ofType: PlaybackProgress.self,
+        fetchObject(ofType: [PlaybackProgress].self,
                     cacheConfig: Sync.getPlaybackProgress(type: type, limit: limit),
                     endpoint: Sync.getPlaybackProgress(type: type, limit: limit),
                     completion: completion)
+    }
+
+    /// Remove a playback item from a user's playback progress list. A 404 will be returned if the `id` is invalid.
+    ///
+    /// 🔒 OAuth Required
+    ///
+    /// - Parameter id: The id of the `PlaybackProgress` item to be removed.
+    func removePlaybackItemWith(_ id: PlaybackProgressId, completion: @escaping RequestResult<Void>) {
+        assertLoggedInUser()
+
+        authenticatedRequest(for: Sync.removePlayback(id), completion: { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success:
+                completion(.success(()))
+            }
+
+        })
     }
 
     /// Returns movies and episodes that a user has watched, sorted by most recent.
