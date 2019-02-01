@@ -8,59 +8,44 @@
 
 import Foundation
 
-public struct CollectedItem: CodableEquatable {
-    
-    public var lastCollectedAt: Date
-    
-    public var movie: Movie?
-    public var show: Show?
-    public var seasons: [CollectedSeason]?
-    
-    enum CodingKeys: String, CodingKey {
-        case lastCollectedAt = "last_collected_at" // Can be last_collected_at / collected_at though
-        case movieLastCollectAt = "collected_at"
-        case movie
-        case show
-        case seasons
-    }
+public struct CollectedMovie: CodableEquatable {
+    /// Indicates when users have collected the item.
+    public let collectedAt: Date
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+    /// Indicates when the underlying `Movie` item was updated. Cache this timestamp locally and only re-process the movie if you see a newer timestamp
+    public let updatedAt: Date
 
-        movie = try container.decodeIfPresent(Movie.self, forKey: .movie)
-        show = try container.decodeIfPresent(Show.self, forKey: .show)
-        seasons = try container.decodeIfPresent([CollectedSeason].self, forKey: .seasons)
-
-        do {
-            self.lastCollectedAt = try container.decode(Date.self, forKey: .lastCollectedAt)
-        } catch {
-            self.lastCollectedAt = try container.decode(Date.self, forKey: .movieLastCollectAt)
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        if movie != nil {
-            try container.encode(lastCollectedAt, forKey: .movieLastCollectAt)
-        } else {
-            try container.encode(lastCollectedAt, forKey: .lastCollectedAt)
-        }
-        try container.encodeIfPresent(movie, forKey: .movie)
-        try container.encodeIfPresent(show, forKey: .show)
-        try container.encodeIfPresent(seasons, forKey: .seasons)
-    }
+    public let movie: Movie?
+    public let metadata: Metadata?
 }
 
-public struct CollectedSeason: CodableEquatable {
-    
-    /// Season number
-    public var number: Int
-    public var episodes: [CollectedEpisode]
+public struct CollectedShow: CodableEquatable {
+    public struct Season: CodableEquatable {
+        public struct Episode: CodableEquatable {
+
+            public let number: Int
+            public let collectedAt: Date
+        }
+
+        /// Season number
+        public let number: Int
+        public let episodes: [Episode]
+    }
+
+    /// Indicates when users have last collected some item of this `Show`.
+    public let lastCollectedAt: Date
+
+    /// Indicates when the underlying `Show` item was last updated. Cache this timestamp locally and only re-process the movie if you see a newer timestamp
+    public let lastUpdatedAt: Date
+
+    public let show: Show?
+    public let seasons: [CollectedShow.Season]
+    public let metadata: Metadata?
 }
 
-public struct CollectedEpisode: CodableEquatable {
-    
-    public var number: Int
-    public var collectedAt: Date    
+public struct Metadata: CodableEquatable {
+    public let mediaType: String
+    public let resolution: String
+    public let audio: String
+    public let audioChannels: String
 }

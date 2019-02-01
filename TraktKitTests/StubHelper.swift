@@ -18,7 +18,7 @@ class StubHelper {
         })
     }
     
-    func stubWithLocalFile(_ endpoint: Endpoint, info: MovieInfo? = nil) {
+    func stubWithLocalFile(_ endpoint: Endpoint, info: InfoLevel? = nil) {
         print("---- Stubbing URL path: \(endpoint.url.path) with local file ----")
         var fileName = endpoint.url.path.dropFirst().replacingOccurrences(of: "/", with: "_")
         if let info = info {

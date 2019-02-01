@@ -81,6 +81,30 @@ class SyncEndpointTests: XCTestCase {
         expect(error).toEventually(beNil())
     }
 
+    func testGetCollectionMovies() {
+        stubHelper.stubWithLocalFile(Sync.getCollection(type: .movies, infoLevel: .min))
+
+        var results: [CollectedMovie]?
+        trakt.getCollectedMovies() { res in
+            results = res.value
+        }
+        expect(results).toEventuallyNot(beNil())
+        expect(results?.first?.collectedAt).toEventuallyNot(beNil())
+        expect(results?.first?.updatedAt).toEventuallyNot(beNil())
+    }
+
+    func testGetCollectedShows() {
+        stubHelper.stubWithLocalFile(Sync.getCollection(type: .shows, infoLevel: .min))
+
+        var results: [CollectedShow]?
+        trakt.getCollectedShows() { res in
+            results = res.value
+        }
+        expect(results).toEventuallyNot(beNil())
+        expect(results?.first?.lastCollectedAt).toEventuallyNot(beNil())
+        expect(results?.first?.lastUpdatedAt).toEventuallyNot(beNil())
+    }
+
     func testAddingMovieToHistoryHasCorrectBody() {
         stubHelper.stubPOSTRequest(expectedBody: """
         {

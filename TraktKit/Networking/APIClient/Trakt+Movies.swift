@@ -12,14 +12,20 @@ import Foundation
 ///
 /// - min: For minimal info about the movie item. Typically all you need to match locally cached items and includes the title, year, and ids.
 /// - full: For complete info of the movie item.
-public enum MovieInfo: String {
-    case min
-    case full
+
+
+/// Represents the amount of data the backend should send in the response.
+///
+/// - min: For minimal info about the item. Typically all you need to match locally cached items and includes the title, year, and ids.
+/// - full: For complete info of the item.
+/// - metadata: For additional metadata info in collections. Has no effect in other endpoints.
+public enum InfoLevel: String {
+    case min, full, metadata
 }
 
 public extension Trakt {
 
-    public func getTrendingMovies(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: MovieInfo = .min, completion: @escaping TraktResult<[TrendingMovie]>) {
+    public func getTrendingMovies(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[TrendingMovie]>) {
         fetchObject(ofType: [TrendingMovie].self,
                     cacheConfig: Movies.trending(pageNumber: pageNumber, resultsPerPage: resultsPerPage, infoLevel: infoLevel),
                     endpoint: Movies.trending(pageNumber: pageNumber, resultsPerPage: resultsPerPage, infoLevel: infoLevel),
@@ -70,7 +76,7 @@ public extension Trakt {
                     completion: completion)
     }
 
-    public func getMovieDetails(for movieId: TraktId, infoLevel: MovieInfo = .full, completion: @escaping TraktResult<Movie>) {
+    public func getMovieDetails(for movieId: TraktId, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {
         fetchObject(ofType: Movie.self,
                     cacheConfig: Movies.details(movieId: movieId, infoLevel: infoLevel),
                     endpoint: Movies.details(movieId: movieId, infoLevel: infoLevel),

@@ -12,6 +12,10 @@ public enum WatchedType: String {
     case all = ""
 }
 
+enum CollectableType: String {
+    case movies, shows
+}
+
 enum Sync: Endpoint {
     struct Payload: CodableEquatable {
         // TODO: Should this also take TMDB ids, if the data is coming from there, but syncing to Trakt?
@@ -27,7 +31,7 @@ enum Sync: Endpoint {
     case getPlaybackProgress(type: WatchedType, limit: Int?)
     case removePlayback(PlaybackProgressId)
 
-    case getCollection(type: ContentType)
+    case getCollection(type: CollectableType, infoLevel: InfoLevel)
     case addToCollection(Payload)
     case removeFromCollection(Payload)
 
@@ -111,8 +115,10 @@ enum Sync: Endpoint {
                 .appendingLimitQuery(limit: params.limit)
         case .removePlayback(let id):
             return sync.appendingPathComponent("playback/\(String(id.integerValue))")
-        case .getCollection(let contentType):
-            return sync.appendingPathComponent("collection/\(contentType.rawValue)")
+        case .getCollection(let params):
+            return sync
+                .appendingPathComponent("collection/\(params.type.rawValue)")
+                .appendingInfo(params.infoLevel)
         case .addToCollection:
             return sync.appendingPathComponent("collection")
         case .removeFromCollection:
@@ -146,7 +152,7 @@ struct HistoryPayload {
     let pageNumber: PageNumber
     let resultsPerPage: Int?
     let traktId: Int?
-    let infoLevel: MovieInfo?
+    let infoLevel: InfoLevel?
     // TODO: These should be dates
     let startDate: String?
     let endDate: String?
@@ -176,7 +182,7 @@ extension HistoryPayload {
          pageNumber: PageNumber,
          resultsPerPage: Int = 10,
          traktId: Int? = nil,
-         infoLevel: MovieInfo = .min,
+         infoLevel: InfoLevel = .min,
          startDate: String? = nil,
          endDate: String? = nil) {
         self.type = type

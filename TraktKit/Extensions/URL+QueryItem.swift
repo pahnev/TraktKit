@@ -35,7 +35,7 @@ public extension URL {
             .appendingLimitQuery(limit: pagination.limit)
     }
 
-    func appendingInfo(_ info: MovieInfo) -> URL {
+    func appendingInfo(_ info: InfoLevel) -> URL {
         return appendingQueryItem(URLQueryItem(name: "extended", value: info.rawValue))
 
     }

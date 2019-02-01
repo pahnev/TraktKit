@@ -12,7 +12,7 @@ public enum Movies {
     case boxOffice
     case comments(movieId: TraktId, sort: String, pageNumber: Int, resultsPerPage: Int)
     case currentlyWatching(movieId: TraktId)
-    case details(movieId: TraktId, infoLevel: MovieInfo)
+    case details(movieId: TraktId, infoLevel: InfoLevel)
     case lists(movieId: TraktId, type: String, sort: String, pageNumber: Int, resultsPerPage: Int)
     case mostAnticipated(pageNumber: Int, resultsPerPage: Int)
     case mostCollected(pageNumber: Int, timePeriod: String, resultsPerPage: Int)
@@ -26,7 +26,7 @@ public enum Movies {
     case releases(movieId: TraktId, country: String)
     case stats(movieId: TraktId)
     case translations(movieId: TraktId, language: String)
-    case trending(pageNumber: Int, resultsPerPage: Int, infoLevel: MovieInfo)
+    case trending(pageNumber: Int, resultsPerPage: Int, infoLevel: InfoLevel)
 }
 
 extension Movies: Endpoint {

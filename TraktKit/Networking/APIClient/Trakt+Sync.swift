@@ -28,7 +28,6 @@ extension Trakt {
         fetchObject(ofType: LastActivities.self, cacheConfig: Sync.lastActivities, endpoint: Sync.lastActivities, completion: completion)
     }
 
-
     /// Whenever a scrobble is paused, the playback progress is saved. Use this progress to sync up playback across different media centers or apps. For example, you can start watching a movie in a media center, stop it, then resume on your tablet from the same spot. Each item will have the progress percentage between 0 and 100.
     ///
     /// 🔒 OAuth Required
@@ -61,8 +60,41 @@ extension Trakt {
             case .success:
                 completion(.success(()))
             }
-
         })
+    }
+
+    /// Get all `Movie` items in user's collection. A collected item indicates availability to watch digitally or on physical media.
+    /// Using `InfoLevel.metadata` will include `Metadata` for each item.
+    ///
+    /// 🔒 OAuth Required
+    ///
+    /// - Parameters:
+    ///   - infoLevel: The info level of the items.
+    ///   - completion: The closure called on completion with a list of `CollectedMovie` items or `TraktError`.
+    func getCollectedMovies(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedMovie]>) {
+        assertLoggedInUser()
+
+        fetchObject(ofType: [CollectedMovie].self,
+                    cacheConfig: Sync.getCollection(type: .movies, infoLevel: infoLevel),
+                    endpoint: Sync.getCollection(type: .movies, infoLevel: infoLevel),
+                    completion: completion)
+    }
+
+    /// Get all `Show` items in user's collection. A collected item indicates availability to watch digitally or on physical media.
+    /// Using `InfoLevel.metadata` will include `Metadata` for each item.
+    ///
+    /// 🔒 OAuth Required
+    ///
+    /// - Parameters:
+    ///   - infoLevel: The info level of the items.
+    ///   - completion: The closure called on completion with a list of `CollectedShow` items or `TraktError`.
+    func getCollectedShows(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedShow]>) {
+        assertLoggedInUser()
+
+        fetchObject(ofType: [CollectedShow].self,
+                    cacheConfig: Sync.getCollection(type: .shows, infoLevel: infoLevel),
+                    endpoint: Sync.getCollection(type: .shows, infoLevel: infoLevel),
+                    completion: completion)
     }
 
     /// Returns movies and episodes that a user has watched, sorted by most recent.
@@ -74,7 +106,7 @@ extension Trakt {
                            pageNumber: PageNumber,
                            resultsPerPage: Int = 10,
                            traktId: Int? = nil,
-                           infoLevel: MovieInfo = .min,
+                           infoLevel: InfoLevel = .min,
                            startDate: String? = nil,
                            endDate: String? = nil,
                            completion: @escaping TraktResult<[HistoryItem]>) {
@@ -102,6 +134,11 @@ extension Trakt {
         authenticatedRequestAndParse(Sync.removeFromHistory(data), completion: completion)
     }
 
+}
+
+// MARK: - Private
+
+private extension Trakt {
     private func syncPayload(movies: [TraktId], shows: [TraktId], episodes: [TraktId], items: [HistoryItemId]) -> Sync.Payload {
         func containers(from ids: [TraktId]) -> [TraktIdContainer] {
             return ids
@@ -110,5 +147,4 @@ extension Trakt {
         }
         return Sync.Payload(movies: containers(from: movies), shows: containers(from: shows), episodes: containers(from: episodes), ids: items)
     }
-
 }
