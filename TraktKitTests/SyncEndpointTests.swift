@@ -427,4 +427,68 @@ class SyncEndpointTests: XCTestCase {
         expect(result).toEventuallyNot(beNil())
     }
 
+    func testGetRatingsIsReturned() {
+        stubHelper.stubWithLocalFile(Sync.getRatings(type: .all, infoLevel: .min))
+
+        var result: [Rating]?
+        trakt.getRatings { res in
+            result = res.value
+        }
+        expect(result).toEventuallyNot(beNil())
+        expect(result?.first?.type).to(be("movie"))
+    }
+
+    func testGetRatingsURL() {
+        let endpoint = Sync.getRatings(type: .all, infoLevel: .min)
+        XCTAssertEqual(endpoint.url.absoluteString, "https://api.trakt.tv/sync/ratings/?extended=min")
+        let moviesEndpoint = Sync.getRatings(type: .movies, infoLevel: .full)
+        XCTAssertEqual(moviesEndpoint.url.absoluteString, "https://api.trakt.tv/sync/ratings/movies?extended=full")
+    }
+
+    func testAddingRating() {
+        let movieId = 1
+        let rating = 1
+        stubHelper.stubPOSTRequest(expectedBody: """
+        {
+        "seasons":[],
+        "movies":[{
+        "ids":{
+        "trakt":\(movieId)
+        },
+        "rating":\(rating)
+        }],
+        "shows":[],
+        "episodes":[]
+        }
+        """.withoutLinebreaks(), responseFile: "sync_watchlist_add")
+
+        var result: AddedToHistory?
+        trakt.addRating(rating, to: .movie, withId: TraktId(movieId), ratedAt: nil) { res in
+            print(res)
+            result = res.value
+        }
+        expect(result).toEventuallyNot(beNil())
+    }
+
+    func testRemovingRatings() {
+        stubHelper.stubPOSTRequest(expectedBody: """
+        {
+        "seasons":[],
+        "movies":[{
+        "ids":{
+        "trakt":1
+        }
+        }],
+        "shows":[],
+        "episodes":[]
+        }
+        """.withoutLinebreaks(), responseFile: "sync_watchlist_remove")
+
+        var result: RemoveFromWatchlist?
+        trakt.removeRatingsFrom(movies: [1]) { res in
+            print(res)
+            result = res.value
+        }
+        expect(result).toEventuallyNot(beNil())
+    }
 }

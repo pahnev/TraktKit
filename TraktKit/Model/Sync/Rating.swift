@@ -9,11 +9,12 @@
 import Foundation
 
 public struct Rating: CodableEquatable {
-    public var ratedAt: Date
-    public var rating: Int
+    public let ratedAt: Date
+    public let rating: Int
+    public let type: String // TODO: What types? Add type safety.
     
-    public var movie: Movie?
-    public var show: Show?
-    public var season: Season?
-    public var episode: Episode?    
+    public let movie: Movie?
+    public let show: Show?
+    public let season: Season?
+    public let episode: Episode?
 }

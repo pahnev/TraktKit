@@ -16,7 +16,8 @@ extension Sync: CacheConfigurable {
             .getPlaybackProgress(type: .movies, limit: 0),
             .getCollection(type: .movies, infoLevel: .min),
             .getHistory(payload: HistoryPayload(type: .movies, pageNumber: 1)),
-            .getWatchlist(type: .movies, infoLevel: .min, pagination: Pagination(page: 1, limit: 1))
+            .getWatchlist(type: .movies, infoLevel: .min, pagination: Pagination(page: 1, limit: 1)),
+            .getRatings(type: .all, infoLevel: .min)
         ]
         return cases
     }
@@ -58,8 +59,8 @@ extension Sync: CacheConfigurable {
             return "\(name)_\(params.type.rawValue)_\(params.infoLevel.rawValue)"
         case .getHistory(let payload):
             return "\(name)_\(payload.type.rawValue)_\(payload.pageNumber)"
-        case .getRatings(let type):
-            return "\(name)_\(type.rawValue)"
+        case .getRatings(let params):
+            return "\(name)_\(params.type.rawValue)_\(params.infoLevel.rawValue)"
         case .getWatchlist(let params):
             return "\(name)_\(params.type.rawValue)_\(params.infoLevel.rawValue)_\(params.pagination.page)"
         case .addToCollection,

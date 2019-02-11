@@ -15,6 +15,10 @@ public enum ContentType: String, CodableEquatable {
     case all = ""
 }
 
+public enum RateableContent: String, CodableEquatable {
+    case movie, show, season, episode
+}
+
 extension Trakt {
 
     /// This method is a useful first step in the syncing process. We recommended caching these dates locally, then you can compare to know exactly what data has changed recently. This can greatly optimize your syncs so you don't pull down a ton of data only to see nothing has actually changed.
@@ -145,16 +149,71 @@ extension Trakt {
         authenticatedRequestAndParse(Sync.removeFromHistory(data), completion: completion)
     }
 
-    func getRatings() {
-        // TODO:
+    /// Get a user's ratings filtered by `type`.
+    ///
+    /// 🔒 OAuth Required ✨ Extended Info
+    ///
+    /// - Parameters:
+    ///   - type: The type of the content.
+    ///   - infoLevel: The info level of the items.
+    ///   - completion: The closure called on completion with a list of `Rating` items or `TraktError`.
+    public func getRatings(type: ContentType = .all, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[Rating]>) {
+        assertLoggedInUser()
+        let endpoint = Sync.getRatings(type: type, infoLevel: infoLevel)
+        fetchObject(ofType: [Rating].self,
+                    cacheConfig: endpoint,
+                    endpoint: endpoint,
+                    completion: completion)
     }
 
-    func addRatings() {
-        // TODO:
+    /// Add a rating to a `Movie`, `Episode`, `Show` or a `Season`.
+    /// Pass in `ratedAt` to mark items as rated in the past.
+    ///
+    /// 🔒 OAuth Required
+    ///
+    /// - Parameters:
+    ///   - rating: The rating to be set. Has to be between 1 and 10.
+    ///   - contentType: The type of the item to be rated.
+    ///   - id: The `TraktId` of the item.
+    ///   - ratedAt: The date of when the rating was set.
+    ///   - completion: The closure called on completion with a `AddedToHistory` object or `TraktError`.
+    public func addRating(_ rating: Int, to contentType: RateableContent, withId id: TraktId, ratedAt: Date?, completion: @escaping TraktResult<AddedToHistory>) {
+        assertLoggedInUser()
+        precondition(rating>=1 && rating<=10, "Rating has to be between 1 and 10")
+
+        let rateable = Sync.RateablePayload.Rateable(rating: rating, ratedAt: ratedAt, ids: TraktIdContainer.Id(trakt: id))
+        let payload: Sync.RateablePayload
+
+        switch contentType {
+        case .movie:
+            payload = Sync.RateablePayload(movies: [rateable], shows: [], episodes: [], seasons: [])
+        case .show:
+            payload = Sync.RateablePayload(movies: [], shows: [rateable], episodes: [], seasons: [])
+        case .season:
+            payload = Sync.RateablePayload(movies: [], shows: [], episodes: [], seasons: [rateable])
+        case .episode:
+            payload = Sync.RateablePayload(movies: [], shows: [], episodes: [rateable], seasons: [])
+        }
+
+        let endpoint = Sync.addRatings(payload)
+        authenticatedRequestAndParse(endpoint, completion: completion)
     }
 
-    func removeRatings() {
-        // TODO:
+    /// Remove ratings for one or more items.
+    ///
+    /// 🔒 OAuth Required
+    ///
+    /// - Parameters:
+    ///   - movies: The movies of which ratings to be removed.
+    ///   - shows: The movies of which ratings to be removed.
+    ///   - episodes: The movies of which ratings to be removed.
+    ///   - seasons: The movies of which ratings to be removed.
+    ///   - completion: The closure called on completion with a `RemoveFromWatchlist` object or `TraktError`.
+    public func removeRatingsFrom(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
+        assertLoggedInUser()
+        let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
+                                         seasons: seasons)
+        authenticatedRequestAndParse(Sync.removeRatings(payload), completion: completion)
     }
 
     /// Returns all items in a user's watchlist. By default returns items of all types.
@@ -176,7 +235,6 @@ extension Trakt {
                     endpoint: getWatchlist,
                     completion: completion)
     }
-
 
     /// Add one of more items to a user's watchlist. Accepts shows, seasons, episodes and movies. If only a show is passed, only the show itself will be added. If seasons are specified, all of those seasons will be added.
     ///

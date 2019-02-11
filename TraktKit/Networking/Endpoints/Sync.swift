@@ -35,6 +35,18 @@ enum Sync: Endpoint {
         let seasons: [TraktIdContainer]
     }
 
+    struct RateablePayload: CodableEquatable {
+        struct Rateable: CodableEquatable {
+            let rating: Int
+            let ratedAt: Date?
+            let ids: TraktIdContainer.Id
+        }
+        let movies: [Rateable]
+        let shows: [Rateable]
+        let episodes: [Rateable]
+        let seasons: [Rateable]
+    }
+
     case lastActivities
     case getPlaybackProgress(type: WatchedType, limit: Int?)
     case removePlayback(PlaybackProgressId)
@@ -47,9 +59,9 @@ enum Sync: Endpoint {
     case addToHistory(Payload)
     case removeFromHistory(Payload)
 
-    case getRatings(type: ContentType)
-    case addRatings(Payload)
-    case removeRatings(Payload)
+    case getRatings(type: ContentType, infoLevel: InfoLevel)
+    case addRatings(RateablePayload)
+    case removeRatings(CollectablePayload)
 
     case getWatchlist(type: ContentType, infoLevel: InfoLevel, pagination: Pagination)
     case addToWatchlist(CollectablePayload)
@@ -80,14 +92,17 @@ enum Sync: Endpoint {
         case .addToCollection(let params),
              .removeFromCollection(let params),
              .addToHistory(let params),
-             .removeFromHistory(let params),
-             .addRatings(let params),
-             .removeRatings(let params):
+             .removeFromHistory(let params):
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try! encoder.encode(params)
         case .addToWatchlist(let payload),
-            .removeFromWatchlist(let payload):
+            .removeFromWatchlist(let payload),
+            .removeRatings(let payload):
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            return try! encoder.encode(payload)
+        case .addRatings(let payload):
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try! encoder.encode(payload)
@@ -142,12 +157,13 @@ enum Sync: Endpoint {
             return sync.appendingPathComponent("history")
         case .removeFromHistory:
             return sync.appendingPathComponent("history/remove")
-        case .getRatings(let type):
-            return sync.appendingPathComponent("\(type.rawValue)/rating")
+        case .getRatings(let params):
+            return sync.appendingPathComponent("ratings/\(params.type.rawValue)")
+                .appendingInfo(params.infoLevel)
         case .addRatings(_):
-            return sync.appendingPathComponent("rating")
+            return sync.appendingPathComponent("ratings")
         case .removeRatings(_):
-            return sync.appendingPathComponent("rating/remove")
+            return sync.appendingPathComponent("ratings/remove")
         case .getWatchlist(let params):
             return sync.appendingPathComponent("watchlist/\(params.type.rawValue)")
                 .appendingInfo(params.infoLevel)
