@@ -53,7 +53,7 @@ enum Sync: Endpoint {
 
     case getWatchlist(type: ContentType, infoLevel: InfoLevel, pagination: Pagination)
     case addToWatchlist(CollectablePayload)
-    case removeFromWatchlist(Payload)
+    case removeFromWatchlist(CollectablePayload)
 
     var httpMethod: HTTPMethod {
         switch self {
@@ -82,12 +82,12 @@ enum Sync: Endpoint {
              .addToHistory(let params),
              .removeFromHistory(let params),
              .addRatings(let params),
-             .removeRatings(let params),
-             .removeFromWatchlist(let params):
+             .removeRatings(let params):
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try! encoder.encode(params)
-        case .addToWatchlist(let payload):
+        case .addToWatchlist(let payload),
+            .removeFromWatchlist(let payload):
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try! encoder.encode(payload)

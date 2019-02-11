@@ -180,7 +180,7 @@ extension Trakt {
 
     /// Add one of more items to a user's watchlist. Accepts shows, seasons, episodes and movies. If only a show is passed, only the show itself will be added. If seasons are specified, all of those seasons will be added.
     ///
-    /// 🔒 OAuth Required 📄 Pagination Optional ✨ Extended Info
+    /// 🔒 OAuth Required
     ///
     /// - Parameters:
     ///   - movies: The ids of the movies to be added.
@@ -195,8 +195,21 @@ extension Trakt {
         authenticatedRequestAndParse(Sync.addToWatchlist(payload), completion: completion)
     }
 
-    public func removeFromWatchlist() {
-        // TODO:
+    /// Remove one or more items from a user's watchlist.
+    ///
+    /// 🔒 OAuth Required
+    ///
+    /// - Parameters:
+    ///   - movies: The ids of the movies to be added.
+    ///   - shows: The ids of the shows to be added.
+    ///   - episodes: The ids of the episodes to be added.
+    ///   - seasons: the ids of seasons to be added.
+    ///   - completion: The closure called on completion with a `RemoveFromWatchlistResult` or `TraktError`.
+    public func removeFromWatchlist(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
+        assertLoggedInUser()
+        let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
+                                         seasons: seasons)
+        authenticatedRequestAndParse(Sync.removeFromWatchlist(payload), completion: completion)
     }
 
 }

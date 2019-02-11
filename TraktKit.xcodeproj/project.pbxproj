@@ -90,7 +90,7 @@
 		BF_605392080734 /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_260015663399 /* Cache.framework */; };
 		BF_629513053953 /* AnticipatedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_861354865641 /* AnticipatedMovie.swift */; };
 		BF_631200670701 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_584416535329 /* SearchResult.swift */; };
-		BF_633794182176 /* RemoveFromWatchlistResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_267113719396 /* RemoveFromWatchlistResult.swift */; };
+		BF_633794182176 /* RemoveFromWatchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_267113719396 /* RemoveFromWatchlist.swift */; };
 		BF_649821508716 /* TraktKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FR_738436057603 /* TraktKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF_651594146644 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_184704130534 /* ListItem.swift */; };
 		BF_655241581703 /* PlaybackProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_901836309413 /* PlaybackProgress.swift */; };
@@ -166,6 +166,7 @@
 		EDC232FF22042161008C65CB /* sync_playback.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232FE22042161008C65CB /* sync_playback.json */; };
 		EDC2330122044236008C65CB /* sync_collection_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC2330022044236008C65CB /* sync_collection_movies.json */; };
 		EDC2330322044255008C65CB /* sync_collection_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC2330222044255008C65CB /* sync_collection_shows.json */; };
+		EDD2C77C221176BC00ADBEE1 /* sync_watchlist_remove.json in Resources */ = {isa = PBXBuildFile; fileRef = EDD2C77B221176BC00ADBEE1 /* sync_watchlist_remove.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +248,7 @@
 		EDC232FE22042161008C65CB /* sync_playback.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_playback.json; sourceTree = "<group>"; };
 		EDC2330022044236008C65CB /* sync_collection_movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_collection_movies.json; sourceTree = "<group>"; };
 		EDC2330222044255008C65CB /* sync_collection_shows.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_collection_shows.json; sourceTree = "<group>"; };
+		EDD2C77B221176BC00ADBEE1 /* sync_watchlist_remove.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist_remove.json; sourceTree = "<group>"; };
 		FR_100428954135 /* RemoveFromCollectionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromCollectionResult.swift; sourceTree = "<group>"; };
 		FR_108688034233 /* Certification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certification.swift; sourceTree = "<group>"; };
 		FR_134760935659 /* MovieTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTranslation.swift; sourceTree = "<group>"; };
@@ -265,7 +267,7 @@
 		FR_229538118826 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FR_248485083760 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		FR_260015663399 /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cache.framework; sourceTree = "<group>"; };
-		FR_267113719396 /* RemoveFromWatchlistResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromWatchlistResult.swift; sourceTree = "<group>"; };
+		FR_267113719396 /* RemoveFromWatchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromWatchlist.swift; sourceTree = "<group>"; };
 		FR_271646909390 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FR_273957658814 /* movies_120_related.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_related.json; sourceTree = "<group>"; };
 		FR_283769957414 /* CalendarMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMovie.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */,
 				ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */,
 				ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */,
+				EDD2C77B221176BC00ADBEE1 /* sync_watchlist_remove.json */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -514,7 +517,7 @@
 				FR_702987080984 /* Rating.swift */,
 				ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */,
 				FR_100428954135 /* RemoveFromCollectionResult.swift */,
-				FR_267113719396 /* RemoveFromWatchlistResult.swift */,
+				FR_267113719396 /* RemoveFromWatchlist.swift */,
 				FR_642173650568 /* RemoveRatingsResult.swift */,
 			);
 			path = Sync;
@@ -963,6 +966,7 @@
 				EDC232F122018CD6008C65CB /* sync_history_shows_119095.json in Resources */,
 				EDC2330322044255008C65CB /* sync_collection_shows.json in Resources */,
 				BF_310018698725 /* movies_watched.json in Resources */,
+				EDD2C77C221176BC00ADBEE1 /* sync_watchlist_remove.json in Resources */,
 				EDC232EF22018B7F008C65CB /* sync_history_episodes_3335676.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1106,7 +1110,7 @@
 				BF_657023837661 /* Rating.swift in Sources */,
 				BF_976768655088 /* RatingDistribution.swift in Sources */,
 				BF_117269354340 /* RemoveFromCollectionResult.swift in Sources */,
-				BF_633794182176 /* RemoveFromWatchlistResult.swift in Sources */,
+				BF_633794182176 /* RemoveFromWatchlist.swift in Sources */,
 				BF_538967994881 /* RemoveListItemResult.swift in Sources */,
 				BF_573853296018 /* RemoveRatingsResult.swift in Sources */,
 				BF_148534012709 /* Result.swift in Sources */,

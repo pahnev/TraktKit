@@ -406,4 +406,25 @@ class SyncEndpointTests: XCTestCase {
         expect(result?.notFound.episodes.count).to(be(1))
     }
 
+    func testRemoveFromWatchlistBodyIsCorrect() {
+        stubHelper.stubPOSTRequest(expectedBody: """
+        {
+        "seasons":[],
+        "movies":[{
+        "ids":{
+        "trakt":0
+        }
+        }],
+        "shows":[],
+        "episodes":[]
+        }
+        """.withoutLinebreaks(), responseFile: "sync_watchlist_remove")
+
+        var result: RemoveFromWatchlist?
+        trakt.removeFromWatchlist(movies: [0]) { res in
+            result = res.value
+        }
+        expect(result).toEventuallyNot(beNil())
+    }
+
 }

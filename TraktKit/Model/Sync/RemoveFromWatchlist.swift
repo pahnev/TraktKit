@@ -1,5 +1,5 @@
 //
-//  RemoveFromWatchlistResult.swift
+//  RemoveFromWatchlist.swift
 //  TraktKit
 //
 //  Created by Kirill Pahnev on 27/07/2018.
@@ -8,21 +8,14 @@
 
 import Foundation
 
-public struct RemoveFromWatchlistResult: CodableEquatable {
+public struct RemoveFromWatchlist: CodableEquatable {
     let deleted: Deleted
-//    let notFound: NotFound
+    let notFound: AddToWatchlist.NotFound
 
     public struct Deleted: CodableEquatable {
         let movies: Int
         let shows: Int
         let seasons: Int
         let episodes: Int
-    }
-    
-    public struct NotFound: CodableEquatable {
-        let movies: [ID]
-        let shows: [ID]
-        let seasons: [ID]
-        let episodes: [ID]
     }
 }
