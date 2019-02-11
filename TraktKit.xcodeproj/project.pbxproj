@@ -47,7 +47,7 @@
 		BF_310018698725 /* movies_watched.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_501779700012 /* movies_watched.json */; };
 		BF_311784977456 /* EpisodeTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_316012796770 /* EpisodeTranslation.swift */; };
 		BF_333635740342 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_248485083760 /* List.swift */; };
-		BF_334553359210 /* AddToCollectionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_414707010780 /* AddToCollectionResult.swift */; };
+		BF_334553359210 /* AddToWatchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_414707010780 /* AddToWatchlist.swift */; };
 		BF_336519361364 /* movies_120_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_460604374422 /* movies_120_comments.json */; };
 		BF_350401070107 /* AttachedMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_919027982787 /* AttachedMediaItem.swift */; };
 		BF_350467325001 /* movies_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_823405469106 /* movies_updates.json */; };
@@ -132,6 +132,8 @@
 		ED189AC721FB47C300C87B72 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189AC621FB47C300C87B72 /* Config.swift */; };
 		ED189AC821FB4C4600C87B72 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189AC621FB47C300C87B72 /* Config.swift */; };
 		ED28F0F022045A0B00D7AB05 /* sync_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */; };
+		ED28F0F22204853200D7AB05 /* sync_watchlist_add.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */; };
+		ED28F0F42204854600D7AB05 /* sync_watchlist_add_notFound.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */; };
 		ED2A79D32136B24A006FBEBD /* CacheConfig+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79D22136B24A006FBEBD /* CacheConfig+Sync.swift */; };
 		ED2A79D92136DA58006FBEBD /* RemovedFromHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */; };
 		ED2A79DB2136DA6D006FBEBD /* AddedToHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */; };
@@ -211,6 +213,8 @@
 		ED1755E221367C1600C07C73 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		ED189AC621FB47C300C87B72 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist.json; sourceTree = "<group>"; };
+		ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist_add.json; sourceTree = "<group>"; };
+		ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist_add_notFound.json; sourceTree = "<group>"; };
 		ED2A79D22136B24A006FBEBD /* CacheConfig+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CacheConfig+Sync.swift"; sourceTree = "<group>"; };
 		ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovedFromHistory.swift; sourceTree = "<group>"; };
 		ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedToHistory.swift; sourceTree = "<group>"; };
@@ -285,7 +289,7 @@
 		FR_393394011258 /* RatingDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingDistribution.swift; sourceTree = "<group>"; };
 		FR_393827778560 /* CacheConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheConfig.swift; sourceTree = "<group>"; };
 		FR_407205935100 /* MovieRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRelease.swift; sourceTree = "<group>"; };
-		FR_414707010780 /* AddToCollectionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCollectionResult.swift; sourceTree = "<group>"; };
+		FR_414707010780 /* AddToWatchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWatchlist.swift; sourceTree = "<group>"; };
 		FR_427287722059 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		FR_430132809347 /* CastAndCrew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAndCrew.swift; sourceTree = "<group>"; };
 		FR_432319892815 /* CacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheEntry.swift; sourceTree = "<group>"; };
@@ -418,6 +422,8 @@
 				EDC232FC2201D792008C65CB /* sync_last_activities.json */,
 				EDC232FE22042161008C65CB /* sync_playback.json */,
 				ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */,
+				ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */,
+				ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -500,16 +506,16 @@
 		G_3142131595132 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
-				FR_414707010780 /* AddToCollectionResult.swift */,
+				ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */,
+				FR_414707010780 /* AddToWatchlist.swift */,
 				FR_524599131833 /* CollectedItem.swift */,
 				FR_290415738868 /* HistoryItem.swift */,
 				FR_901836309413 /* PlaybackProgress.swift */,
 				FR_702987080984 /* Rating.swift */,
+				ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */,
 				FR_100428954135 /* RemoveFromCollectionResult.swift */,
 				FR_267113719396 /* RemoveFromWatchlistResult.swift */,
 				FR_642173650568 /* RemoveRatingsResult.swift */,
-				ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */,
-				ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -930,6 +936,7 @@
 				EDC232F322018E6A008C65CB /* sync_history_seasons_100.json in Resources */,
 				EDC232FD2201D792008C65CB /* sync_last_activities.json in Resources */,
 				BF_868972963442 /* movies_120_aliases.json in Resources */,
+				ED28F0F42204854600D7AB05 /* sync_watchlist_add_notFound.json in Resources */,
 				EDC232E92201862C008C65CB /* sync_history_episodes.json in Resources */,
 				BF_336519361364 /* movies_120_comments.json in Resources */,
 				EDC232F92201C226008C65CB /* removeHistory_movie.json in Resources */,
@@ -939,6 +946,7 @@
 				EDC232FF22042161008C65CB /* sync_playback.json in Resources */,
 				EDC232EB220186DC008C65CB /* sync_history_seasons.json in Resources */,
 				BF_676201450828 /* movies_120_min.json in Resources */,
+				ED28F0F22204853200D7AB05 /* sync_watchlist_add.json in Resources */,
 				BF_440062734471 /* movies_120_people.json in Resources */,
 				ED9B5051211AB6ED00751E10 /* movies_trending_full.json in Resources */,
 				BF_211976527808 /* movies_120_ratings.json in Resources */,
@@ -1036,7 +1044,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF_282281077432 /* AccountSettings.swift in Sources */,
-				BF_334553359210 /* AddToCollectionResult.swift in Sources */,
+				BF_334553359210 /* AddToWatchlist.swift in Sources */,
 				BF_527422358346 /* Alias.swift in Sources */,
 				BF_629513053953 /* AnticipatedMovie.swift in Sources */,
 				BF_896854005706 /* AnticipatedShow.swift in Sources */,

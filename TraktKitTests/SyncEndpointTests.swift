@@ -362,4 +362,48 @@ class SyncEndpointTests: XCTestCase {
         XCTAssertEqual(allTypesEndpoint.url.absoluteString, "https://api.trakt.tv/sync/watchlist/?extended=metadata&page=1&limit=1")
     }
 
+    func testAddToWatchlist() {
+        stubHelper.stubPOSTRequest(expectedBody: """
+        {
+        "seasons":[],
+        "movies":[{
+        "ids":{
+        "trakt":0
+        }
+        }],
+        "shows":[],
+        "episodes":[]
+        }
+        """.withoutLinebreaks(), responseFile: "sync_watchlist_add")
+
+        var result: AddToWatchlist?
+        trakt.addToWatchlist(movies: [0]) { res in
+            result = res.value
+        }
+        expect(result).toEventuallyNot(beNil())
+    }
+
+    func testAddToWatchlistAlreadyExistsOrNotFound() {
+        stubHelper.stubPOSTRequest(expectedBody: """
+        {
+        "seasons":[],
+        "movies":[{
+        "ids":{
+        "trakt":0
+        }
+        }],
+        "shows":[],
+        "episodes":[]
+        }
+        """.withoutLinebreaks(), responseFile: "sync_watchlist_add_notFound")
+
+        var result: AddToWatchlist?
+        trakt.addToWatchlist(movies: [0]) { res in
+            result = res.value
+        }
+        expect(result).toEventuallyNot(beNil())
+        expect(result?.existing.movies).to(be(1))
+        expect(result?.notFound.episodes.count).to(be(1))
+    }
+
 }

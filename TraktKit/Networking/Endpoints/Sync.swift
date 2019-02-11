@@ -27,6 +27,14 @@ enum Sync: Endpoint {
         let ids: [HistoryItemId]
     }
 
+    struct CollectablePayload: CodableEquatable {
+        let movies: [TraktIdContainer]
+        let shows: [TraktIdContainer]
+        let episodes: [TraktIdContainer]
+
+        let seasons: [TraktIdContainer]
+    }
+
     case lastActivities
     case getPlaybackProgress(type: WatchedType, limit: Int?)
     case removePlayback(PlaybackProgressId)
@@ -44,7 +52,7 @@ enum Sync: Endpoint {
     case removeRatings(Payload)
 
     case getWatchlist(type: ContentType, infoLevel: InfoLevel, pagination: Pagination)
-    case addToWatchlist(Payload)
+    case addToWatchlist(CollectablePayload)
     case removeFromWatchlist(Payload)
 
     var httpMethod: HTTPMethod {
@@ -75,11 +83,14 @@ enum Sync: Endpoint {
              .removeFromHistory(let params),
              .addRatings(let params),
              .removeRatings(let params),
-             .addToWatchlist(let params),
              .removeFromWatchlist(let params):
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try! encoder.encode(params)
+        case .addToWatchlist(let payload):
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            return try! encoder.encode(payload)
         }
     }
 
@@ -194,5 +205,14 @@ extension HistoryPayload {
         self.infoLevel = infoLevel
         self.startDate = startDate
         self.endDate = endDate
+    }
+}
+
+extension Sync.CollectablePayload {
+    init(syncPayload: Sync.Payload, seasons: [TraktIdContainer]) {
+        self.movies = syncPayload.movies
+        self.shows = syncPayload.shows
+        self.episodes = syncPayload.episodes
+        self.seasons = seasons
     }
 }

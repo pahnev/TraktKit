@@ -163,7 +163,7 @@ extension Trakt {
     /// 🔒 OAuth Required 📄 Pagination Optional ✨ Extended Info
     ///
     /// - Parameters:
-    ///   - type: The specifi type of the items. Defaults to `all`.
+    ///   - type: The specific type of the items. Defaults to `all`.
     ///   - infoLevel: The info level of the items. Defaults to `min`.
     ///   - page: The page of the results.
     ///   - resultsPerPage: The amount of results per page should be returned. Defaults to 10 results.
@@ -177,8 +177,22 @@ extension Trakt {
                     completion: completion)
     }
 
-    public func addToWatchlist() {
-        // TODO:
+
+    /// Add one of more items to a user's watchlist. Accepts shows, seasons, episodes and movies. If only a show is passed, only the show itself will be added. If seasons are specified, all of those seasons will be added.
+    ///
+    /// 🔒 OAuth Required 📄 Pagination Optional ✨ Extended Info
+    ///
+    /// - Parameters:
+    ///   - movies: The ids of the movies to be added.
+    ///   - shows: The ids of the shows to be added.
+    ///   - episodes: The ids of the episodes to be added.
+    ///   - seasons: the ids of seasons to be added.
+    ///   - completion: The closure called on completion with a `AddToWatchlist` or `TraktError`.
+    public func addToWatchlist(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<AddToWatchlist>) {
+        assertLoggedInUser()
+        let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
+                                         seasons: seasons)
+        authenticatedRequestAndParse(Sync.addToWatchlist(payload), completion: completion)
     }
 
     public func removeFromWatchlist() {
@@ -190,6 +204,12 @@ extension Trakt {
 // MARK: - Private
 
 private extension Trakt {
+    private func collectablePayload(syncPayload: Sync.Payload, seasons: [TraktId]) -> Sync.CollectablePayload {
+        let seasons = seasons
+            .map { TraktIdContainer.Id(trakt: $0) }
+            .map { TraktIdContainer(ids: $0) }
+        return Sync.CollectablePayload(syncPayload: syncPayload, seasons: seasons)
+    }
     private func syncPayload(movies: [TraktId], shows: [TraktId], episodes: [TraktId], items: [HistoryItemId]) -> Sync.Payload {
         func containers(from ids: [TraktId]) -> [TraktIdContainer] {
             return ids
