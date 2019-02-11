@@ -15,7 +15,6 @@ public enum TraktError: Error, LocalizedError {
     case nonHttpResponseError /// Non-HTTP response was received
     case decodingError(DecodingError) /// JSON decoding error
     case cacheSavingError(Error) // Error during saving an object to cache.
-    case tokenError(Error)
     case clientSecretMissing
     case oAuthCallbackCodeMissing
 
@@ -33,8 +32,6 @@ public enum TraktError: Error, LocalizedError {
             return "JSON decoding error: \(error.localizedDescription)"
         case .cacheSavingError(let error):
             return "Cache saving error: \(error.localizedDescription)"
-        case .tokenError(let error):
-            return "OAuth error: \(error.localizedDescription)"
         case .clientSecretMissing:
             return "Client secret is required for the action"
         case .oAuthCallbackCodeMissing:

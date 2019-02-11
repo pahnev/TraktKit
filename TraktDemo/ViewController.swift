@@ -56,8 +56,9 @@ class ViewController: UIViewController {
 
     @IBAction func login(_ sender: UIButton) {
         let completion : SFAuthenticationSession.CompletionHandler = { [weak self] callbackURL, error in
-            guard let strongSelf = self else { return }
-            strongSelf.trakt.getToken(from: callbackURL, callbackError: error, redirectURI: Config.redirectURI, completion: { result in
+            guard let strongSelf = self,
+                let callbackURL = callbackURL else { return }
+            strongSelf.trakt.getToken(from: callbackURL, redirectURI: Config.redirectURI, completion: { result in
                 switch result {
                 case .failure(let error):
                     print(error)

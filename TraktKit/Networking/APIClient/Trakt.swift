@@ -35,11 +35,14 @@ public final class Trakt {
         return Authentication.authorize(clientId: traktClient.clientId, redirectURI: redirectURI).url
     }
 
-    public func getToken(from callbackURL: URL?, callbackError: Error?, redirectURI: String, completion: @escaping TraktResult<TokenResponse>) {
-        guard callbackError == nil else { return completion(.failure(TraktError.tokenError(callbackError!))) }
-
+    /// A helper function to authenticate `Trakt` client with the received `callbackURL` after successful user login.
+    ///
+    /// - Parameters:
+    ///   - callbackURL: The callback url received during the OAuth process.
+    ///   - redirectURI: The redirect URI your app responds to.
+    ///   - completion: A closure called when the authentication is finished. Returns either `TokenResponse` or `TraktError`.
+    public func getToken(from callbackURL: URL, redirectURI: String, completion: @escaping TraktResult<TokenResponse>) {
         guard let secret = traktClient.secret else { return completion(.failure(TraktError.clientSecretMissing)) }
-        guard let callbackURL = callbackURL else { preconditionFailure("A callbackURL should be passed to the function") }
 
         let components = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false)
         guard let authCode = components?.queryItems?.first(where: { $0.name == "code" })?.value else {
