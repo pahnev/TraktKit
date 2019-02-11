@@ -22,9 +22,8 @@ public struct WatchedItem: CodableEquatable {
 
     public let plays: Int
     public let lastWatchedAt: Date
-    public var show: Show? = nil
-    public var seasons: [TraktWatchedSeason]? = nil
-    public var movie: Movie? = nil
-
-
+    public let lastUpdatedAt: Date
+    public let show: Show?
+    public let seasons: [TraktWatchedSeason]?
+    public let movie: Movie?
 }

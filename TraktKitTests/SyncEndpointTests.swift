@@ -491,4 +491,14 @@ class SyncEndpointTests: XCTestCase {
         }
         expect(result).toEventuallyNot(beNil())
     }
+
+    func testGettingWatchedReturns() {
+        stubHelper.stubWithLocalFile(Sync.getWatched(type: .movies, infoLevel: .min))
+        var result: [WatchedItem]?
+        trakt.getWatched(type: .movies) { res in
+            result = res.value
+        }
+        expect(result).toEventuallyNot(beNil())
+        expect(result?.first?.movie?.title).toEventually(match("Guardians of the Galaxy"))
+    }
 }

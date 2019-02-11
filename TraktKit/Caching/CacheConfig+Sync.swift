@@ -17,7 +17,8 @@ extension Sync: CacheConfigurable {
             .getCollection(type: .movies, infoLevel: .min),
             .getHistory(payload: HistoryPayload(type: .movies, pageNumber: 1)),
             .getWatchlist(type: .movies, infoLevel: .min, pagination: Pagination(page: 1, limit: 1)),
-            .getRatings(type: .all, infoLevel: .min)
+            .getRatings(type: .all, infoLevel: .min),
+            .getWatched(type: .movies, infoLevel: .min)
         ]
         return cases
     }
@@ -36,6 +37,8 @@ extension Sync: CacheConfigurable {
             return "getRatings"
         case .getWatchlist:
             return "getWatchlist"
+        case .getWatched:
+            return "getWatched"
         case .addToCollection,
              .removePlayback,
              .removeFromCollection,
@@ -46,6 +49,7 @@ extension Sync: CacheConfigurable {
              .addToWatchlist,
              .removeFromWatchlist:
             preconditionFailure()
+
         }
     }
 
@@ -63,6 +67,8 @@ extension Sync: CacheConfigurable {
             return "\(name)_\(params.type.rawValue)_\(params.infoLevel.rawValue)"
         case .getWatchlist(let params):
             return "\(name)_\(params.type.rawValue)_\(params.infoLevel.rawValue)_\(params.pagination.page)"
+        case .getWatched(let params):
+            return "\(name)_\(params.type.rawValue)_\(params.infoLevel.rawValue)"
         case .addToCollection,
              .removeFromCollection,
              .addToHistory,
@@ -82,7 +88,7 @@ extension Sync: CacheConfigurable {
         switch self {
         case .lastActivities, .getPlaybackProgress:
             return MB
-        case .getCollection, .getHistory, .getRatings, .getWatchlist:
+        case .getCollection, .getHistory, .getRatings, .getWatchlist, .getWatched:
             return MB * 50
         case .addToCollection,
              .removeFromCollection,
@@ -101,7 +107,7 @@ extension Sync: CacheConfigurable {
         switch self {
         case .lastActivities:
             return 1
-        case .getCollection, .getHistory, .getRatings, .getWatchlist, .getPlaybackProgress:
+        case .getCollection, .getHistory, .getRatings, .getWatchlist, .getPlaybackProgress, .getWatched:
             return 500
         case .addToCollection,
              .removeFromCollection,

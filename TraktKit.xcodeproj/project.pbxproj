@@ -143,6 +143,7 @@
 		ED481772213D0F67001576CA /* ExtendedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481771213D0F67001576CA /* ExtendedType.swift */; };
 		ED481777213D21BB001576CA /* ClientProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481775213D21BA001576CA /* ClientProvider.swift */; };
 		ED481778213D21BB001576CA /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481776213D21BB001576CA /* Authenticator.swift */; };
+		ED6FFBE82211B91000A4FE75 /* sync_watched_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = ED6FFBE72211B91000A4FE75 /* sync_watched_movies.json */; };
 		ED9B5051211AB6ED00751E10 /* movies_trending_full.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9B5050211AB6ED00751E10 /* movies_trending_full.json */; };
 		EDB8C8F721357F0900BA4485 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8C8F621357F0900BA4485 /* Sync.swift */; };
 		EDB8C8FD2135841500BA4485 /* Trakt+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8C8FC2135841500BA4485 /* Trakt+Sync.swift */; };
@@ -226,6 +227,7 @@
 		ED481771213D0F67001576CA /* ExtendedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedType.swift; sourceTree = "<group>"; };
 		ED481775213D21BA001576CA /* ClientProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientProvider.swift; sourceTree = "<group>"; };
 		ED481776213D21BB001576CA /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		ED6FFBE72211B91000A4FE75 /* sync_watched_movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watched_movies.json; sourceTree = "<group>"; };
 		ED9B5050211AB6ED00751E10 /* movies_trending_full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movies_trending_full.json; sourceTree = "<group>"; };
 		EDB8C8F621357F0900BA4485 /* Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
 		EDB8C8FC2135841500BA4485 /* Trakt+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trakt+Sync.swift"; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 				ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */,
 				EDD2C77B221176BC00ADBEE1 /* sync_watchlist_remove.json */,
 				EDD2C77D22117B4800ADBEE1 /* sync_ratings.json */,
+				ED6FFBE72211B91000A4FE75 /* sync_watched_movies.json */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDC232ED22018A8D008C65CB /* sync_history_movies_190430.json in Resources */,
+				ED6FFBE82211B91000A4FE75 /* sync_watched_movies.json in Resources */,
 				EDC232E72201861F008C65CB /* sync_history_shows.json in Resources */,
 				BF_511354271705 /* movies_boxoffice.json in Resources */,
 				BF_122386068420 /* movies_collected.json in Resources */,

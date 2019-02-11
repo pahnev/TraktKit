@@ -12,7 +12,7 @@ public enum WatchedType: String {
     case all = ""
 }
 
-enum CollectableType: String {
+public enum CollectableType: String {
     case movies, shows
 }
 
@@ -55,6 +55,8 @@ enum Sync: Endpoint {
     case addToCollection(Payload)
     case removeFromCollection(Payload)
 
+    case getWatched(type: CollectableType, infoLevel: InfoLevel)
+
     case getHistory(payload: HistoryPayload)
     case addToHistory(Payload)
     case removeFromHistory(Payload)
@@ -69,7 +71,7 @@ enum Sync: Endpoint {
 
     var httpMethod: HTTPMethod {
         switch self {
-        case .lastActivities, .getPlaybackProgress, .getCollection, .getHistory, .getRatings, .getWatchlist:
+        case .lastActivities, .getPlaybackProgress, .getCollection, .getHistory, .getRatings, .getWatchlist, .getWatched:
             return .GET
         case .addToCollection,
              .removeFromCollection,
@@ -87,7 +89,7 @@ enum Sync: Endpoint {
 
     var httpBody: Data? {
         switch self {
-        case .lastActivities, .getPlaybackProgress, .removePlayback, .getCollection, .getHistory, .getRatings, .getWatchlist:
+        case .lastActivities, .getPlaybackProgress, .removePlayback, .getCollection, .getHistory, .getRatings, .getWatchlist, .getWatched:
             return nil
         case .addToCollection(let params),
              .removeFromCollection(let params),
@@ -125,7 +127,8 @@ enum Sync: Endpoint {
              .removeRatings,
              .getWatchlist,
              .addToWatchlist,
-             .removeFromWatchlist:
+             .removeFromWatchlist,
+             .getWatched:
             return [:]
         }
     }
@@ -149,6 +152,10 @@ enum Sync: Endpoint {
             return sync.appendingPathComponent("collection")
         case .removeFromCollection:
             return sync.appendingPathComponent("collection/remove")
+        case .getWatched(let params):
+            return sync
+                .appendingPathComponent("watched/\(params.type.rawValue)")
+                .appendingInfo(params.infoLevel)
         case .getHistory(let payload):
             return sync
                 .appendingPathComponent("history/\(payload.type.rawValue)/\(String(payload.traktId))")

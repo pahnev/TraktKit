@@ -108,8 +108,24 @@ extension Trakt {
         // TODO:
     }
 
-    func getWatched() {
-        // TODO:
+
+    /// Returns all movies or shows a user has watched sorted by most plays.
+    /// Each `Movie` and `Show` object contains `lastWatchedAt` and `lastUpdatedAt` timestamps.
+    /// Since users can set custom dates when they watched movies and episodes, it is possible for `lastUpdatedAt` to be in the past.
+    /// We also include `lastUpdatedAt` to help sync Trakt data with your app. Cache this timestamp locally and only re-process the show if you see a newer timestamp.
+    ///
+    /// 🔒 OAuth Required ✨ Extended Info
+    ///
+    /// - Parameters:
+    ///   - type: The type of the watched items.
+    ///   - infoLevel: The info level of the items. Defaults to `InfoLevel.min`.
+    ///   - completion: The closure called on completion with a list of `WatchedItem` objects or `TraktError`.
+    public func getWatched(type: CollectableType, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[WatchedItem]>) {
+        assertLoggedInUser()
+        let endpoint = Sync.getWatched(type: type, infoLevel: infoLevel)
+        fetchObject(ofType: [WatchedItem].self,
+                    cacheConfig: endpoint,
+                    endpoint: endpoint, completion: completion)
     }
 
     /// Returns movies and episodes that a user has watched, sorted by most recent.
