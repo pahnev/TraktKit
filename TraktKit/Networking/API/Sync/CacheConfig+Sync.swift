@@ -10,8 +10,7 @@ import Cache
 
 extension Sync: CacheConfigurable {
     static var allCases: [CacheConfigurable] {
-        // TODO: Fix to have all cases
-        let cases: [Sync] = [
+        return [
             .lastActivities,
             .getPlaybackProgress(type: .movies, limit: 0),
             .getCollection(type: .movies, infoLevel: .min),
@@ -19,8 +18,7 @@ extension Sync: CacheConfigurable {
             .getWatchlist(type: .movies, infoLevel: .min, pagination: Pagination(page: 1, limit: 1)),
             .getRatings(type: .all, infoLevel: .min),
             .getWatched(type: .movies, infoLevel: .min)
-        ]
-        return cases
+        ] as [Sync]
     }
 
     var name: String {
@@ -155,7 +153,7 @@ extension Sync: CacheConfigurable {
     private func cacheDirectoryURL() -> URL {
         final class InternalClassForBundleLoader {}
         guard let bundleIdentifier = Bundle(for: InternalClassForBundleLoader.self).bundleIdentifier else { preconditionFailure("Missing bundleIdentifier") }
-        let storeDirectoryName = "tmdbkit-store"
+        let storeDirectoryName = "traktkit-store"
         let dirSubPath = "/" + bundleIdentifier + "/" + storeDirectoryName
 
         guard let cacheBaseDirPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {

@@ -1,54 +1,58 @@
 //
-//  Caching.swift
-//  TraktKit
-//
-//  Created by Kirill Pahnev on 29/06/2018.
-//  Copyright © 2018 Pahnev. All rights reserved.
+// Created by Kirill Pahnev on 2019-02-12.
 //
 
-import Cache
 import Foundation
+import Cache
 
-protocol CacheConfigurable {
-    var name: String { get }
-    var key: String { get }
-    var diskMaxSize: UInt { get }
-    var memoryMaxItemCount: UInt { get }
-    static var allCases: [CacheConfigurable] { get }
-
-    func createCache() throws -> Storage
-    var diskStorageSize: Int { get }
-}
-
-enum CacheConfig: CacheConfigurable {
+extension Users: CacheConfigurable {
     static var allCases: [CacheConfigurable] {
-        return [Movies.allCases, Sync.allCases].flatMap { $0 }
+        return [
+            .getWatching(userId: "", infoLevel: .min)
+        ] as [Users]
     }
-
-    case movies(Movies)
 
     var name: String {
         switch self {
-        case .movies(let config): return config.name
+        case .getWatching:
+            return "getWatching"
         }
     }
 
     var key: String {
         switch self {
-        case .movies(let config): return config.key
+        case .getWatching(let params):
+            return "\(name)_\(params.userId)_\(params.infoLevel.rawValue)"
         }
     }
 
     var diskMaxSize: UInt {
         switch self {
-        case .movies(let config): return config.diskMaxSize
+        case .getWatching:
+            return 1
         }
+
     }
 
     var memoryMaxItemCount: UInt {
         switch self {
-        case .movies(let config): return config.memoryMaxItemCount
+        case .getWatching:
+            return 1
         }
+    }
+
+    func createCache() throws -> Storage {
+        let diskConfig = DiskConfig(name: name,
+                expiry: .never,
+                maxSize: diskMaxSize,
+                directory: cacheDirectoryURL(),
+                protectionType: nil)
+
+        let memoryConfig = MemoryConfig(expiry: .never,
+                countLimit: memoryMaxItemCount,
+                totalCostLimit: memoryMaxItemCount)
+
+        return try Storage(diskConfig: diskConfig, memoryConfig: memoryConfig)
     }
 
     var diskStorageSize: Int {
@@ -66,29 +70,10 @@ enum CacheConfig: CacheConfigurable {
         return totalSize
     }
 
-    func storage(with cache: Cache) -> Storage {
-        return cache.storage(for: self)
-    }
-
-    func createCache() throws -> Storage {
-        let diskConfig = DiskConfig(name: name,
-                                    expiry: .never,
-                                    maxSize: diskMaxSize,
-                                    directory: cacheDirectoryURL(),
-                                    protectionType: nil)
-
-        let memoryConfig = MemoryConfig(expiry: .never,
-                                        countLimit: memoryMaxItemCount,
-                                        totalCostLimit: memoryMaxItemCount)
-
-        return try Storage(diskConfig: diskConfig, memoryConfig: memoryConfig)
-
-    }
-
     private func cacheDirectoryURL() -> URL {
         final class InternalClassForBundleLoader {}
         guard let bundleIdentifier = Bundle(for: InternalClassForBundleLoader.self).bundleIdentifier else { preconditionFailure("Missing bundleIdentifier") }
-        let storeDirectoryName = "recipekit-store"
+        let storeDirectoryName = "traktkit-store"
         let dirSubPath = "/" + bundleIdentifier + "/" + storeDirectoryName
 
         guard let cacheBaseDirPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {

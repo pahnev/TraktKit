@@ -197,7 +197,7 @@ extension Movies: CacheConfigurable {
     private func cacheDirectoryURL() -> URL {
         final class InternalClassForBundleLoader {}
         guard let bundleIdentifier = Bundle(for: InternalClassForBundleLoader.self).bundleIdentifier else { preconditionFailure("Missing bundleIdentifier") }
-        let storeDirectoryName = "tmdbkit-store"
+        let storeDirectoryName = "traktkit-store"
         let dirSubPath = "/" + bundleIdentifier + "/" + storeDirectoryName
 
         guard let cacheBaseDirPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
