@@ -11,6 +11,23 @@ import XCTest
 @testable import TraktKit
 
 class StubHelper {
+    static let defaultPaginationHeaders = [
+        "x-pagination-item-count": "1",
+        "x-pagination-limit": "2",
+        "x-pagination-page": "3",
+        "x-pagination-page-count": "4"
+    ]
+
+    func fixtureFor(_ endpoint: Endpoint, info: InfoLevel? = nil, headers: [String: Any] = defaultPaginationHeaders) -> OHHTTPStubsResponse {
+        print("---- Stubbing URL path: \(endpoint.url.path) with local file ----")
+        var fileName = endpoint.url.path.dropFirst().replacingOccurrences(of: "/", with: "_")
+        if let info = info {
+            fileName.append("_\(info.rawValue)")
+        }
+        let stubPath = OHPathForFile("\(fileName).json", type(of: self))!
+        return fixture(filePath: stubPath, status: 200, headers: headers)
+    }
+
     func stubWithResponseCode(_ code: Int, endpoint: Endpoint) {
         stub(condition: isPath(endpoint.url.path), response: { _ in
             let stubData = "".data(using: .utf8)
@@ -18,16 +35,9 @@ class StubHelper {
         })
     }
     
-    func stubWithLocalFile(_ endpoint: Endpoint, info: InfoLevel? = nil) {
-        print("---- Stubbing URL path: \(endpoint.url.path) with local file ----")
-        var fileName = endpoint.url.path.dropFirst().replacingOccurrences(of: "/", with: "_")
-        if let info = info {
-            fileName.append("_\(info.rawValue)")
-        }
-
+    func stubWithLocalFile(_ endpoint: Endpoint, info: InfoLevel? = nil, headers: [String: Any] = defaultPaginationHeaders) {
         stub(condition: isPath(endpoint.url.path)) { _ in
-            let stubPath = OHPathForFile("\(fileName).json", type(of: self))!
-            return fixture(filePath: stubPath, status: 200, headers: nil)
+            return self.fixtureFor(endpoint, info: info, headers: headers)
         }
     }
 

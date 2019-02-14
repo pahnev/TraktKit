@@ -136,6 +136,7 @@
 		ED189AC721FB47C300C87B72 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189AC621FB47C300C87B72 /* Config.swift */; };
 		ED189AC821FB4C4600C87B72 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189AC621FB47C300C87B72 /* Config.swift */; };
 		ED1C2733221316C800E3FC1E /* users_test_watching.json in Resources */ = {isa = PBXBuildFile; fileRef = ED1C2732221316C800E3FC1E /* users_test_watching.json */; };
+		ED1C27582215BBFC00E3FC1E /* MoviesEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1C27572215BBFC00E3FC1E /* MoviesEndpointTests.swift */; };
 		ED28F0F022045A0B00D7AB05 /* sync_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */; };
 		ED28F0F22204853200D7AB05 /* sync_watchlist_add.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */; };
 		ED28F0F42204854600D7AB05 /* sync_watchlist_add_notFound.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */; };
@@ -225,6 +226,7 @@
 		ED1755E221367C1600C07C73 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		ED189AC621FB47C300C87B72 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		ED1C2732221316C800E3FC1E /* users_test_watching.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users_test_watching.json; sourceTree = "<group>"; };
+		ED1C27572215BBFC00E3FC1E /* MoviesEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesEndpointTests.swift; sourceTree = "<group>"; };
 		ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist.json; sourceTree = "<group>"; };
 		ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist_add.json; sourceTree = "<group>"; };
 		ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist_add_notFound.json; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 				EDC232D1220039FA008C65CB /* SyncEndpointTests.swift */,
 				FR_655613692374 /* TraktKitTests.swift */,
 				BC939632A2501B2DEA9EFCD0 /* UsersEndpointTests.swift */,
+				ED1C27572215BBFC00E3FC1E /* MoviesEndpointTests.swift */,
 			);
 			path = TraktKitTests;
 			sourceTree = "<group>";
@@ -1092,6 +1095,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF_191174074258 /* StubHelper.swift in Sources */,
+				ED1C27582215BBFC00E3FC1E /* MoviesEndpointTests.swift in Sources */,
 				BF_461104952319 /* TraktKitTests.swift in Sources */,
 				ED189AC821FB4C4600C87B72 /* Config.swift in Sources */,
 				EDC232D2220039FA008C65CB /* SyncEndpointTests.swift in Sources */,

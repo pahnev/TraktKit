@@ -40,10 +40,10 @@ extension Trakt {
     ///   - type: You can pass specific type to only get those items.
     ///   - limit: Limit the amount of items returned. By default all results will be returned.
     ///   - completion: The closure called on completion with a list of `PlaybackProgress` items or `TraktError`.
-    public func getPlaybackProgress(type: WatchedType = .all, limit: Int, completion: @escaping TraktResult<[PlaybackProgress]>) {
+    public func getPlaybackProgress(type: WatchedType = .all, limit: Int, completion: @escaping PaginatedTraktResult<[PlaybackProgress]>) {
         assertLoggedInUser()
 
-        fetchObject(ofType: [PlaybackProgress].self,
+        fetchPaginatedObject(ofType: [PlaybackProgress].self,
                     cacheConfig: Sync.getPlaybackProgress(type: type, limit: limit),
                     endpoint: Sync.getPlaybackProgress(type: type, limit: limit),
                     completion: completion)
@@ -140,12 +140,12 @@ extension Trakt {
                            infoLevel: InfoLevel = .min,
                            startDate: String? = nil,
                            endDate: String? = nil,
-                           completion: @escaping TraktResult<[HistoryItem]>) {
+                           completion: @escaping PaginatedTraktResult<[HistoryItem]>) {
         assertLoggedInUser()
 
         let payload = HistoryPayload(type: type, pageNumber: pageNumber, resultsPerPage: resultsPerPage, traktId: traktId, infoLevel: infoLevel, startDate: startDate, endDate: endDate)
 
-        fetchObject(ofType: [HistoryItem].self,
+        fetchPaginatedObject(ofType: [HistoryItem].self,
                     cacheConfig: Sync.getHistory(payload: payload),
                     endpoint: Sync.getHistory(payload: payload),
                     completion: completion)
@@ -243,10 +243,10 @@ extension Trakt {
     ///   - page: The page of the results.
     ///   - resultsPerPage: The amount of results per page should be returned. Defaults to 10 results.
     ///   - completion: The closure called on completion with a list of `ListItem`s or `TraktError`.
-    public func getWatchlist(type: ContentType = .all, infoLevel: InfoLevel = .min, page: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[ListItem]>) {
+    public func getWatchlist(type: ContentType = .all, infoLevel: InfoLevel = .min, page: Int, resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[ListItem]>) {
         assertLoggedInUser()
         let getWatchlist = Sync.getWatchlist(type: type, infoLevel: infoLevel, pagination: Pagination(page: page, limit: resultsPerPage))
-        fetchObject(ofType: [ListItem].self,
+        fetchPaginatedObject(ofType: [ListItem].self,
                     cacheConfig: getWatchlist,
                     endpoint: getWatchlist,
                     completion: completion)

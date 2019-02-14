@@ -25,38 +25,38 @@ public enum InfoLevel: String {
 
 public extension Trakt {
 
-    public func getTrendingMovies(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[TrendingMovie]>) {
-        fetchObject(ofType: [TrendingMovie].self,
+    public func getTrendingMovies(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel = .min, completion: @escaping PaginatedTraktResult<[TrendingMovie]>) {
+        fetchPaginatedObject(ofType: [TrendingMovie].self,
                     cacheConfig: Movies.trending(pageNumber: pageNumber, resultsPerPage: resultsPerPage, infoLevel: infoLevel),
                     endpoint: Movies.trending(pageNumber: pageNumber, resultsPerPage: resultsPerPage, infoLevel: infoLevel),
                     completion: completion)
     }
 
-    public func getPopularMovies(pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[Movie]>) {
-        fetchObject(ofType: [Movie].self,
+    public func getPopularMovies(pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[Movie]>) {
+        fetchPaginatedObject(ofType: [Movie].self,
                     cacheConfig: Movies.popular(pageNumber: pageNumber, resultsPerPage: resultsPerPage),
                     endpoint: Movies.popular(pageNumber: pageNumber, resultsPerPage: resultsPerPage),
                     completion: completion)
     }
 
-    public func getMostPlayedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping TraktResult<[MostMovie]>) {
-        fetchObject(ofType: [MostMovie].self,
+    public func getMostPlayedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+        fetchPaginatedObject(ofType: [MostMovie].self,
                     cacheConfig: Movies.mostPlayed(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
                     endpoint: Movies.mostPlayed(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
                     completion: completion)
 
     }
 
-    public func getMostWatchedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping TraktResult<[MostMovie]>) {
-        fetchObject(ofType: [MostMovie].self,
+    public func getMostWatchedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+        fetchPaginatedObject(ofType: [MostMovie].self,
                     cacheConfig: Movies.mostWatched(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
                     endpoint: Movies.mostWatched(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
                     completion: completion)
 
     }
 
-    public func getMostCollectedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping TraktResult<[MostMovie]>) {
-        fetchObject(ofType: [MostMovie].self,
+    public func getMostCollectedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+        fetchPaginatedObject(ofType: [MostMovie].self,
                     cacheConfig: Movies.mostCollected(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
                     endpoint: Movies.mostCollected(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
                     completion: completion)
@@ -69,8 +69,8 @@ public extension Trakt {
         fetchObject(ofType: [BoxOfficeMovie].self, cacheConfig: Movies.boxOffice, endpoint: Movies.boxOffice, completion: completion)
     }
 
-    public func getRecentlyUpdatedMovies(pageNumber: Int, startDate: String = "", resultsPerPage: Int = 10, completion: @escaping TraktResult<[UpdatedMoviesResponse]>) {
-        fetchObject(ofType: [UpdatedMoviesResponse].self,
+    public func getRecentlyUpdatedMovies(pageNumber: Int, startDate: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[UpdatedMoviesResponse]>) {
+        fetchPaginatedObject(ofType: [UpdatedMoviesResponse].self,
                     cacheConfig: Movies.recentlyUpdated(pageNumber: pageNumber, startDate: startDate, resultsPerPage: resultsPerPage),
                     endpoint: Movies.recentlyUpdated(pageNumber: pageNumber, startDate: startDate, resultsPerPage: resultsPerPage),
                     completion: completion)
