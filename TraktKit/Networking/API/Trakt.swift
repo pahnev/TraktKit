@@ -8,7 +8,13 @@
 
 import Foundation
 
+public struct Paginated<Type: Codable>: Codable {
+    let type: Type
+    let pagination: PaginationData
+}
+
 public typealias TraktResult<CachedObjectType: Codable> = (Result<CachedObjectType, TraktError>) -> Void
+public typealias PaginatedTraktResult<CachedObjectType: Codable> = (Result<Paginated<CachedObjectType>, TraktError>) -> Void
 public typealias RequestResult<T> = (Result<T, TraktError>) -> Void
 
 public final class Trakt {
@@ -173,7 +179,8 @@ private extension Trakt {
         let cache = self.cache.storage(for: cacheConfig)
         let cacheEntry = CacheEntry<CachedObjectType>(value: parsedObject,
                                                       maxAge: value.headers.maxAge,
-                                                      etag: value.headers.etag)
+                                                      etag: value.headers.etag,
+                                                      pagination: value.headers.pagination)
         do {
             try cache.setObject(cacheEntry, forKey: cacheConfig.key)
             completion(.success(parsedObject))
@@ -226,4 +233,88 @@ private extension Trakt {
             }
         })
     }
+
+}
+
+// MARK: - Pagination code
+
+extension Trakt {
+    func fetchPaginatedObject<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping PaginatedTraktResult<CachedObjectType>) {
+        fetchObjectFromLocalCache(ofType: CachedObjectType.self, cacheConfig: cacheConfig) { cachedObject in
+            guard let cachedObject = cachedObject else {
+                return self.fetchPaginatedObjectFromNetwork(ofType: CachedObjectType.self,
+                                                            cacheConfig: cacheConfig,
+                                                            endpoint: endpoint,
+                                                            additionalHeaders:additionalHeaders,
+                                                            currentCacheEntry: nil,
+                                                            completion: completion)
+            }
+            return self.fetchPaginatedObjectFromNetwork(ofType: CachedObjectType.self,
+                                                        cacheConfig: cacheConfig,
+                                                        endpoint: endpoint,
+                                                        additionalHeaders: additionalHeaders,
+                                                        currentCacheEntry: cachedObject,
+                                                        completion: completion)
+        }
+    }
+
+    private func parseAndCachePaginated<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, value: NetworkResult.SuccessValue, completion: PaginatedTraktResult<CachedObjectType>) {
+        let parsedObject: CachedObjectType
+        do {
+            parsedObject = try self.parseObject(ofType: CachedObjectType.self, data: value.value)
+        } catch let error as TraktError {
+            return completion(.failure(error))
+        } catch {
+            preconditionFailure("There should no other error thrown from parsing.")
+        }
+
+        // Cache
+        let cache = self.cache.storage(for: cacheConfig)
+        let cacheEntry = CacheEntry<CachedObjectType>(value: parsedObject,
+                                                      maxAge: value.headers.maxAge,
+                                                      etag: value.headers.etag,
+                                                      pagination: value.headers.pagination)
+        do {
+            try cache.setObject(cacheEntry, forKey: cacheConfig.key)
+            guard let pagination = value.headers.pagination else { preconditionFailure("You should call parseAndCache() instead")}
+
+            completion(.success(Paginated(type: parsedObject, pagination: pagination)))
+        } catch {
+            completion(.failure(TraktError.cacheSavingError(error)))
+        }
+    }
+
+    private func fetchPaginatedObjectFromNetwork<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], currentCacheEntry: CacheEntry<CachedObjectType>?, completion: @escaping PaginatedTraktResult<CachedObjectType>) {
+
+        // Check if the cached entry can be used without making network request
+        if let cacheEntry = currentCacheEntry,
+            let expirationDate = cacheEntry.expirationDate,
+            Date() < expirationDate {
+            DispatchQueue.main.async {
+                completion(.success(Paginated(type: cacheEntry.value, pagination: cacheEntry.pagination!)))
+            }
+            return
+        }
+
+        // Setup validation token
+        var headers = additionalHeaders
+        if let etag = currentCacheEntry?.etag {
+            headers.updateValue("If-None-Match", forKey: etag)
+        }
+
+        authenticatedRequest(for: endpoint, additionalHeaders: headers, completion: { result in
+            switch result {
+            case .failure(let error):
+                switch (error, currentCacheEntry) {
+                case (.httpError(let code), .some(let cacheEntry)) where code == 304:
+                    completion(.success(Paginated(type: cacheEntry.value, pagination: cacheEntry.pagination!)))
+                case ((let error), _):
+                    completion(.failure(error)) // Actual error - pass it up
+                }
+            case .success(let value):
+                self.parseAndCachePaginated(ofType: CachedObjectType.self, cacheConfig: cacheConfig, value: value, completion: completion)
+            }
+        })
+    }
+
 }

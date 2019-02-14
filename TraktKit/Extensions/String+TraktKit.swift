@@ -17,4 +17,8 @@ extension String {
         return self.replacingOccurrences(of: "\n", with: "")
     }
 
+    var asInt: Int? {
+        return Int(self)
+    }
+
 }

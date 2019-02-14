@@ -8,9 +8,17 @@
 
 import Foundation
 
+struct PaginationData: CodableEquatable {
+    let itemCount: Int
+    let limit: Int
+    let currentPage: Int
+    let totalPages: Int
+}
+
 struct HTTPResponseHeaders {
     let etag: String?
     let maxAge: TimeInterval?
+    let pagination: PaginationData?
 
     /*
      All possible cache response directives:
@@ -49,5 +57,14 @@ struct HTTPResponseHeaders {
 
         etag = stringHeaders?["Etag"]
         maxAge = HTTPResponseHeaders.parseMaxAge(from: stringHeaders?["Cache-Control"])
+
+        guard let itemCount = stringHeaders?["x-pagination-item-count"]?.asInt,
+            let limit = stringHeaders?["x-pagination-limit"]?.asInt,
+            let currentPage = stringHeaders?["x-pagination-page"]?.asInt,
+            let totalPages = stringHeaders?["x-pagination-page-count"]?.asInt else {
+                pagination = nil
+                return
+        }
+        pagination = PaginationData(itemCount: itemCount, limit: limit, currentPage: currentPage, totalPages: totalPages)
     }
 }

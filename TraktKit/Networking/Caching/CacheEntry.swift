@@ -17,11 +17,13 @@ struct CacheEntry<ValueType: Codable>: Codable {
     var value: ValueType
     let etag: String?
     let expirationDate: Date?
+    let pagination: PaginationData?
 
-    init(value: ValueType, maxAge: TimeInterval?, etag: String?) {
+    init(value: ValueType, maxAge: TimeInterval?, etag: String?, pagination: PaginationData?) {
         self.value = value
         self.etag = etag
         self.expirationDate = Date.withTimeIntervalSinceNow(maxAge)
+        self.pagination = pagination
     }
 
     mutating func setValue(_ value: ValueType) {
