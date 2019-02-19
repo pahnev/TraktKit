@@ -9,8 +9,8 @@
 import Foundation
 
 public struct Paginated<Type: Codable>: Codable {
-    let type: Type
-    let pagination: PaginationData
+    public let type: Type
+    public let pagination: PaginationData
 }
 
 public typealias TraktResult<CachedObjectType: Codable> = (Result<CachedObjectType, TraktError>) -> Void

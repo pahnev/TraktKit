@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct PaginationData: CodableEquatable {
-    let itemCount: Int
-    let limit: Int
-    let currentPage: Int
-    let totalPages: Int
+public struct PaginationData: CodableEquatable {
+    public let itemCount: Int
+    public let limit: Int
+    public let currentPage: Int
+    public let totalPages: Int
 }
 
 struct HTTPResponseHeaders {
