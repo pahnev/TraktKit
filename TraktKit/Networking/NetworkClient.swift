@@ -12,11 +12,7 @@ enum NetworkResult {
     struct SuccessValue {
         let value: Data
         let headers: HTTPResponseHeaders
-
-        init(_ value: Data, headers: HTTPResponseHeaders) {
-            self.value = value
-            self.headers = headers
-        }
+        let statusCode: Int
     }
 
     case success(SuccessValue)
@@ -87,7 +83,9 @@ private extension NetworkClient {
                     return completion(.error(TraktError.httpError(httpResponse.statusCode)))
                 }
 
-                return completion(.success(NetworkResult.SuccessValue(data, headers: HTTPResponseHeaders(httpResponse.allHeaderFields))))
+                return completion(.success(NetworkResult.SuccessValue(value: data,
+                                                                      headers: HTTPResponseHeaders(httpResponse.allHeaderFields),
+                                                                      statusCode: httpResponse.statusCode)))
             }
         }
 

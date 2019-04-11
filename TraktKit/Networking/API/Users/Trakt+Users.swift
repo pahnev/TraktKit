@@ -10,12 +10,8 @@ extension Trakt {
     ///   - userId: The slug of the user whose watching info should be fetched.
     ///   - infoLevel: The info level of the watching object, if any. Defaults to `.min`
     ///   - completion: The closure called on completion with a `Watching` object or `TraktError`. Returns Void if user is not watching anything.
-    func getWatching(userId: String, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<Watching>) {
-        // TODO: Handle empty data case.
+    func getWatching(userId: String, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<Watching?>) {
         let endpoint = Users.getWatching(userId: userId, infoLevel: infoLevel)
-        fetchObject(ofType: Watching.self,
-                cacheConfig: endpoint,
-                endpoint: endpoint,
-                completion: completion)
+        authenticatedRequestAndParse(endpoint, completion: completion)
     }
 }

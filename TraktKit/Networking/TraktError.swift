@@ -17,6 +17,7 @@ public enum TraktError: Error, LocalizedError {
     case cacheSavingError(Error) // Error during saving an object to cache.
     case clientSecretMissing
     case oAuthCallbackCodeMissing
+    case emptyContent
 
     public var errorDescription: String? {
         switch self {
@@ -36,6 +37,8 @@ public enum TraktError: Error, LocalizedError {
             return "Client secret is required for the action"
         case .oAuthCallbackCodeMissing:
             return "Callback URL did not have the authorization code in it"
+        case .emptyContent:
+            return "Received no content HTTP 204 response"
         }
     }
 }

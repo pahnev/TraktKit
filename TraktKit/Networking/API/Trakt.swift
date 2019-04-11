@@ -118,6 +118,8 @@ public final class Trakt {
             case .error(let error):
                 completion(.failure(TraktError.networkError(error)))
             case .success(let value):
+                guard value.statusCode != 204 else { return completion(.failure(TraktError.emptyContent)) }
+
                 do {
                     let parsedObject = try self.parseObject(ofType: Type.self, data: value.value)
                     completion(.success(parsedObject))

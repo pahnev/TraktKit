@@ -26,19 +26,17 @@ class UsersEndpointTests: XCTestCase {
         stubHelper.stubWithLocalFile(Users.getWatching(userId: "test", infoLevel: .full))
         var result: Watching?
         trakt.getWatching(userId: "test") { res in
-            result = res.value
+            result = res.value ?? nil
         }
         expect(result).toEventuallyNot(beNil())
     }
 
-    // TODO:
-//    func testWatchingWithNoData() {
-//        stubHelper.stubWithResponseCode(204, endpoint: Users.getWatching(userId: "test", infoLevel: .min))
-//        var result: Watching?
-//        trakt.getWatching(userId: "test") { res in
-//            print(res)
-//            result = res.value
-//        }
-//        expect(result).toEventuallyNot(beNil())
-//    }
+    func testWatchingReturnsNoData() {
+        stubHelper.stubWithResponseCode(204, endpoint: Users.getWatching(userId: "test", infoLevel: .min))
+        var error: TraktError?
+        trakt.getWatching(userId: "test") { res in
+            error = res.error
+        }
+        expect(error).toEventually(matchError(TraktError.emptyContent))
+    }
 }
