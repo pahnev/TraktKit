@@ -39,4 +39,14 @@ class UsersEndpointTests: XCTestCase {
         }
         expect(error).toEventually(matchError(TraktError.emptyContent))
     }
+
+    func testStatsIsReturned() {
+        stubHelper.stubWithLocalFile(Users.getStats(userId: "test"))
+        var result: UserStats?
+        trakt.getStats(userId: "test") { res in
+            result = res.value
+        }
+        expect(result).toEventuallyNot(beNil())
+
+    }
 }

@@ -6,24 +6,25 @@ import Foundation
 
 public enum Users: Endpoint {
     case getWatching(userId: String, infoLevel: InfoLevel)
+    case getStats(userId: String)
 
     var httpMethod: HTTPMethod {
         switch self {
-        case .getWatching:
+        case .getWatching, .getStats:
             return .GET
         }
     }
 
     var httpBody: Data? {
         switch self {
-        case .getWatching:
+        case .getWatching, .getStats:
             return nil
         }
     }
 
     var requestHeaders: [String : String] {
         switch self {
-        case .getWatching:
+        case .getWatching, .getStats:
             return [:]
         }
     }
@@ -33,6 +34,8 @@ public enum Users: Endpoint {
         switch self {
         case .getWatching(let params):
             return users.appendingPathComponent("\(params.userId)/watching")
+        case .getStats(let userId):
+            return users.appendingPathComponent("\(userId)/stats")
         }
     }
 }

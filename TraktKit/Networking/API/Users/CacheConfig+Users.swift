@@ -8,14 +8,17 @@ import Cache
 extension Users: CacheConfigurable {
     static var allCases: [CacheConfigurable] {
         return [
-            .getWatching(userId: "", infoLevel: .min)
-        ] as [Users]
+            .getWatching(userId: "", infoLevel: .min),
+            .getStats(userId: "")
+            ] as [Users]
     }
 
     var name: String {
         switch self {
         case .getWatching:
             return "getWatching"
+        case .getStats:
+            return "stats"
         }
     }
 
@@ -23,34 +26,35 @@ extension Users: CacheConfigurable {
         switch self {
         case .getWatching(let params):
             return "\(name)_\(params.userId)_\(params.infoLevel.rawValue)"
+        case .getStats(let userId):
+            return "\(name)_\(userId)"
         }
     }
 
     var diskMaxSize: UInt {
         switch self {
-        case .getWatching:
+        case .getWatching, .getStats:
             return 1
         }
-
     }
 
     var memoryMaxItemCount: UInt {
         switch self {
-        case .getWatching:
+        case .getWatching, .getStats:
             return 1
         }
     }
 
     func createCache() throws -> Storage {
         let diskConfig = DiskConfig(name: name,
-                expiry: .never,
-                maxSize: diskMaxSize,
-                directory: cacheDirectoryURL(),
-                protectionType: nil)
+                                    expiry: .never,
+                                    maxSize: diskMaxSize,
+                                    directory: cacheDirectoryURL(),
+                                    protectionType: nil)
 
         let memoryConfig = MemoryConfig(expiry: .never,
-                countLimit: memoryMaxItemCount,
-                totalCostLimit: memoryMaxItemCount)
+                                        countLimit: memoryMaxItemCount,
+                                        totalCostLimit: memoryMaxItemCount)
 
         return try Storage(diskConfig: diskConfig, memoryConfig: memoryConfig)
     }
