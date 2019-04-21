@@ -9,7 +9,7 @@
 import Foundation
 
 public extension URL {
-    public func appendingQueryItem(_ queryItem: URLQueryItem) -> URL {
+    func appendingQueryItem(_ queryItem: URLQueryItem) -> URL {
         guard var urlComps = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
             preconditionFailure("Invalid url \(self)")
         }

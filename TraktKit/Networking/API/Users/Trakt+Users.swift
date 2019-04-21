@@ -2,7 +2,7 @@
 // Created by Kirill Pahnev on 2019-02-12.
 //
 
-extension Trakt {
+public extension Trakt {
 
     /// Returns a `Movie` or `Episode` if the user is currently watching something.
     ///
