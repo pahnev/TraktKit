@@ -33,7 +33,7 @@ class SyncEndpointTests: XCTestCase {
 
         var lastActivities: LastActivities?
         trakt.getLastActivities { res in
-            lastActivities = res.value
+            lastActivities = try! res.get()
         }
         expect(lastActivities).toEventuallyNot(beNil())
         expectCorrectDateFormattingFor(lastActivities!.all)
@@ -55,7 +55,7 @@ class SyncEndpointTests: XCTestCase {
 
         var progress: [PlaybackProgress]?
         trakt.getPlaybackProgress(type: .all, limit: 0) { res in
-            progress = res.value?.type
+            progress = try! res.get().type
         }
         expect(progress).toEventuallyNot(beNil())
     }
@@ -76,7 +76,12 @@ class SyncEndpointTests: XCTestCase {
 
         var error: TraktError? = TraktError.emptyDataReceivedError
         trakt.removePlaybackItemWith(PlaybackProgressId(1)) { res in
-            error = res.error
+            switch res {
+            case .failure(let err):
+                error = err
+            case .success:
+                error = nil
+            }
         }
         expect(error).toEventually(beNil())
     }
@@ -86,7 +91,7 @@ class SyncEndpointTests: XCTestCase {
 
         var results: [CollectedMovie]?
         trakt.getCollectedMovies() { res in
-            results = res.value
+            results = try! res.get()
         }
         expect(results).toEventuallyNot(beNil())
         expect(results?.first?.collectedAt).toEventuallyNot(beNil())
@@ -98,7 +103,7 @@ class SyncEndpointTests: XCTestCase {
 
         var results: [CollectedShow]?
         trakt.getCollectedShows() { res in
-            results = res.value
+            results = try! res.get()
         }
         expect(results).toEventuallyNot(beNil())
         expect(results?.first?.lastCollectedAt).toEventuallyNot(beNil())
@@ -121,7 +126,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: AddedToHistory?
         trakt.addToHistory(movies: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
         expect(result?.added.movies).toEventually(be(1))
@@ -143,7 +148,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: AddedToHistory?
         trakt.addToHistory(shows: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
         expect(result?.added.episodes).toEventually(be(1))
@@ -165,7 +170,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: AddedToHistory?
         trakt.addToHistory(episodes: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
         expect(result?.added.episodes).toEventually(be(1))
@@ -195,7 +200,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: AddedToHistory?
         trakt.addToHistory(movies: [0], shows: [0], episodes: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
 
         expect(result).toEventuallyNot(beNil())
@@ -212,7 +217,7 @@ class SyncEndpointTests: XCTestCase {
 
         var history: [HistoryItem]?
         trakt.getHistory(type: .movies, pageNumber: 1) { res in
-            history = res.value?.type
+            history = try! res.get().type
         }
         expect(history).toEventuallyNot(beNil())
     }
@@ -223,7 +228,7 @@ class SyncEndpointTests: XCTestCase {
 
         var history: [HistoryItem]?
         trakt.getHistory(type: .movies, pageNumber: 1, traktId: movieId, startDate: nil, endDate: nil) { res in
-            history = res.value?.type
+            history = try! res.get().type
         }
 
         expect(history).toEventuallyNot(beNil())
@@ -236,7 +241,7 @@ class SyncEndpointTests: XCTestCase {
 
         var history: [HistoryItem]?
         trakt.getHistory(type: .episodes, pageNumber: 1) { res in
-            history = res.value?.type
+            history = try! res.get().type
         }
         expect(history).toEventuallyNot(beNil())
     }
@@ -247,7 +252,7 @@ class SyncEndpointTests: XCTestCase {
 
         var history: [HistoryItem]?
         trakt.getHistory(type: .episodes, pageNumber: 1, traktId: episodeId) { res in
-            history = res.value?.type
+            history = try! res.get().type
         }
         expect(history).toEventuallyNot(beNil())
         expect(history?.count).toEventually(be(1))
@@ -260,7 +265,7 @@ class SyncEndpointTests: XCTestCase {
 
         var history: [HistoryItem]?
         trakt.getHistory(type: .shows, pageNumber: 1) { res in
-            history = res.value?.type
+            history = try! res.get().type
         }
         expect(history).toEventuallyNot(beNil())
     }
@@ -271,7 +276,7 @@ class SyncEndpointTests: XCTestCase {
 
         var history: [HistoryItem]?
         trakt.getHistory(type: .shows, pageNumber: 1, traktId: showId) { res in
-            history = res.value?.type
+            history = try! res.get().type
         }
         expect(history).toEventuallyNot(beNil())
     }
@@ -281,7 +286,7 @@ class SyncEndpointTests: XCTestCase {
 
         var history: [HistoryItem]?
         trakt.getHistory(type: .seasons, pageNumber: 1) { res in
-            history = res.value?.type
+            history = try! res.get().type
         }
         expect(history).toEventuallyNot(beNil())
     }
@@ -292,7 +297,7 @@ class SyncEndpointTests: XCTestCase {
 
         var history: [HistoryItem]?
         trakt.getHistory(type: .seasons, pageNumber: 1, traktId: seasonId) { res in
-            history = res.value?.type
+            history = try! res.get().type
         }
         expect(history).toEventuallyNot(beNil())
     }
@@ -318,7 +323,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: RemovedFromHistory?
         trakt.removeFromHistory(movies: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
         expect(result?.deleted.movies).toEventually(be(1))
@@ -340,7 +345,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: RemovedFromHistory?
         trakt.removeFromHistory(movies: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
         expect(result?.notFound.ids.count).toEventually(be(1))
@@ -350,7 +355,7 @@ class SyncEndpointTests: XCTestCase {
         stubHelper.stubWithLocalFile(Sync.getWatchlist(type: .all, infoLevel: .min, pagination: Pagination(page: 1, limit: 1)))
         var results: [ListItem]?
         trakt.getWatchlist(page: 1) { res in
-            results = res.value?.type
+            results = try! res.get().type
         }
         expect(results).toEventuallyNot(beNil())
     }
@@ -378,7 +383,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: AddToWatchlist?
         trakt.addToWatchlist(movies: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
     }
@@ -399,7 +404,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: AddToWatchlist?
         trakt.addToWatchlist(movies: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
         expect(result?.existing.movies).to(be(1))
@@ -422,7 +427,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: RemoveFromWatchlist?
         trakt.removeFromWatchlist(movies: [0]) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
     }
@@ -432,7 +437,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: [Rating]?
         trakt.getRatings { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
         expect(result?.first?.type).to(be("movie"))
@@ -464,8 +469,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: AddedToHistory?
         trakt.addRating(rating, to: .movie, withId: TraktId(movieId), ratedAt: nil) { res in
-            print(res)
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
     }
@@ -486,8 +490,7 @@ class SyncEndpointTests: XCTestCase {
 
         var result: RemoveFromWatchlist?
         trakt.removeRatingsFrom(movies: [1]) { res in
-            print(res)
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
     }
@@ -496,7 +499,7 @@ class SyncEndpointTests: XCTestCase {
         stubHelper.stubWithLocalFile(Sync.getWatched(type: .movies, infoLevel: .min))
         var result: [WatchedItem]?
         trakt.getWatched(type: .movies) { res in
-            result = res.value
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
         expect(result?.first?.movie?.title).toEventually(match("Guardians of the Galaxy"))

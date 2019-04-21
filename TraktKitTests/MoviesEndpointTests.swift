@@ -33,7 +33,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [TrendingMovie]?
         trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min) { result in
-            movies = result.value?.type
+            movies = try! result.get().type
         }
         expect(movies).toEventuallyNot(beNil())
         expect(movies?.first?.movie.rating).toEventually(beNil())
@@ -44,7 +44,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [TrendingMovie]?
         trakt.getTrendingMovies(pageNumber: 1, infoLevel: .full) { result in
-            movies = result.value?.type
+            movies = try! result.get().type
         }
         expect(movies).toEventuallyNot(beNil())
         expect(movies?.first?.movie.tagline).toEventuallyNot(beNil())
@@ -55,7 +55,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [Movie]?
         trakt.getPopularMovies(pageNumber: 1) { result in
-            movies = result.value?.type
+            movies = try! result.get().type
         }
         expect(movies).toEventuallyNot(beNil())
     }
@@ -65,7 +65,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [MostMovie]?
         trakt.getMostPlayedMovies(pageNumber: 1) { result in
-            movies = result.value?.type
+            movies = try! result.get().type
         }
         expect(movies).toEventuallyNot(beNil())
     }
@@ -75,7 +75,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [MostMovie]?
         trakt.getMostWatchedMovies(pageNumber: 1) { result in
-            movies = result.value?.type
+            movies = try! result.get().type
         }
         expect(movies).toEventuallyNot(beNil())
     }
@@ -85,7 +85,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [MostMovie]?
         trakt.getMostCollectedMovies(pageNumber: 1) { result in
-            movies = result.value?.type
+            movies = try! result.get().type
         }
         expect(movies).toEventuallyNot(beNil())
     }
@@ -95,7 +95,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [BoxOfficeMovie]?
         trakt.getBoxOffice { result in
-            movies = result.value
+            movies = try! result.get()
         }
         expect(movies).toEventuallyNot(beNil())
     }
@@ -105,7 +105,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [UpdatedMoviesResponse]?
         trakt.getRecentlyUpdatedMovies(pageNumber: 1) { result in
-            movies = result.value?.type
+            movies = try! result.get().type
         }
         expect(movies).toEventuallyNot(beNil())
     }
@@ -115,7 +115,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movie: Movie?
         trakt.getMovieDetails(for: darkKnightId, infoLevel: .min) { result in
-            movie = result.value
+            movie = try! result.get()
         }
         expect(movie).toEventuallyNot(beNil())
         expect(movie?.tagline).toEventually(beNil())
@@ -126,7 +126,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movie: Movie?
         trakt.getMovieDetails(for: darkKnightId, infoLevel: .full) { result in
-            movie = result.value
+            movie = try! result.get()
         }
         expect(movie).toEventuallyNot(beNil())
         expect(movie?.tagline).toEventuallyNot(beNil())
@@ -137,7 +137,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var aliases: [Alias]?
         trakt.getAliases(for: darkKnightId) { result in
-            aliases = result.value
+            aliases = try! result.get()
         }
         expect(aliases).toEventuallyNot(beNil())
     }
@@ -147,7 +147,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var releases: [MovieRelease]?
         trakt.getReleases(for: darkKnightId, country: "") { result in
-            releases = result.value
+            releases = try! result.get()
         }
         expect(releases).toEventuallyNot(beNil())
     }
@@ -157,7 +157,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var comments: [Comment]?
         trakt.getComments(for: darkKnightId, pageNumber: 1, sort: "") { result in
-            comments = result.value
+            comments = try! result.get()
         }
         expect(comments).toEventuallyNot(beNil())
     }
@@ -167,7 +167,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var lists: [List]?
         trakt.getLists(for: darkKnightId, type: "", sortBy: "", pageNumber: 1) { result in
-            lists = result.value
+            lists = try! result.get()
         }
         expect(lists).toEventuallyNot(beNil())
     }
@@ -177,7 +177,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var people: CastAndCrew?
         trakt.getPeople(for: darkKnightId) { result in
-            people = result.value
+            people = try! result.get()
         }
         expect(people).toEventuallyNot(beNil())
     }
@@ -187,7 +187,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var people: RatingDistribution?
         trakt.getRatings(for: darkKnightId) { result in
-            people = result.value
+            people = try! result.get()
         }
         expect(people).toEventuallyNot(beNil())
     }
@@ -197,7 +197,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var movies: [Movie]?
         trakt.getRelatedMovies(for: darkKnightId, pageNumber: 1) { result in
-            movies = result.value
+            movies = try! result.get()
         }
         expect(movies).toEventuallyNot(beNil())
     }
@@ -206,8 +206,8 @@ class MoviesEndpointTests: XCTestCase {
         stubHelper.stubWithLocalFile(Movies.stats(movieId: darkKnightId))
         
         var stats: Stats?
-        trakt.getStats(for: darkKnightId) { result in
-            stats = result.value
+        trakt?.getStats(for: darkKnightId) { result in
+            stats = try! result.get()
         }
         expect(stats).toEventuallyNot(beNil())
     }
@@ -217,7 +217,7 @@ class MoviesEndpointTests: XCTestCase {
         
         var watching: [User]?
         trakt.getCurrentlyWatching(for: deadPoolId) { result in
-            watching = result.value
+            watching = try! result.get()
         }
         expect(watching).toEventuallyNot(beNil())
     }

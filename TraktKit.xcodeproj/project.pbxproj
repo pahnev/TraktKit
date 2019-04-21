@@ -20,7 +20,6 @@
 		BF_128252572830 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_579942919206 /* Movies.swift */; };
 		BF_134049506900 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_384976887653 /* Show.swift */; };
 		BF_148118395783 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_552008561417 /* NetworkClient.swift */; };
-		BF_148534012709 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_493398388565 /* Result.swift */; };
 		BF_151608712794 /* UpdatedMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_701349477383 /* UpdatedMoviesResponse.swift */; };
 		BF_162368359271 /* MovieRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_407205935100 /* MovieRelease.swift */; };
 		BF_164999724022 /* DVDReleaseMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_796488214340 /* DVDReleaseMovie.swift */; };
@@ -326,7 +325,6 @@
 		FR_475254066177 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		FR_482319556782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FR_485918254988 /* CrewMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewMember.swift; sourceTree = "<group>"; };
-		FR_493398388565 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		FR_501779700012 /* movies_watched.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_watched.json; sourceTree = "<group>"; };
 		FR_516442622238 /* movies_collected.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_collected.json; sourceTree = "<group>"; };
 		FR_522406096741 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -677,7 +675,6 @@
 				FR_624289123034 /* HTTPLogger.swift */,
 				FR_910445355327 /* HTTPResponseHeaders.swift */,
 				FR_552008561417 /* NetworkClient.swift */,
-				FR_493398388565 /* Result.swift */,
 				FR_757416571821 /* TraktError.swift */,
 			);
 			path = Networking;
@@ -1179,7 +1176,6 @@
 				BF_633794182176 /* RemoveFromWatchlist.swift in Sources */,
 				BF_538967994881 /* RemoveListItemResult.swift in Sources */,
 				BF_573853296018 /* RemoveRatingsResult.swift in Sources */,
-				BF_148534012709 /* Result.swift in Sources */,
 				ED1755E321367C1600C07C73 /* TokenResponse.swift in Sources */,
 				BF_683586895671 /* ScrobbleResult.swift in Sources */,
 				BF_631200670701 /* SearchResult.swift in Sources */,

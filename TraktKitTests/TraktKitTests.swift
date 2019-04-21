@@ -39,7 +39,7 @@ class TraktKitTests: XCTestCase {
         stubHelper.stubWithLocalFile(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min), info: .min, headers: responseHeaders)
         var pagination: PaginationData?
         trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min) { result in
-            pagination = result.value?.pagination
+            pagination = try! result.get().pagination
         }
         expect(pagination).toEventuallyNot(beNil())
         expect(pagination?.itemCount).to(be(1))
@@ -70,14 +70,14 @@ class TraktKitTests: XCTestCase {
         // First request should be received by the "server"
         var firstResponse: [TrendingMovie]?
         trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min) { result in
-            firstResponse = result.value?.type
+            firstResponse = try! result.get().type
         }
         expect(firstResponse?.first?.movie.title).toEventually(match("Deadpool 2"))
 
         // Second request should not
         var secondResponse: [TrendingMovie]?
         trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min) { result in
-            secondResponse = result.value?.type
+            secondResponse = try! result.get().type
         }
         expect(secondResponse?.first?.movie.title).toEventually(match("Deadpool 2"))
 

@@ -26,16 +26,20 @@ class UsersEndpointTests: XCTestCase {
         stubHelper.stubWithLocalFile(Users.getWatching(userId: "test", infoLevel: .full))
         var result: Watching?
         trakt.getWatching(userId: "test") { res in
-            result = res.value ?? nil
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
     }
 
     func testWatchingReturnsNoData() {
         stubHelper.stubWithResponseCode(204, endpoint: Users.getWatching(userId: "test", infoLevel: .min))
-        var error: TraktError?
+        var error: TraktError!
         trakt.getWatching(userId: "test") { res in
-            error = res.error
+            switch res {
+            case .failure(let err):
+                error = err
+            case .success: fatalError()
+            }
         }
         expect(error).toEventually(matchError(TraktError.emptyContent))
     }
@@ -43,8 +47,8 @@ class UsersEndpointTests: XCTestCase {
     func testStatsIsReturned() {
         stubHelper.stubWithLocalFile(Users.getStats(userId: "test"))
         var result: UserStats?
-        trakt.getStats(userId: "test") { res in
-            result = res.value
+        trakt?.getStats(userId: "test") { res in
+            result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
 
