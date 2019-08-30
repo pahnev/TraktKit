@@ -29,7 +29,7 @@ extension Trakt {
     public func getLastActivities(completion: @escaping TraktResult<LastActivities>) {
         assertLoggedInUser()
 
-        fetchObject(ofType: LastActivities.self, cacheConfig: Sync.lastActivities, endpoint: Sync.lastActivities, completion: completion)
+        fetchObject(ofType: LastActivities.self, endpoint: Sync.lastActivities, completion: completion)
     }
 
     /// Whenever a scrobble is paused, the playback progress is saved. Use this progress to sync up playback across different media centers or apps. For example, you can start watching a movie in a media center, stop it, then resume on your tablet from the same spot. Each item will have the progress percentage between 0 and 100.
@@ -44,7 +44,6 @@ extension Trakt {
         assertLoggedInUser()
 
         fetchPaginatedObject(ofType: [PlaybackProgress].self,
-                    cacheConfig: Sync.getPlaybackProgress(type: type, limit: limit),
                     endpoint: Sync.getPlaybackProgress(type: type, limit: limit),
                     completion: completion)
     }
@@ -79,7 +78,6 @@ extension Trakt {
         assertLoggedInUser()
 
         fetchObject(ofType: [CollectedMovie].self,
-                    cacheConfig: Sync.getCollection(type: .movies, infoLevel: infoLevel),
                     endpoint: Sync.getCollection(type: .movies, infoLevel: infoLevel),
                     completion: completion)
     }
@@ -96,7 +94,6 @@ extension Trakt {
         assertLoggedInUser()
 
         fetchObject(ofType: [CollectedShow].self,
-                    cacheConfig: Sync.getCollection(type: .shows, infoLevel: infoLevel),
                     endpoint: Sync.getCollection(type: .shows, infoLevel: infoLevel),
                     completion: completion)
     }
@@ -124,7 +121,6 @@ extension Trakt {
         assertLoggedInUser()
         let endpoint = Sync.getWatched(type: type, infoLevel: infoLevel)
         fetchObject(ofType: [WatchedItem].self,
-                    cacheConfig: endpoint,
                     endpoint: endpoint, completion: completion)
     }
 
@@ -146,7 +142,6 @@ extension Trakt {
         let payload = HistoryPayload(type: type, pageNumber: pageNumber, resultsPerPage: resultsPerPage, traktId: traktId, infoLevel: infoLevel, startDate: startDate, endDate: endDate)
 
         fetchPaginatedObject(ofType: [HistoryItem].self,
-                    cacheConfig: Sync.getHistory(payload: payload),
                     endpoint: Sync.getHistory(payload: payload),
                     completion: completion)
     }
@@ -177,7 +172,6 @@ extension Trakt {
         assertLoggedInUser()
         let endpoint = Sync.getRatings(type: type, infoLevel: infoLevel)
         fetchObject(ofType: [Rating].self,
-                    cacheConfig: endpoint,
                     endpoint: endpoint,
                     completion: completion)
     }
@@ -247,7 +241,6 @@ extension Trakt {
         assertLoggedInUser()
         let getWatchlist = Sync.getWatchlist(type: type, infoLevel: infoLevel, pagination: Pagination(page: page, limit: resultsPerPage))
         fetchPaginatedObject(ofType: [ListItem].self,
-                    cacheConfig: getWatchlist,
                     endpoint: getWatchlist,
                     completion: completion)
     }

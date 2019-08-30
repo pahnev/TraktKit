@@ -81,11 +81,10 @@ public final class Trakt {
     ///
     /// - Parameters:
     ///   - ofType: The object that should be fetched. Has to conform to CodableEquatable.
-    ///   - cacheConfig: The Cache configuration defining where to look for the object or cache in case it has to be fetched from network.
     ///   - endpoint: The API endpoint to fetch the object from.
     ///   - completion: The closure called when the fetch is finished. Returns either the object requested or TraktError if something failed.
-    func fetchObject<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping TraktResult<CachedObjectType>) {
-        fetchObjectFromNetwork(ofType: CachedObjectType.self, cacheConfig: cacheConfig, endpoint: endpoint, additionalHeaders: additionalHeaders, currentCacheEntry: nil, completion: completion)
+    func fetchObject<CachedObjectType: Codable>(ofType: CachedObjectType.Type, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping TraktResult<CachedObjectType>) {
+        fetchObjectFromNetwork(ofType: CachedObjectType.self, endpoint: endpoint, additionalHeaders: additionalHeaders, completion: completion)
     }
 
     /// Performs authenticated request and returns either NetworkResult.SuccessValue on successful completion or TraktError if something failed.
@@ -160,7 +159,7 @@ private extension Trakt {
         }
     }
 
-    func parseAndCache<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, value: NetworkResult.SuccessValue, completion: TraktResult<CachedObjectType>) {
+    func parseAndCache<CachedObjectType: Codable>(ofType: CachedObjectType.Type, value: NetworkResult.SuccessValue, completion: TraktResult<CachedObjectType>) {
         let parsedObject: CachedObjectType
         do {
             parsedObject = try self.parseObject(ofType: CachedObjectType.self, data: value.value)
@@ -173,14 +172,14 @@ private extension Trakt {
         }
     }
 
-    func fetchObjectFromNetwork<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], currentCacheEntry: CacheEntry<CachedObjectType>?, completion: @escaping TraktResult<CachedObjectType>) {
+    func fetchObjectFromNetwork<CachedObjectType: Codable>(ofType: CachedObjectType.Type, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping TraktResult<CachedObjectType>) {
 
         authenticatedRequest(for: endpoint, additionalHeaders: additionalHeaders, completion: { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let value):
-                self.parseAndCache(ofType: CachedObjectType.self, cacheConfig: cacheConfig, value: value, completion: completion)
+                self.parseAndCache(ofType: CachedObjectType.self, value: value, completion: completion)
             }
         })
     }
@@ -190,16 +189,14 @@ private extension Trakt {
 // MARK: - Pagination code
 
 extension Trakt {
-    func fetchPaginatedObject<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping PaginatedTraktResult<CachedObjectType>) {
+    func fetchPaginatedObject<CachedObjectType: Codable>(ofType: CachedObjectType.Type, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping PaginatedTraktResult<CachedObjectType>) {
             return self.fetchPaginatedObjectFromNetwork(ofType: CachedObjectType.self,
-                                                        cacheConfig: cacheConfig,
                                                         endpoint: endpoint,
                                                         additionalHeaders: additionalHeaders,
-                                                        currentCacheEntry: nil,
                                                         completion: completion)
     }
 
-    private func parseAndCachePaginated<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, value: NetworkResult.SuccessValue, completion: PaginatedTraktResult<CachedObjectType>) {
+    private func parseAndCachePaginated<CachedObjectType: Codable>(ofType: CachedObjectType.Type, value: NetworkResult.SuccessValue, completion: PaginatedTraktResult<CachedObjectType>) {
         let parsedObject: CachedObjectType
         do {
             guard let pagination = value.headers.pagination else { preconditionFailure("You should call parseAndCache() instead")}
@@ -212,13 +209,13 @@ extension Trakt {
         }
     }
 
-    private func fetchPaginatedObjectFromNetwork<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], currentCacheEntry: CacheEntry<CachedObjectType>?, completion: @escaping PaginatedTraktResult<CachedObjectType>) {
+    private func fetchPaginatedObjectFromNetwork<CachedObjectType: Codable>(ofType: CachedObjectType.Type, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping PaginatedTraktResult<CachedObjectType>) {
         authenticatedRequest(for: endpoint, additionalHeaders: additionalHeaders, completion: { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let value):
-                self.parseAndCachePaginated(ofType: CachedObjectType.self, cacheConfig: cacheConfig, value: value, completion: completion)
+                self.parseAndCachePaginated(ofType: CachedObjectType.self, value: value, completion: completion)
             }
         })
     }
