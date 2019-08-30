@@ -7,7 +7,9 @@
 
 import XCTest
 import Nimble
-import OHHTTPStubs
+import OHHTTPStubsSwift
+import OHHTTPStubsCore
+
 @testable import TraktKit
 
 class MoviesEndpointTests: XCTestCase {

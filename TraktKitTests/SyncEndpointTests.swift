@@ -8,7 +8,9 @@
 import XCTest
 import Foundation
 import Nimble
-import OHHTTPStubs
+import OHHTTPStubsSwift
+import OHHTTPStubsCore
+
 @testable import TraktKit
 
 class SyncEndpointTests: XCTestCase {

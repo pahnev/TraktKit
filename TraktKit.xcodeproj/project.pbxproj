@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -67,7 +67,6 @@
 		BF_454617449469 /* Trakt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_759968972747 /* Trakt.swift */; };
 		BF_460109712821 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_323155128601 /* Movie.swift */; };
 		BF_461104952319 /* TraktKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_655613692374 /* TraktKitTests.swift */; };
-		BF_469341088606 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_825944699583 /* Nimble.framework */; };
 		BF_474917567142 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_475254066177 /* Friend.swift */; };
 		BF_495400808344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_441052600905 /* User.swift */; };
 		BF_496692404068 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_427287722059 /* Episode.swift */; };
@@ -97,7 +96,6 @@
 		BF_665309632909 /* WatchedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_535378784259 /* WatchedMovie.swift */; };
 		BF_671078231044 /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_738436057603 /* TraktKit.framework */; };
 		BF_676201450828 /* movies_120_min.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_216204535510 /* movies_120_min.json */; };
-		BF_681489673145 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_354356248347 /* OHHTTPStubs.framework */; };
 		BF_683586895671 /* ScrobbleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_607896185867 /* ScrobbleResult.swift */; };
 		BF_693718903731 /* HTTPLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_624289123034 /* HTTPLogger.swift */; };
 		BF_729247430192 /* UnhideItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_319790055510 /* UnhideItemResult.swift */; };
@@ -142,6 +140,8 @@
 		ED481772213D0F67001576CA /* ExtendedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481771213D0F67001576CA /* ExtendedType.swift */; };
 		ED481777213D21BB001576CA /* ClientProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481775213D21BA001576CA /* ClientProvider.swift */; };
 		ED481778213D21BB001576CA /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481776213D21BB001576CA /* Authenticator.swift */; };
+		ED692E5D23199136009D3FDB /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = ED692E5C23199136009D3FDB /* Nimble */; };
+		ED692E6623199A77009D3FDB /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ED692E6523199A77009D3FDB /* OHHTTPStubsSwift */; };
 		ED6FFBE82211B91000A4FE75 /* sync_watched_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = ED6FFBE72211B91000A4FE75 /* sync_watched_movies.json */; };
 		ED9B5051211AB6ED00751E10 /* movies_trending_full.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9B5050211AB6ED00751E10 /* movies_trending_full.json */; };
 		EDB8C8F721357F0900BA4485 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8C8F621357F0900BA4485 /* Sync.swift */; };
@@ -390,8 +390,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF_863061896287 /* TraktKit.framework in Frameworks */,
-				BF_469341088606 /* Nimble.framework in Frameworks */,
-				BF_681489673145 /* OHHTTPStubs.framework in Frameworks */,
+				ED692E6623199A77009D3FDB /* OHHTTPStubsSwift in Frameworks */,
+				ED692E5D23199136009D3FDB /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,7 +873,6 @@
 				RBP_61432150948 /* Resources */,
 				FBP_61432150948 /* Frameworks */,
 				CFBP_6225767400 /* CopyFiles */,
-				SSBP_7848016859 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -881,6 +880,10 @@
 				TD_426450142131 /* PBXTargetDependency */,
 			);
 			name = TraktKitTests;
+			packageProductDependencies = (
+				ED692E5C23199136009D3FDB /* Nimble */,
+				ED692E6523199A77009D3FDB /* OHHTTPStubsSwift */,
+			);
 			productName = TraktKitTests;
 			productReference = FR_614321509487 /* TraktKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -931,6 +934,10 @@
 				Base,
 			);
 			mainGroup = G_8448771205358;
+			packageReferences = (
+				ED692E5B23199136009D3FDB /* XCRemoteSwiftPackageReference "Nimble" */,
+				ED692E6423199A77009D3FDB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1014,24 +1021,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		SSBP_7848016859 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Nimble.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OHHTTPStubs.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "carthage copy-frameworks\n";
-		};
 		SSBP_8390227841 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1225,7 +1214,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = TraktDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktDemo;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
@@ -1303,7 +1295,10 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = TraktDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktDemo;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
@@ -1320,7 +1315,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = TraktKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktKitTests;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1344,7 +1343,10 @@
 				INFOPLIST_FILE = TraktKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1370,7 +1372,10 @@
 				INFOPLIST_FILE = TraktKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1389,7 +1394,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = TraktKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktKitTests;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1441,7 +1450,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1487,6 +1497,38 @@
 			defaultConfigurationName = "";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ED692E5B23199136009D3FDB /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.2;
+			};
+		};
+		ED692E6423199A77009D3FDB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			requirement = {
+				branch = "feature/spm-support";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ED692E5C23199136009D3FDB /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED692E5B23199136009D3FDB /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		ED692E6523199A77009D3FDB /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED692E6423199A77009D3FDB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = P_7384360576030 /* Project object */;
 }
