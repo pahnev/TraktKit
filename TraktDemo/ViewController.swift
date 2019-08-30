@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let value):
-                self.movies = value
+                self.movies = value.type
             }
         }
     }

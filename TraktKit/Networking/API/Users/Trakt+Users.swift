@@ -27,7 +27,6 @@ public extension Trakt {
     func getStats(userId: String, completion: @escaping TraktResult<UserStats>) {
         let endpoint = Users.getStats(userId: userId)
         fetchObject(ofType: UserStats.self,
-                    cacheConfig: endpoint,
                     endpoint: endpoint,
                     completion: completion)
     }

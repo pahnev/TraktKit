@@ -47,7 +47,7 @@ class MovieDetailsViewController: UIViewController {
                 print(error)
             case .success(let value):
                 print(value)
-                self.watchedLabel.text = value.contains(where: { $0.movie?.ids.trakt == self.movie.ids.trakt }) ?
+                self.watchedLabel.text = value.type.contains(where: { $0.movie?.ids.trakt == self.movie.ids.trakt }) ?
                     "Watched" : "Not watched"
             }
         }
