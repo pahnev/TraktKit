@@ -20,13 +20,11 @@ public typealias RequestResult<T> = (Result<T, TraktError>) -> Void
 public final class Trakt {
     private let traktClient: ClientProvider
     private let networkClient: NetworkClient
-    private let cache: Cache
     var auth: Authenticator?
 
     public init(traktClient: ClientProvider) throws {
         self.traktClient = traktClient
         networkClient = NetworkClient(traktClient: traktClient)
-        cache = try Cache()
     }
 
     public func authenticate(_ auth: Authenticator) {
@@ -65,12 +63,12 @@ public final class Trakt {
 
     /// - Returns: Total byte size of all caches stored on disk by TraktKit
     public func cacheDiskStorageSize() -> Int {
-        return cache.totalDiskStorageSize()
+        return networkClient.cacheDiskStorageSize()
     }
 
     /// Removes all cached data from memory and disk.
     public func clearCaches() {
-        do { try cache.clearCaches() } catch { print("Couldn't clear caches: \(error)") }
+        networkClient.clearCaches()
     }
 
     func assertLoggedInUser() {
@@ -87,12 +85,7 @@ public final class Trakt {
     ///   - endpoint: The API endpoint to fetch the object from.
     ///   - completion: The closure called when the fetch is finished. Returns either the object requested or TraktError if something failed.
     func fetchObject<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping TraktResult<CachedObjectType>) {
-        fetchObjectFromLocalCache(ofType: CachedObjectType.self, cacheConfig: cacheConfig) { cachedObject in
-            guard let cachedObject = cachedObject else {
-                return self.fetchObjectFromNetwork(ofType: CachedObjectType.self, cacheConfig: cacheConfig, endpoint: endpoint, additionalHeaders: additionalHeaders, currentCacheEntry: nil, completion: completion)
-            }
-            self.fetchObjectFromNetwork(ofType: CachedObjectType.self, cacheConfig: cacheConfig, endpoint: endpoint, additionalHeaders: additionalHeaders, currentCacheEntry: cachedObject, completion: completion)
-        }
+        fetchObjectFromNetwork(ofType: CachedObjectType.self, cacheConfig: cacheConfig, endpoint: endpoint, additionalHeaders: additionalHeaders, currentCacheEntry: nil, completion: completion)
     }
 
     /// Performs authenticated request and returns either NetworkResult.SuccessValue on successful completion or TraktError if something failed.
@@ -171,65 +164,21 @@ private extension Trakt {
         let parsedObject: CachedObjectType
         do {
             parsedObject = try self.parseObject(ofType: CachedObjectType.self, data: value.value)
+            completion(.success(parsedObject))
+
         } catch let error as TraktError {
             return completion(.failure(error))
         } catch {
             preconditionFailure("There should no other error thrown from parsing.")
         }
-
-        // Cache
-        let cache = self.cache.storage(for: cacheConfig)
-        let cacheEntry = CacheEntry<CachedObjectType>(value: parsedObject,
-                                                      maxAge: value.headers.maxAge,
-                                                      etag: value.headers.etag,
-                                                      pagination: value.headers.pagination)
-        do {
-            try cache.setObject(cacheEntry, forKey: cacheConfig.key)
-            completion(.success(parsedObject))
-        } catch {
-            completion(.failure(TraktError.cacheSavingError(error)))
-        }
-    }
-
-    func fetchObjectFromLocalCache<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, completion: @escaping (CacheEntry<CachedObjectType>?) -> Void) {
-        let cache = self.cache.storage(for: cacheConfig)
-        cache.async.object(ofType: CacheEntry<CachedObjectType>.self, forKey: cacheConfig.key) { result in
-            switch result {
-            case .value(let object):
-                completion(object)
-            case .error:
-                completion(nil)
-            }
-        }
     }
 
     func fetchObjectFromNetwork<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], currentCacheEntry: CacheEntry<CachedObjectType>?, completion: @escaping TraktResult<CachedObjectType>) {
 
-        // Check if the cached entry can be used without making network request
-        if let cacheEntry = currentCacheEntry,
-            let expirationDate = cacheEntry.expirationDate,
-            Date() < expirationDate {
-            DispatchQueue.main.async {
-                completion(.success(cacheEntry.value))
-            }
-            return
-        }
-
-        // Setup validation token
-        var headers = additionalHeaders
-        if let etag = currentCacheEntry?.etag {
-            headers.updateValue("If-None-Match", forKey: etag)
-        }
-
-        authenticatedRequest(for: endpoint, additionalHeaders: headers, completion: { result in
+        authenticatedRequest(for: endpoint, additionalHeaders: additionalHeaders, completion: { result in
             switch result {
             case .failure(let error):
-                switch (error, currentCacheEntry) {
-                case (.httpError(let code), .some(let cacheEntry)) where code == 304:
-                    completion(.success(cacheEntry.value)) // HTTP 304 Not Modified - should use the cached value.
-                case ((let error), _):
-                    completion(.failure(error)) // Actual error - pass it up
-                }
+                completion(.failure(error))
             case .success(let value):
                 self.parseAndCache(ofType: CachedObjectType.self, cacheConfig: cacheConfig, value: value, completion: completion)
             }
@@ -242,77 +191,32 @@ private extension Trakt {
 
 extension Trakt {
     func fetchPaginatedObject<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping PaginatedTraktResult<CachedObjectType>) {
-        fetchObjectFromLocalCache(ofType: CachedObjectType.self, cacheConfig: cacheConfig) { cachedObject in
-            guard let cachedObject = cachedObject else {
-                return self.fetchPaginatedObjectFromNetwork(ofType: CachedObjectType.self,
-                                                            cacheConfig: cacheConfig,
-                                                            endpoint: endpoint,
-                                                            additionalHeaders:additionalHeaders,
-                                                            currentCacheEntry: nil,
-                                                            completion: completion)
-            }
             return self.fetchPaginatedObjectFromNetwork(ofType: CachedObjectType.self,
                                                         cacheConfig: cacheConfig,
                                                         endpoint: endpoint,
                                                         additionalHeaders: additionalHeaders,
-                                                        currentCacheEntry: cachedObject,
+                                                        currentCacheEntry: nil,
                                                         completion: completion)
-        }
     }
 
     private func parseAndCachePaginated<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, value: NetworkResult.SuccessValue, completion: PaginatedTraktResult<CachedObjectType>) {
         let parsedObject: CachedObjectType
         do {
+            guard let pagination = value.headers.pagination else { preconditionFailure("You should call parseAndCache() instead")}
             parsedObject = try self.parseObject(ofType: CachedObjectType.self, data: value.value)
+            completion(.success(Paginated(type: parsedObject, pagination: pagination)))
         } catch let error as TraktError {
             return completion(.failure(error))
         } catch {
             preconditionFailure("There should no other error thrown from parsing.")
         }
-
-        // Cache
-        let cache = self.cache.storage(for: cacheConfig)
-        let cacheEntry = CacheEntry<CachedObjectType>(value: parsedObject,
-                                                      maxAge: value.headers.maxAge,
-                                                      etag: value.headers.etag,
-                                                      pagination: value.headers.pagination)
-        do {
-            try cache.setObject(cacheEntry, forKey: cacheConfig.key)
-            guard let pagination = value.headers.pagination else { preconditionFailure("You should call parseAndCache() instead")}
-
-            completion(.success(Paginated(type: parsedObject, pagination: pagination)))
-        } catch {
-            completion(.failure(TraktError.cacheSavingError(error)))
-        }
     }
 
     private func fetchPaginatedObjectFromNetwork<CachedObjectType: Codable>(ofType: CachedObjectType.Type, cacheConfig: CacheConfigurable, endpoint: Endpoint, additionalHeaders: [String: String] = [:], currentCacheEntry: CacheEntry<CachedObjectType>?, completion: @escaping PaginatedTraktResult<CachedObjectType>) {
-
-        // Check if the cached entry can be used without making network request
-        if let cacheEntry = currentCacheEntry,
-            let expirationDate = cacheEntry.expirationDate,
-            Date() < expirationDate {
-            DispatchQueue.main.async {
-                completion(.success(Paginated(type: cacheEntry.value, pagination: cacheEntry.pagination!)))
-            }
-            return
-        }
-
-        // Setup validation token
-        var headers = additionalHeaders
-        if let etag = currentCacheEntry?.etag {
-            headers.updateValue("If-None-Match", forKey: etag)
-        }
-
-        authenticatedRequest(for: endpoint, additionalHeaders: headers, completion: { result in
+        authenticatedRequest(for: endpoint, additionalHeaders: additionalHeaders, completion: { result in
             switch result {
             case .failure(let error):
-                switch (error, currentCacheEntry) {
-                case (.httpError(let code), .some(let cacheEntry)) where code == 304:
-                    completion(.success(Paginated(type: cacheEntry.value, pagination: cacheEntry.pagination!)))
-                case ((let error), _):
-                    completion(.failure(error)) // Actual error - pass it up
-                }
+                completion(.failure(error))
             case .success(let value):
                 self.parseAndCachePaginated(ofType: CachedObjectType.self, cacheConfig: cacheConfig, value: value, completion: completion)
             }
