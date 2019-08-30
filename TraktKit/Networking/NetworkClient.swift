@@ -23,10 +23,15 @@ final class NetworkClient {
     private let traktClient: ClientProvider
     private let httpLogger: HTTPLogger
     private let urlSession: URLSession
+    private let cache: URLCache
 
-    init(traktClient: ClientProvider) {
+    init(traktClient: ClientProvider, cache: URLCache = URLCache.shared) {
         self.traktClient = traktClient
+        self.cache = cache
         httpLogger = HTTPLogger()
+
+        cache.diskCapacity = 100 * 1024 * 1024
+        cache.memoryCapacity = 100 * 1024 * 1024
 
         let urlConfiguration = URLSessionConfiguration.default
         urlConfiguration.urlCache = nil
@@ -35,6 +40,14 @@ final class NetworkClient {
                                                   "trakt-api-version": "2",
                                                   "Content-type": "application/json"]
         urlSession = URLSession(configuration: urlConfiguration)
+    }
+
+    func cacheDiskStorageSize() -> Int {
+        return cache.currentDiskUsage
+    }
+
+    func clearCaches() {
+        cache.removeAllCachedResponses()
     }
 
     func executeAuthenticatedRequest(for endpoint: Endpoint, additionalHeaders: [String: String] = [:], completion: @escaping (NetworkResult) -> Void) {
@@ -63,6 +76,12 @@ private extension NetworkClient {
     func startRequest(_ request: URLRequest, completion: @escaping (NetworkResult) -> Void) {
         let reqId = httpLogger.logStart(request)
 
+        if let cachedResponse = cache.cachedResponse(for: request), let httpResponse = cachedResponse.response as? HTTPURLResponse {
+            return completion(.success(NetworkResult.SuccessValue(value: cachedResponse.data,
+                                                                  headers: HTTPResponseHeaders(httpResponse.allHeaderFields),
+                                                                  statusCode: httpResponse.statusCode)))
+        }
+
         let task = urlSession.dataTask(with: request) { data, response, httpRequestError in
             self.httpLogger.logComplete(with: reqId, data: data, response: response, error: httpRequestError)
 
@@ -83,6 +102,7 @@ private extension NetworkClient {
                     return completion(.error(TraktError.httpError(httpResponse.statusCode)))
                 }
 
+                self.cache.storeCachedResponse(CachedURLResponse(response: httpResponse, data: data), for: request)
                 return completion(.success(NetworkResult.SuccessValue(value: data,
                                                                       headers: HTTPResponseHeaders(httpResponse.allHeaderFields),
                                                                       statusCode: httpResponse.statusCode)))
