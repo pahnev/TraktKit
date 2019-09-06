@@ -1,0 +1,17 @@
+name: Beta Xcode
+on: 
+  push:
+    branches:    
+      - spm-support
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build and test
+      run: |
+        export DEVELOPER_DIR="/Applications/Xcode_11.app/Contents/Developer"
+        xcodebuild -version
+        xcode-select -print-path
+        swift test
