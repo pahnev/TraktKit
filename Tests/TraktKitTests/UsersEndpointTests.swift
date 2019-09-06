@@ -18,6 +18,7 @@ class UsersEndpointTests: XCTestCase {
     }
 
     override func tearDown() {
+        URLCache.shared.removeAllCachedResponses() // Something weird with `testWatchingReturnsNoData` test here, don't wanna deal with it now
         trakt.clearCaches()
         super.tearDown()
     }

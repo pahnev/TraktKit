@@ -12,6 +12,8 @@ import XCTest
 @testable import TraktKit
 
 class StubHelper {
+    private let fixtureCache: [String: URL]
+
     static let defaultPaginationHeaders = [
         "x-pagination-item-count": "1",
         "x-pagination-limit": "2",
@@ -25,8 +27,9 @@ class StubHelper {
         if let info = info {
             fileName.append("_\(info.rawValue)")
         }
-        let stubPath = OHPathForFile("\(fileName).json", type(of: self))!
-        return fixture(filePath: stubPath, status: 200, headers: headers)
+
+        let file = fixtureCache["\(fileName).json"]
+        return OHHTTPStubsResponse(data: try! Data(contentsOf: file!), statusCode: 200, headers: headers)
     }
 
     func stubWithResponseCode(_ code: Int, endpoint: Endpoint) {
@@ -49,8 +52,33 @@ class StubHelper {
             XCTAssertEqual(body, expectedBody)
             return true
         }) { request -> OHHTTPStubsResponse in
-            let stubPath = OHPathForFile("\(responseFile).json", type(of: self))!
-            return fixture(filePath: stubPath, status: 200, headers: nil)
+            let file = self.fixtureCache["\(responseFile).json"]
+            return OHHTTPStubsResponse(data: try! Data(contentsOf: file!), statusCode: 200, headers: nil)
         }
+    }
+
+    init() {
+        var cache: [String: URL] = [:] // Save all local files in this cache
+        let baseURL = StubHelper.urlForRestServicesTestsDir()
+
+        guard let enumerator = FileManager.default.enumerator(
+            at: baseURL,
+            includingPropertiesForKeys: [.nameKey],
+            options: [.skipsHiddenFiles, .skipsPackageDescendants],
+            errorHandler: nil) else {
+                fatalError("Could not enumerate \(baseURL)")
+        }
+
+        for case let url as URL in enumerator where url.isFileURL {
+            cache[url.lastPathComponent] = url
+        }
+        fixtureCache = cache
+    }
+
+    static func urlForRestServicesTestsDir() -> URL {
+        let currentFileURL = URL(fileURLWithPath: "\(#file)", isDirectory: false)
+        return currentFileURL
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
     }
 }

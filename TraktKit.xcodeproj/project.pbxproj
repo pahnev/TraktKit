@@ -1,1540 +1,3246 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 52;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		BC9394BAE8762DAD9B53C175 /* UsersEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC939632A2501B2DEA9EFCD0 /* UsersEndpointTests.swift */; };
-		BC939DB46268A275ABDE5068 /* Trakt+Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9399E535172669ACD21177 /* Trakt+Users.swift */; };
-		BC939FDB00C3017C42ED20BB /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC939C04BE8C08900A36835A /* Users.swift */; };
-		BF_101157801524 /* Likes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_315175136066 /* Likes.swift */; };
-		BF_104297736026 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_627951554842 /* MovieDetailsViewController.swift */; };
-		BF_109652539957 /* movies_120_releases.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_285853568347 /* movies_120_releases.json */; };
-		BF_117269354340 /* RemoveFromCollectionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_100428954135 /* RemoveFromCollectionResult.swift */; };
-		BF_122386068420 /* movies_collected.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_516442622238 /* movies_collected.json */; };
-		BF_128252572830 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_579942919206 /* Movies.swift */; };
-		BF_134049506900 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_384976887653 /* Show.swift */; };
-		BF_148118395783 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_552008561417 /* NetworkClient.swift */; };
-		BF_151608712794 /* UpdatedMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_701349477383 /* UpdatedMoviesResponse.swift */; };
-		BF_162368359271 /* MovieRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_407205935100 /* MovieRelease.swift */; };
-		BF_164999724022 /* DVDReleaseMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_796488214340 /* DVDReleaseMovie.swift */; };
-		BF_166432136087 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = VG_918574914753 /* LaunchScreen.storyboard */; };
-		BF_184722166805 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_798787489790 /* Comment.swift */; };
-		BF_185837768735 /* FollowRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_192162044763 /* FollowRequest.swift */; };
-		BF_190023165864 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_777941935673 /* Filters.swift */; };
-		BF_190978633717 /* WatchedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_737419384335 /* WatchedItem.swift */; };
-		BF_191174074258 /* StubHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_205308543794 /* StubHelper.swift */; };
-		BF_211976527808 /* movies_120_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_139320288066 /* movies_120_ratings.json */; };
-		BF_217946189406 /* movies_190430_watching.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_578556229498 /* movies_190430_watching.json */; };
-		BF_218554661071 /* movies_popular.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_918077911094 /* movies_popular.json */; };
-		BF_229030910652 /* TrendingComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_564763713522 /* TrendingComment.swift */; };
-		BF_237663692712 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_702142495325 /* Update.swift */; };
-		BF_240077596608 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FR_745572192644 /* MovieDetailsViewController.xib */; };
-		BF_247012008317 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_522406096741 /* Genre.swift */; };
-		BF_255699670283 /* ShowCollectionProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_589056976953 /* ShowCollectionProgress.swift */; };
-		BF_255770966306 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_301443066872 /* Endpoint.swift */; };
-		BF_262533740944 /* WatchedEpisodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_382332517445 /* WatchedEpisodes.swift */; };
-		BF_270886276422 /* TraktKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FR_146184985886 /* TraktKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BF_272654747656 /* UsersCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_865474369191 /* UsersCollection.swift */; };
-		BF_282281077432 /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_659922062345 /* AccountSettings.swift */; };
-		BF_289227732610 /* BoxOfficeMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_299385643277 /* BoxOfficeMovie.swift */; };
-		BF_297504004527 /* MostMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_915902433005 /* MostMovie.swift */; };
-		BF_301965514324 /* CastMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_444956285078 /* CastMember.swift */; };
-		BF_306895900336 /* CastAndCrew.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_430132809347 /* CastAndCrew.swift */; };
-		BF_310018698725 /* movies_watched.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_501779700012 /* movies_watched.json */; };
-		BF_311784977456 /* EpisodeTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_316012796770 /* EpisodeTranslation.swift */; };
-		BF_333635740342 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_248485083760 /* List.swift */; };
-		BF_334553359210 /* AddToWatchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_414707010780 /* AddToWatchlist.swift */; };
-		BF_336519361364 /* movies_120_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_460604374422 /* movies_120_comments.json */; };
-		BF_350401070107 /* AttachedMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_919027982787 /* AttachedMediaItem.swift */; };
-		BF_350467325001 /* movies_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_823405469106 /* movies_updates.json */; };
-		BF_350719453599 /* CrewMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_485918254988 /* CrewMember.swift */; };
-		BF_371719715927 /* WatchedShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_468055020691 /* WatchedShow.swift */; };
-		BF_383150831158 /* ShowTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_637950029570 /* ShowTranslation.swift */; };
-		BF_384685752787 /* MovieTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_134760935659 /* MovieTranslation.swift */; };
-		BF_410600844379 /* WatchedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_193713460001 /* WatchedProgress.swift */; };
-		BF_419211927326 /* WatchedSeason.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_823896969193 /* WatchedSeason.swift */; };
-		BF_436833355593 /* URL+QueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_348169936985 /* URL+QueryItem.swift */; };
-		BF_437183614266 /* movies_trending_min.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_753168492236 /* movies_trending_min.json */; };
-		BF_438815207897 /* movies_120_lists_.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_463132295467 /* movies_120_lists_.json */; };
-		BF_440062734471 /* movies_120_people.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_642952705979 /* movies_120_people.json */; };
-		BF_441346256855 /* Trakt+Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_909393393125 /* Trakt+Movies.swift */; };
-		BF_445002476493 /* movies_played.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_768343166571 /* movies_played.json */; };
-		BF_454370983078 /* HiddenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_687948587378 /* HiddenItem.swift */; };
-		BF_454617449469 /* Trakt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_759968972747 /* Trakt.swift */; };
-		BF_460109712821 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_323155128601 /* Movie.swift */; };
-		BF_461104952319 /* TraktKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_655613692374 /* TraktKitTests.swift */; };
-		BF_474917567142 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_475254066177 /* Friend.swift */; };
-		BF_495400808344 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_441052600905 /* User.swift */; };
-		BF_496692404068 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_427287722059 /* Episode.swift */; };
-		BF_499717689956 /* CollectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_524599131833 /* CollectedItem.swift */; };
-		BF_511354271705 /* movies_boxoffice.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_445738890574 /* movies_boxoffice.json */; };
-		BF_517823684905 /* Certification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_108688034233 /* Certification.swift */; };
-		BF_520541965517 /* HTTPResponseHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_910445355327 /* HTTPResponseHeaders.swift */; };
-		BF_527422358346 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_698842482548 /* Alias.swift */; };
-		BF_538967994881 /* RemoveListItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_720644090796 /* RemoveListItemResult.swift */; };
-		BF_539803988547 /* UsersComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_221378837776 /* UsersComments.swift */; };
-		BF_540932823397 /* TraktError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_757416571821 /* TraktError.swift */; };
-		BF_552189672838 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_271646909390 /* AppDelegate.swift */; };
-		BF_552395504569 /* movies_120_full.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_295163632682 /* movies_120_full.json */; };
-		BF_571114824703 /* TrendingShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_453663834578 /* TrendingShow.swift */; };
-		BF_572816121345 /* TrendingMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_868758679400 /* TrendingMovie.swift */; };
-		BF_573853296018 /* RemoveRatingsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_642173650568 /* RemoveRatingsResult.swift */; };
-		BF_581408276604 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_829459110134 /* Structures.swift */; };
-		BF_591873195104 /* HideItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_719317360950 /* HideItemResult.swift */; };
-		BF_629513053953 /* AnticipatedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_861354865641 /* AnticipatedMovie.swift */; };
-		BF_631200670701 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_584416535329 /* SearchResult.swift */; };
-		BF_633794182176 /* RemoveFromWatchlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_267113719396 /* RemoveFromWatchlist.swift */; };
-		BF_649821508716 /* TraktKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FR_738436057603 /* TraktKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BF_651594146644 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_184704130534 /* ListItem.swift */; };
-		BF_655241581703 /* PlaybackProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_901836309413 /* PlaybackProgress.swift */; };
-		BF_657023837661 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_702987080984 /* Rating.swift */; };
-		BF_658363868773 /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_469574933509 /* Season.swift */; };
-		BF_665309632909 /* WatchedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_535378784259 /* WatchedMovie.swift */; };
-		BF_671078231044 /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_738436057603 /* TraktKit.framework */; };
-		BF_676201450828 /* movies_120_min.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_216204535510 /* movies_120_min.json */; };
-		BF_683586895671 /* ScrobbleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_607896185867 /* ScrobbleResult.swift */; };
-		BF_693718903731 /* HTTPLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_624289123034 /* HTTPLogger.swift */; };
-		BF_729247430192 /* UnhideItemResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_319790055510 /* UnhideItemResult.swift */; };
-		BF_759401822411 /* Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_536104751618 /* Checkin.swift */; };
-		BF_761487634987 /* MostShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_213625059656 /* MostShow.swift */; };
-		BF_762200467390 /* movies_120_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_462338882991 /* movies_120_stats.json */; };
-		BF_763435341304 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_290415738868 /* HistoryItem.swift */; };
-		BF_773705922471 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_350681531535 /* ViewController.swift */; };
-		BF_796343854716 /* CalendarShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_840032888301 /* CalendarShow.swift */; };
-		BF_812699116446 /* ListItemPostResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_665621977326 /* ListItemPostResult.swift */; };
-		BF_816473807478 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = VG_632686469907 /* Main.storyboard */; };
-		BF_817586782965 /* CommentLikedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_791567887789 /* CommentLikedUser.swift */; };
-		BF_819205715937 /* Watching.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_171617639043 /* Watching.swift */; };
-		BF_839193082933 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_888146484203 /* Pagination.swift */; };
-		BF_844204325655 /* CalendarMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_283769957414 /* CalendarMovie.swift */; };
-		BF_855052103205 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FR_229538118826 /* Assets.xcassets */; };
-		BF_855531865820 /* CodableEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_820520571907 /* CodableEquatable.swift */; };
-		BF_863061896287 /* TraktKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FR_738436057603 /* TraktKit.framework */; };
-		BF_863222729025 /* TraktKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FR_738436057603 /* TraktKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BF_868972963442 /* movies_120_aliases.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_184804660980 /* movies_120_aliases.json */; };
-		BF_884725284687 /* FollowUserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_860508209610 /* FollowUserResult.swift */; };
-		BF_889152302242 /* movies_120_related.json in Resources */ = {isa = PBXBuildFile; fileRef = FR_273957658814 /* movies_120_related.json */; };
-		BF_896854005706 /* AnticipatedShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_747119794294 /* AnticipatedShow.swift */; };
-		BF_898787810624 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_338023298328 /* Person.swift */; };
-		BF_909626953758 /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_670495622706 /* UserStats.swift */; };
-		BF_976768655088 /* RatingDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR_393394011258 /* RatingDistribution.swift */; };
-		ED0396BC225F6D89006E25CE /* users_test_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = ED0396BB225F6D89006E25CE /* users_test_stats.json */; };
-		ED1755E1213679E600C07C73 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1755E0213679E600C07C73 /* Authentication.swift */; };
-		ED1755E321367C1600C07C73 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1755E221367C1600C07C73 /* TokenResponse.swift */; };
-		ED189AC721FB47C300C87B72 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189AC621FB47C300C87B72 /* Config.swift */; };
-		ED189AC821FB4C4600C87B72 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED189AC621FB47C300C87B72 /* Config.swift */; };
-		ED1C2733221316C800E3FC1E /* users_test_watching.json in Resources */ = {isa = PBXBuildFile; fileRef = ED1C2732221316C800E3FC1E /* users_test_watching.json */; };
-		ED1C27582215BBFC00E3FC1E /* MoviesEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1C27572215BBFC00E3FC1E /* MoviesEndpointTests.swift */; };
-		ED28F0F022045A0B00D7AB05 /* sync_watchlist.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */; };
-		ED28F0F22204853200D7AB05 /* sync_watchlist_add.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */; };
-		ED28F0F42204854600D7AB05 /* sync_watchlist_add_notFound.json in Resources */ = {isa = PBXBuildFile; fileRef = ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */; };
-		ED2A79D92136DA58006FBEBD /* RemovedFromHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */; };
-		ED2A79DB2136DA6D006FBEBD /* AddedToHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */; };
-		ED2A79E1213978A6006FBEBD /* DecodableInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A79E0213978A6006FBEBD /* DecodableInteger.swift */; };
-		ED45F2C521F242A300354A43 /* Trakt+Checkin.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED45F2C421F242A300354A43 /* Trakt+Checkin.swift */; };
-		ED48176E213D0F34001576CA /* DateFormatter+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED48176D213D0F34001576CA /* DateFormatter+ISO8601.swift */; };
-		ED481772213D0F67001576CA /* ExtendedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481771213D0F67001576CA /* ExtendedType.swift */; };
-		ED481777213D21BB001576CA /* ClientProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481775213D21BA001576CA /* ClientProvider.swift */; };
-		ED481778213D21BB001576CA /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED481776213D21BB001576CA /* Authenticator.swift */; };
-		ED692E5D23199136009D3FDB /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = ED692E5C23199136009D3FDB /* Nimble */; };
-		ED692E6623199A77009D3FDB /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ED692E6523199A77009D3FDB /* OHHTTPStubsSwift */; };
-		ED6FFBE82211B91000A4FE75 /* sync_watched_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = ED6FFBE72211B91000A4FE75 /* sync_watched_movies.json */; };
-		ED9B5051211AB6ED00751E10 /* movies_trending_full.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9B5050211AB6ED00751E10 /* movies_trending_full.json */; };
-		EDB8C8F721357F0900BA4485 /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8C8F621357F0900BA4485 /* Sync.swift */; };
-		EDB8C8FD2135841500BA4485 /* Trakt+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8C8FC2135841500BA4485 /* Trakt+Sync.swift */; };
-		EDC232D2220039FA008C65CB /* SyncEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC232D1220039FA008C65CB /* SyncEndpointTests.swift */; };
-		EDC232D422003A20008C65CB /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC232D322003A20008C65CB /* Mocks.swift */; };
-		EDC232D8220098E1008C65CB /* addToHistory_movie.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232D7220098E1008C65CB /* addToHistory_movie.json */; };
-		EDC232DA22009A5C008C65CB /* addToHistoryAll_notFound.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232D922009A5C008C65CB /* addToHistoryAll_notFound.json */; };
-		EDC232DC22009C0F008C65CB /* addToHistory_show.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232DB22009C0F008C65CB /* addToHistory_show.json */; };
-		EDC232E522018542008C65CB /* sync_history_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232E422018542008C65CB /* sync_history_movies.json */; };
-		EDC232E72201861F008C65CB /* sync_history_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232E62201861F008C65CB /* sync_history_shows.json */; };
-		EDC232E92201862C008C65CB /* sync_history_episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232E82201862C008C65CB /* sync_history_episodes.json */; };
-		EDC232EB220186DC008C65CB /* sync_history_seasons.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232EA220186DC008C65CB /* sync_history_seasons.json */; };
-		EDC232ED22018A8D008C65CB /* sync_history_movies_190430.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232EC22018A8D008C65CB /* sync_history_movies_190430.json */; };
-		EDC232EF22018B7F008C65CB /* sync_history_episodes_3335676.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232EE22018B7F008C65CB /* sync_history_episodes_3335676.json */; };
-		EDC232F122018CD6008C65CB /* sync_history_shows_119095.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232F022018CD6008C65CB /* sync_history_shows_119095.json */; };
-		EDC232F322018E6A008C65CB /* sync_history_seasons_100.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232F222018E6A008C65CB /* sync_history_seasons_100.json */; };
-		EDC232F522018F55008C65CB /* String+TraktKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC232F422018F55008C65CB /* String+TraktKit.swift */; };
-		EDC232F92201C226008C65CB /* removeHistory_movie.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232F82201C226008C65CB /* removeHistory_movie.json */; };
-		EDC232FB2201C2FE008C65CB /* removeHistory_notFound.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232FA2201C2FE008C65CB /* removeHistory_notFound.json */; };
-		EDC232FD2201D792008C65CB /* sync_last_activities.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232FC2201D792008C65CB /* sync_last_activities.json */; };
-		EDC232FF22042161008C65CB /* sync_playback.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC232FE22042161008C65CB /* sync_playback.json */; };
-		EDC2330122044236008C65CB /* sync_collection_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC2330022044236008C65CB /* sync_collection_movies.json */; };
-		EDC2330322044255008C65CB /* sync_collection_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = EDC2330222044255008C65CB /* sync_collection_shows.json */; };
-		EDD2C77C221176BC00ADBEE1 /* sync_watchlist_remove.json in Resources */ = {isa = PBXBuildFile; fileRef = EDD2C77B221176BC00ADBEE1 /* sync_watchlist_remove.json */; };
-		EDD2C77E22117B4800ADBEE1 /* sync_ratings.json in Resources */ = {isa = PBXBuildFile; fileRef = EDD2C77D22117B4800ADBEE1 /* sync_ratings.json */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CIP_37909822679 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = P_7384360576030 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = NT_738436057603;
-			remoteInfo = TraktKit;
-		};
-		CIP_57760921858 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = P_7384360576030 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = NT_738436057603;
-			remoteInfo = TraktKit;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		CFBP_6225767400 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				BF_649821508716 /* TraktKit.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CFBP_7157926353 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				BF_863222729025 /* TraktKit.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
-/* Begin PBXFileReference section */
-		BC939632A2501B2DEA9EFCD0 /* UsersEndpointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersEndpointTests.swift; sourceTree = "<group>"; };
-		BC9399E535172669ACD21177 /* Trakt+Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trakt+Users.swift"; sourceTree = "<group>"; };
-		BC939C04BE8C08900A36835A /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
-		ED0396BB225F6D89006E25CE /* users_test_stats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users_test_stats.json; sourceTree = "<group>"; };
-		ED1755E0213679E600C07C73 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
-		ED1755E221367C1600C07C73 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
-		ED189AC621FB47C300C87B72 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		ED1C2732221316C800E3FC1E /* users_test_watching.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users_test_watching.json; sourceTree = "<group>"; };
-		ED1C27572215BBFC00E3FC1E /* MoviesEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesEndpointTests.swift; sourceTree = "<group>"; };
-		ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist.json; sourceTree = "<group>"; };
-		ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist_add.json; sourceTree = "<group>"; };
-		ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist_add_notFound.json; sourceTree = "<group>"; };
-		ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovedFromHistory.swift; sourceTree = "<group>"; };
-		ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedToHistory.swift; sourceTree = "<group>"; };
-		ED2A79E0213978A6006FBEBD /* DecodableInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableInteger.swift; sourceTree = "<group>"; };
-		ED45F2C421F242A300354A43 /* Trakt+Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trakt+Checkin.swift"; sourceTree = "<group>"; };
-		ED48176D213D0F34001576CA /* DateFormatter+ISO8601.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ISO8601.swift"; sourceTree = "<group>"; };
-		ED481771213D0F67001576CA /* ExtendedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedType.swift; sourceTree = "<group>"; };
-		ED481775213D21BA001576CA /* ClientProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientProvider.swift; sourceTree = "<group>"; };
-		ED481776213D21BB001576CA /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
-		ED6FFBE72211B91000A4FE75 /* sync_watched_movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watched_movies.json; sourceTree = "<group>"; };
-		ED9B5050211AB6ED00751E10 /* movies_trending_full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movies_trending_full.json; sourceTree = "<group>"; };
-		EDB8C8F621357F0900BA4485 /* Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
-		EDB8C8FC2135841500BA4485 /* Trakt+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trakt+Sync.swift"; sourceTree = "<group>"; };
-		EDC232D1220039FA008C65CB /* SyncEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncEndpointTests.swift; sourceTree = "<group>"; };
-		EDC232D322003A20008C65CB /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
-		EDC232D7220098E1008C65CB /* addToHistory_movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = addToHistory_movie.json; sourceTree = "<group>"; };
-		EDC232D922009A5C008C65CB /* addToHistoryAll_notFound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = addToHistoryAll_notFound.json; sourceTree = "<group>"; };
-		EDC232DB22009C0F008C65CB /* addToHistory_show.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = addToHistory_show.json; sourceTree = "<group>"; };
-		EDC232E422018542008C65CB /* sync_history_movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_history_movies.json; sourceTree = "<group>"; };
-		EDC232E62201861F008C65CB /* sync_history_shows.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_history_shows.json; sourceTree = "<group>"; };
-		EDC232E82201862C008C65CB /* sync_history_episodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_history_episodes.json; sourceTree = "<group>"; };
-		EDC232EA220186DC008C65CB /* sync_history_seasons.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_history_seasons.json; sourceTree = "<group>"; };
-		EDC232EC22018A8D008C65CB /* sync_history_movies_190430.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_history_movies_190430.json; sourceTree = "<group>"; };
-		EDC232EE22018B7F008C65CB /* sync_history_episodes_3335676.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_history_episodes_3335676.json; sourceTree = "<group>"; };
-		EDC232F022018CD6008C65CB /* sync_history_shows_119095.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_history_shows_119095.json; sourceTree = "<group>"; };
-		EDC232F222018E6A008C65CB /* sync_history_seasons_100.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_history_seasons_100.json; sourceTree = "<group>"; };
-		EDC232F422018F55008C65CB /* String+TraktKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+TraktKit.swift"; sourceTree = "<group>"; };
-		EDC232F82201C226008C65CB /* removeHistory_movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = removeHistory_movie.json; sourceTree = "<group>"; };
-		EDC232FA2201C2FE008C65CB /* removeHistory_notFound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = removeHistory_notFound.json; sourceTree = "<group>"; };
-		EDC232FC2201D792008C65CB /* sync_last_activities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_last_activities.json; sourceTree = "<group>"; };
-		EDC232FE22042161008C65CB /* sync_playback.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_playback.json; sourceTree = "<group>"; };
-		EDC2330022044236008C65CB /* sync_collection_movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_collection_movies.json; sourceTree = "<group>"; };
-		EDC2330222044255008C65CB /* sync_collection_shows.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_collection_shows.json; sourceTree = "<group>"; };
-		EDD2C77B221176BC00ADBEE1 /* sync_watchlist_remove.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_watchlist_remove.json; sourceTree = "<group>"; };
-		EDD2C77D22117B4800ADBEE1 /* sync_ratings.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sync_ratings.json; sourceTree = "<group>"; };
-		FR_100428954135 /* RemoveFromCollectionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromCollectionResult.swift; sourceTree = "<group>"; };
-		FR_108688034233 /* Certification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certification.swift; sourceTree = "<group>"; };
-		FR_134760935659 /* MovieTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTranslation.swift; sourceTree = "<group>"; };
-		FR_139320288066 /* movies_120_ratings.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_ratings.json; sourceTree = "<group>"; };
-		FR_146184985886 /* TraktKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraktKit.h; sourceTree = "<group>"; };
-		FR_147676953480 /* TraktDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraktDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FR_171617639043 /* Watching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watching.swift; sourceTree = "<group>"; };
-		FR_184704130534 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
-		FR_184804660980 /* movies_120_aliases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_aliases.json; sourceTree = "<group>"; };
-		FR_192162044763 /* FollowRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequest.swift; sourceTree = "<group>"; };
-		FR_193713460001 /* WatchedProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedProgress.swift; sourceTree = "<group>"; };
-		FR_205308543794 /* StubHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubHelper.swift; sourceTree = "<group>"; };
-		FR_213625059656 /* MostShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostShow.swift; sourceTree = "<group>"; };
-		FR_216204535510 /* movies_120_min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_min.json; sourceTree = "<group>"; };
-		FR_221378837776 /* UsersComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersComments.swift; sourceTree = "<group>"; };
-		FR_229538118826 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FR_248485083760 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
-		FR_260015663399 /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cache.framework; sourceTree = "<group>"; };
-		FR_267113719396 /* RemoveFromWatchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFromWatchlist.swift; sourceTree = "<group>"; };
-		FR_271646909390 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FR_273957658814 /* movies_120_related.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_related.json; sourceTree = "<group>"; };
-		FR_283769957414 /* CalendarMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMovie.swift; sourceTree = "<group>"; };
-		FR_285853568347 /* movies_120_releases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_releases.json; sourceTree = "<group>"; };
-		FR_290415738868 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
-		FR_295163632682 /* movies_120_full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_full.json; sourceTree = "<group>"; };
-		FR_299385643277 /* BoxOfficeMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeMovie.swift; sourceTree = "<group>"; };
-		FR_301443066872 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		FR_315175136066 /* Likes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Likes.swift; sourceTree = "<group>"; };
-		FR_316012796770 /* EpisodeTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTranslation.swift; sourceTree = "<group>"; };
-		FR_319790055510 /* UnhideItemResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnhideItemResult.swift; sourceTree = "<group>"; };
-		FR_323155128601 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		FR_338023298328 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		FR_348169936985 /* URL+QueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+QueryItem.swift"; sourceTree = "<group>"; };
-		FR_350681531535 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FR_354356248347 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OHHTTPStubs.framework; sourceTree = "<group>"; };
-		FR_376295124760 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FR_382332517445 /* WatchedEpisodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedEpisodes.swift; sourceTree = "<group>"; };
-		FR_384976887653 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
-		FR_393394011258 /* RatingDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingDistribution.swift; sourceTree = "<group>"; };
-		FR_407205935100 /* MovieRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRelease.swift; sourceTree = "<group>"; };
-		FR_414707010780 /* AddToWatchlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWatchlist.swift; sourceTree = "<group>"; };
-		FR_427287722059 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
-		FR_430132809347 /* CastAndCrew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAndCrew.swift; sourceTree = "<group>"; };
-		FR_433218431623 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FR_441052600905 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		FR_444956285078 /* CastMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastMember.swift; sourceTree = "<group>"; };
-		FR_445738890574 /* movies_boxoffice.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_boxoffice.json; sourceTree = "<group>"; };
-		FR_453663834578 /* TrendingShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingShow.swift; sourceTree = "<group>"; };
-		FR_460604374422 /* movies_120_comments.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_comments.json; sourceTree = "<group>"; };
-		FR_462338882991 /* movies_120_stats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_stats.json; sourceTree = "<group>"; };
-		FR_463132295467 /* movies_120_lists_.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_lists_.json; sourceTree = "<group>"; };
-		FR_468055020691 /* WatchedShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShow.swift; sourceTree = "<group>"; };
-		FR_469574933509 /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
-		FR_475254066177 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
-		FR_482319556782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FR_485918254988 /* CrewMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewMember.swift; sourceTree = "<group>"; };
-		FR_501779700012 /* movies_watched.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_watched.json; sourceTree = "<group>"; };
-		FR_516442622238 /* movies_collected.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_collected.json; sourceTree = "<group>"; };
-		FR_522406096741 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		FR_524599131833 /* CollectedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectedItem.swift; sourceTree = "<group>"; };
-		FR_535378784259 /* WatchedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedMovie.swift; sourceTree = "<group>"; };
-		FR_536104751618 /* Checkin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkin.swift; sourceTree = "<group>"; };
-		FR_552008561417 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		FR_564763713522 /* TrendingComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingComment.swift; sourceTree = "<group>"; };
-		FR_578556229498 /* movies_190430_watching.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_190430_watching.json; sourceTree = "<group>"; };
-		FR_579942919206 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
-		FR_584416535329 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
-		FR_589056976953 /* ShowCollectionProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCollectionProgress.swift; sourceTree = "<group>"; };
-		FR_607896185867 /* ScrobbleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrobbleResult.swift; sourceTree = "<group>"; };
-		FR_614321509487 /* TraktKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraktKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FR_624289123034 /* HTTPLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPLogger.swift; sourceTree = "<group>"; };
-		FR_627951554842 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
-		FR_632686469907 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FR_637950029570 /* ShowTranslation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTranslation.swift; sourceTree = "<group>"; };
-		FR_642173650568 /* RemoveRatingsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRatingsResult.swift; sourceTree = "<group>"; };
-		FR_642952705979 /* movies_120_people.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_120_people.json; sourceTree = "<group>"; };
-		FR_655613692374 /* TraktKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktKitTests.swift; sourceTree = "<group>"; };
-		FR_659922062345 /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
-		FR_665621977326 /* ListItemPostResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemPostResult.swift; sourceTree = "<group>"; };
-		FR_670495622706 /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
-		FR_687948587378 /* HiddenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenItem.swift; sourceTree = "<group>"; };
-		FR_698842482548 /* Alias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alias.swift; sourceTree = "<group>"; };
-		FR_701349477383 /* UpdatedMoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedMoviesResponse.swift; sourceTree = "<group>"; };
-		FR_702142495325 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
-		FR_702987080984 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
-		FR_719317360950 /* HideItemResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideItemResult.swift; sourceTree = "<group>"; };
-		FR_720644090796 /* RemoveListItemResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveListItemResult.swift; sourceTree = "<group>"; };
-		FR_737419384335 /* WatchedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedItem.swift; sourceTree = "<group>"; };
-		FR_738436057603 /* TraktKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FR_745572192644 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
-		FR_747119794294 /* AnticipatedShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnticipatedShow.swift; sourceTree = "<group>"; };
-		FR_753168492236 /* movies_trending_min.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_trending_min.json; sourceTree = "<group>"; };
-		FR_757416571821 /* TraktError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktError.swift; sourceTree = "<group>"; };
-		FR_759968972747 /* Trakt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trakt.swift; sourceTree = "<group>"; };
-		FR_768343166571 /* movies_played.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_played.json; sourceTree = "<group>"; };
-		FR_777941935673 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
-		FR_791567887789 /* CommentLikedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLikedUser.swift; sourceTree = "<group>"; };
-		FR_796488214340 /* DVDReleaseMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVDReleaseMovie.swift; sourceTree = "<group>"; };
-		FR_798787489790 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		FR_820520571907 /* CodableEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableEquatable.swift; sourceTree = "<group>"; };
-		FR_823405469106 /* movies_updates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_updates.json; sourceTree = "<group>"; };
-		FR_823896969193 /* WatchedSeason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedSeason.swift; sourceTree = "<group>"; };
-		FR_825944699583 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = "<group>"; };
-		FR_829459110134 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
-		FR_840032888301 /* CalendarShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarShow.swift; sourceTree = "<group>"; };
-		FR_860508209610 /* FollowUserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUserResult.swift; sourceTree = "<group>"; };
-		FR_861354865641 /* AnticipatedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnticipatedMovie.swift; sourceTree = "<group>"; };
-		FR_865474369191 /* UsersCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollection.swift; sourceTree = "<group>"; };
-		FR_868758679400 /* TrendingMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMovie.swift; sourceTree = "<group>"; };
-		FR_888146484203 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
-		FR_901836309413 /* PlaybackProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgress.swift; sourceTree = "<group>"; };
-		FR_909393393125 /* Trakt+Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trakt+Movies.swift"; sourceTree = "<group>"; };
-		FR_910445355327 /* HTTPResponseHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponseHeaders.swift; sourceTree = "<group>"; };
-		FR_915902433005 /* MostMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostMovie.swift; sourceTree = "<group>"; };
-		FR_918077911094 /* movies_popular.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies_popular.json; sourceTree = "<group>"; };
-		FR_918574914753 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FR_919027982787 /* AttachedMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedMediaItem.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		FBP_14767695348 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BF_671078231044 /* TraktKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FBP_61432150948 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BF_863061896287 /* TraktKit.framework in Frameworks */,
-				ED692E6623199A77009D3FDB /* OHHTTPStubsSwift in Frameworks */,
-				ED692E5D23199136009D3FDB /* Nimble in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FBP_73843605760 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		ED1C2731221316A100E3FC1E /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				ED1C2732221316C800E3FC1E /* users_test_watching.json */,
-				ED0396BB225F6D89006E25CE /* users_test_stats.json */,
-			);
-			path = Users;
-			sourceTree = "<group>";
-		};
-		ED1C27342213F39500E3FC1E /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				BC9399E535172669ACD21177 /* Trakt+Users.swift */,
-				BC939C04BE8C08900A36835A /* Users.swift */,
-			);
-			path = Users;
-			sourceTree = "<group>";
-		};
-		ED1C27352213F3B100E3FC1E /* Movies */ = {
-			isa = PBXGroup;
-			children = (
-				FR_579942919206 /* Movies.swift */,
-				FR_909393393125 /* Trakt+Movies.swift */,
-			);
-			path = Movies;
-			sourceTree = "<group>";
-		};
-		ED1C27362213F3D300E3FC1E /* Sync */ = {
-			isa = PBXGroup;
-			children = (
-				EDB8C8F621357F0900BA4485 /* Sync.swift */,
-				EDB8C8FC2135841500BA4485 /* Trakt+Sync.swift */,
-			);
-			path = Sync;
-			sourceTree = "<group>";
-		};
-		EDC232DD22009CF2008C65CB /* Sync */ = {
-			isa = PBXGroup;
-			children = (
-				EDC232D7220098E1008C65CB /* addToHistory_movie.json */,
-				EDC232DB22009C0F008C65CB /* addToHistory_show.json */,
-				EDC232D922009A5C008C65CB /* addToHistoryAll_notFound.json */,
-				EDC232F82201C226008C65CB /* removeHistory_movie.json */,
-				EDC232FA2201C2FE008C65CB /* removeHistory_notFound.json */,
-				EDC2330022044236008C65CB /* sync_collection_movies.json */,
-				EDC2330222044255008C65CB /* sync_collection_shows.json */,
-				EDC232EE22018B7F008C65CB /* sync_history_episodes_3335676.json */,
-				EDC232E82201862C008C65CB /* sync_history_episodes.json */,
-				EDC232EC22018A8D008C65CB /* sync_history_movies_190430.json */,
-				EDC232E422018542008C65CB /* sync_history_movies.json */,
-				EDC232F222018E6A008C65CB /* sync_history_seasons_100.json */,
-				EDC232EA220186DC008C65CB /* sync_history_seasons.json */,
-				EDC232F022018CD6008C65CB /* sync_history_shows_119095.json */,
-				EDC232E62201861F008C65CB /* sync_history_shows.json */,
-				EDC232FC2201D792008C65CB /* sync_last_activities.json */,
-				EDC232FE22042161008C65CB /* sync_playback.json */,
-				ED28F0EF22045A0B00D7AB05 /* sync_watchlist.json */,
-				ED28F0F12204853200D7AB05 /* sync_watchlist_add.json */,
-				ED28F0F32204854600D7AB05 /* sync_watchlist_add_notFound.json */,
-				EDD2C77B221176BC00ADBEE1 /* sync_watchlist_remove.json */,
-				EDD2C77D22117B4800ADBEE1 /* sync_ratings.json */,
-				ED6FFBE72211B91000A4FE75 /* sync_watched_movies.json */,
-			);
-			path = Sync;
-			sourceTree = "<group>";
-		};
-		G_1476769534802 /* TraktDemo */ = {
-			isa = PBXGroup;
-			children = (
-				FR_271646909390 /* AppDelegate.swift */,
-				FR_229538118826 /* Assets.xcassets */,
-				FR_482319556782 /* Info.plist */,
-				VG_918574914753 /* LaunchScreen.storyboard */,
-				VG_632686469907 /* Main.storyboard */,
-				FR_627951554842 /* MovieDetailsViewController.swift */,
-				FR_745572192644 /* MovieDetailsViewController.xib */,
-				FR_350681531535 /* ViewController.swift */,
-				ED189AC621FB47C300C87B72 /* Config.swift */,
-			);
-			path = TraktDemo;
-			sourceTree = "<group>";
-		};
-		G_1952740716080 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				G_2883690153011 /* Carthage */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		G_2262017438925 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				FR_260015663399 /* Cache.framework */,
-				FR_825944699583 /* Nimble.framework */,
-				FR_354356248347 /* OHHTTPStubs.framework */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		G_2709551675953 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				FR_698842482548 /* Alias.swift */,
-				FR_393394011258 /* RatingDistribution.swift */,
-				FR_702142495325 /* Update.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		G_2883690153011 /* Carthage */ = {
-			isa = PBXGroup;
-			children = (
-				G_2262017438925 /* iOS */,
-			);
-			name = Carthage;
-			path = Carthage/Build;
-			sourceTree = "<group>";
-		};
-		G_3062381679336 /* People */ = {
-			isa = PBXGroup;
-			children = (
-				FR_430132809347 /* CastAndCrew.swift */,
-				FR_444956285078 /* CastMember.swift */,
-				FR_485918254988 /* CrewMember.swift */,
-				FR_338023298328 /* Person.swift */,
-			);
-			path = People;
-			sourceTree = "<group>";
-		};
-		G_3090649302980 /* Comments */ = {
-			isa = PBXGroup;
-			children = (
-				FR_919027982787 /* AttachedMediaItem.swift */,
-				FR_798787489790 /* Comment.swift */,
-				FR_791567887789 /* CommentLikedUser.swift */,
-				FR_564763713522 /* TrendingComment.swift */,
-			);
-			path = Comments;
-			sourceTree = "<group>";
-		};
-		G_3142131595132 /* Sync */ = {
-			isa = PBXGroup;
-			children = (
-				ED2A79DA2136DA6D006FBEBD /* AddedToHistory.swift */,
-				FR_414707010780 /* AddToWatchlist.swift */,
-				FR_524599131833 /* CollectedItem.swift */,
-				FR_290415738868 /* HistoryItem.swift */,
-				FR_901836309413 /* PlaybackProgress.swift */,
-				FR_702987080984 /* Rating.swift */,
-				ED2A79D82136DA58006FBEBD /* RemovedFromHistory.swift */,
-				FR_100428954135 /* RemoveFromCollectionResult.swift */,
-				FR_267113719396 /* RemoveFromWatchlist.swift */,
-				FR_642173650568 /* RemoveRatingsResult.swift */,
-			);
-			path = Sync;
-			sourceTree = "<group>";
-		};
-		G_3150758782446 /* Movies */ = {
-			isa = PBXGroup;
-			children = (
-				FR_861354865641 /* AnticipatedMovie.swift */,
-				FR_299385643277 /* BoxOfficeMovie.swift */,
-				FR_796488214340 /* DVDReleaseMovie.swift */,
-				FR_915902433005 /* MostMovie.swift */,
-				FR_323155128601 /* Movie.swift */,
-				FR_407205935100 /* MovieRelease.swift */,
-				FR_134760935659 /* MovieTranslation.swift */,
-				FR_868758679400 /* TrendingMovie.swift */,
-				FR_535378784259 /* WatchedMovie.swift */,
-			);
-			path = Movies;
-			sourceTree = "<group>";
-		};
-		G_3303097396471 /* Checkin */ = {
-			isa = PBXGroup;
-			children = (
-				FR_536104751618 /* Checkin.swift */,
-			);
-			path = Checkin;
-			sourceTree = "<group>";
-		};
-		G_3452905763126 /* Genres */ = {
-			isa = PBXGroup;
-			children = (
-				FR_522406096741 /* Genre.swift */,
-			);
-			path = Genres;
-			sourceTree = "<group>";
-		};
-		G_4171053131699 /* Responses */ = {
-			isa = PBXGroup;
-			children = (
-				FR_701349477383 /* UpdatedMoviesResponse.swift */,
-				ED1755E221367C1600C07C73 /* TokenResponse.swift */,
-			);
-			path = Responses;
-			sourceTree = "<group>";
-		};
-		G_4184460296678 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				ED481776213D21BB001576CA /* Authenticator.swift */,
-				ED481775213D21BA001576CA /* ClientProvider.swift */,
-				ED481771213D0F67001576CA /* ExtendedType.swift */,
-				FR_759968972747 /* Trakt.swift */,
-				ED45F2C421F242A300354A43 /* Trakt+Checkin.swift */,
-				ED1C27352213F3B100E3FC1E /* Movies */,
-				ED1C27362213F3D300E3FC1E /* Sync */,
-				ED1C27342213F39500E3FC1E /* Users */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		G_4235879333714 /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				FR_283769957414 /* CalendarMovie.swift */,
-				FR_840032888301 /* CalendarShow.swift */,
-			);
-			path = Calendar;
-			sourceTree = "<group>";
-		};
-		G_4539372966503 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				FR_348169936985 /* URL+QueryItem.swift */,
-				ED48176D213D0F34001576CA /* DateFormatter+ISO8601.swift */,
-				EDC232F422018F55008C65CB /* String+TraktKit.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		G_5799121336552 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				G_4184460296678 /* API */,
-				G_7561963529802 /* Endpoints */,
-				G_4171053131699 /* Responses */,
-				FR_624289123034 /* HTTPLogger.swift */,
-				FR_910445355327 /* HTTPResponseHeaders.swift */,
-				FR_552008561417 /* NetworkClient.swift */,
-				FR_757416571821 /* TraktError.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		G_6143215094873 /* TraktKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				G_6184862486417 /* Fixtures */,
-				FR_433218431623 /* Info.plist */,
-				EDC232D322003A20008C65CB /* Mocks.swift */,
-				FR_205308543794 /* StubHelper.swift */,
-				EDC232D1220039FA008C65CB /* SyncEndpointTests.swift */,
-				FR_655613692374 /* TraktKitTests.swift */,
-				BC939632A2501B2DEA9EFCD0 /* UsersEndpointTests.swift */,
-				ED1C27572215BBFC00E3FC1E /* MoviesEndpointTests.swift */,
-			);
-			path = TraktKitTests;
-			sourceTree = "<group>";
-		};
-		G_6184862486417 /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				ED1C2731221316A100E3FC1E /* Users */,
-				G_9206023948150 /* Movies */,
-				EDC232DD22009CF2008C65CB /* Sync */,
-			);
-			path = Fixtures;
-			sourceTree = "<group>";
-		};
-		G_6429107112512 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				G_4235879333714 /* Calendar */,
-				G_8989838595043 /* Certifications */,
-				G_3303097396471 /* Checkin */,
-				G_3090649302980 /* Comments */,
-				G_3452905763126 /* Genres */,
-				G_3150758782446 /* Movies */,
-				G_3062381679336 /* People */,
-				G_8215590772316 /* Scrobbble */,
-				G_2709551675953 /* Shared */,
-				G_7191638691043 /* Shows */,
-				G_3142131595132 /* Sync */,
-				G_7191833643585 /* Users */,
-				FR_820520571907 /* CodableEquatable.swift */,
-				FR_777941935673 /* Filters.swift */,
-				FR_888146484203 /* Pagination.swift */,
-				FR_584416535329 /* SearchResult.swift */,
-				FR_829459110134 /* Structures.swift */,
-				ED2A79E0213978A6006FBEBD /* DecodableInteger.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		G_7191638691043 /* Shows */ = {
-			isa = PBXGroup;
-			children = (
-				FR_747119794294 /* AnticipatedShow.swift */,
-				FR_427287722059 /* Episode.swift */,
-				FR_316012796770 /* EpisodeTranslation.swift */,
-				FR_213625059656 /* MostShow.swift */,
-				FR_469574933509 /* Season.swift */,
-				FR_384976887653 /* Show.swift */,
-				FR_589056976953 /* ShowCollectionProgress.swift */,
-				FR_637950029570 /* ShowTranslation.swift */,
-				FR_453663834578 /* TrendingShow.swift */,
-				FR_382332517445 /* WatchedEpisodes.swift */,
-				FR_193713460001 /* WatchedProgress.swift */,
-				FR_823896969193 /* WatchedSeason.swift */,
-				FR_468055020691 /* WatchedShow.swift */,
-			);
-			path = Shows;
-			sourceTree = "<group>";
-		};
-		G_7191833643585 /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				FR_659922062345 /* AccountSettings.swift */,
-				FR_192162044763 /* FollowRequest.swift */,
-				FR_860508209610 /* FollowUserResult.swift */,
-				FR_475254066177 /* Friend.swift */,
-				FR_687948587378 /* HiddenItem.swift */,
-				FR_719317360950 /* HideItemResult.swift */,
-				FR_315175136066 /* Likes.swift */,
-				FR_248485083760 /* List.swift */,
-				FR_184704130534 /* ListItem.swift */,
-				FR_665621977326 /* ListItemPostResult.swift */,
-				FR_720644090796 /* RemoveListItemResult.swift */,
-				FR_319790055510 /* UnhideItemResult.swift */,
-				FR_441052600905 /* User.swift */,
-				FR_670495622706 /* UserStats.swift */,
-				FR_865474369191 /* UsersCollection.swift */,
-				FR_221378837776 /* UsersComments.swift */,
-				FR_737419384335 /* WatchedItem.swift */,
-				FR_171617639043 /* Watching.swift */,
-			);
-			path = Users;
-			sourceTree = "<group>";
-		};
-		G_7384360576030 /* TraktKit */ = {
-			isa = PBXGroup;
-			children = (
-				G_4539372966503 /* Extensions */,
-				G_6429107112512 /* Model */,
-				G_5799121336552 /* Networking */,
-				FR_376295124760 /* Info.plist */,
-				FR_146184985886 /* TraktKit.h */,
-			);
-			path = TraktKit;
-			sourceTree = "<group>";
-		};
-		G_7561963529802 /* Endpoints */ = {
-			isa = PBXGroup;
-			children = (
-				ED1755E0213679E600C07C73 /* Authentication.swift */,
-				FR_301443066872 /* Endpoint.swift */,
-			);
-			path = Endpoints;
-			sourceTree = "<group>";
-		};
-		G_8215590772316 /* Scrobbble */ = {
-			isa = PBXGroup;
-			children = (
-				FR_607896185867 /* ScrobbleResult.swift */,
-			);
-			path = Scrobbble;
-			sourceTree = "<group>";
-		};
-		G_8448771205358 = {
-			isa = PBXGroup;
-			children = (
-				G_1952740716080 /* Frameworks */,
-				G_8620238527590 /* Products */,
-				G_1476769534802 /* TraktDemo */,
-				G_7384360576030 /* TraktKit */,
-				G_6143215094873 /* TraktKitTests */,
-			);
-			sourceTree = "<group>";
-		};
-		G_8620238527590 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FR_147676953480 /* TraktDemo.app */,
-				FR_738436057603 /* TraktKit.framework */,
-				FR_614321509487 /* TraktKitTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		G_8989838595043 /* Certifications */ = {
-			isa = PBXGroup;
-			children = (
-				FR_108688034233 /* Certification.swift */,
-			);
-			path = Certifications;
-			sourceTree = "<group>";
-		};
-		G_9206023948150 /* Movies */ = {
-			isa = PBXGroup;
-			children = (
-				FR_445738890574 /* movies_boxoffice.json */,
-				FR_516442622238 /* movies_collected.json */,
-				FR_578556229498 /* movies_190430_watching.json */,
-				FR_768343166571 /* movies_played.json */,
-				FR_918077911094 /* movies_popular.json */,
-				FR_184804660980 /* movies_120_aliases.json */,
-				FR_460604374422 /* movies_120_comments.json */,
-				FR_295163632682 /* movies_120_full.json */,
-				FR_463132295467 /* movies_120_lists_.json */,
-				FR_216204535510 /* movies_120_min.json */,
-				FR_642952705979 /* movies_120_people.json */,
-				FR_139320288066 /* movies_120_ratings.json */,
-				FR_273957658814 /* movies_120_related.json */,
-				FR_285853568347 /* movies_120_releases.json */,
-				FR_462338882991 /* movies_120_stats.json */,
-				FR_753168492236 /* movies_trending_min.json */,
-				ED9B5050211AB6ED00751E10 /* movies_trending_full.json */,
-				FR_823405469106 /* movies_updates.json */,
-				FR_501779700012 /* movies_watched.json */,
-			);
-			path = Movies;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		HBP_73843605760 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BF_270886276422 /* TraktKit.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		NT_147676953480 /* TraktDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CL_147676953480 /* Build configuration list for PBXNativeTarget "TraktDemo" */;
-			buildPhases = (
-				SBP_14767695348 /* Sources */,
-				RBP_14767695348 /* Resources */,
-				FBP_14767695348 /* Frameworks */,
-				CFBP_7157926353 /* CopyFiles */,
-				SSBP_8390227841 /* Carthage */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				TD_713904848215 /* PBXTargetDependency */,
-			);
-			name = TraktDemo;
-			productName = TraktDemo;
-			productReference = FR_147676953480 /* TraktDemo.app */;
-			productType = "com.apple.product-type.application";
-		};
-		NT_614321509487 /* TraktKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CL_614321509487 /* Build configuration list for PBXNativeTarget "TraktKitTests" */;
-			buildPhases = (
-				SBP_61432150948 /* Sources */,
-				RBP_61432150948 /* Resources */,
-				FBP_61432150948 /* Frameworks */,
-				CFBP_6225767400 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				TD_426450142131 /* PBXTargetDependency */,
-			);
-			name = TraktKitTests;
-			packageProductDependencies = (
-				ED692E5C23199136009D3FDB /* Nimble */,
-				ED692E6523199A77009D3FDB /* OHHTTPStubsSwift */,
-			);
-			productName = TraktKitTests;
-			productReference = FR_614321509487 /* TraktKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		NT_738436057603 /* TraktKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = "CL_738436057603-1" /* Build configuration list for PBXNativeTarget "TraktKit" */;
-			buildPhases = (
-				SBP_73843605760 /* Sources */,
-				RBP_73843605760 /* Resources */,
-				HBP_73843605760 /* Headers */,
-				FBP_73843605760 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TraktKit;
-			productName = TraktKit;
-			productReference = FR_738436057603 /* TraktKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		P_7384360576030 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0930;
-				TargetAttributes = {
-					NT_147676953480 = {
-						LastSwiftMigration = 1010;
-					};
-					NT_614321509487 = {
-						LastSwiftMigration = 1020;
-					};
-					NT_738436057603 = {
-						LastSwiftMigration = 1020;
-					};
-				};
-			};
-			buildConfigurationList = CL_738436057603 /* Build configuration list for PBXProject "TraktKit" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = G_8448771205358;
-			packageReferences = (
-				ED692E5B23199136009D3FDB /* XCRemoteSwiftPackageReference "Nimble" */,
-				ED692E6423199A77009D3FDB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
-			);
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				NT_147676953480 /* TraktDemo */,
-				NT_738436057603 /* TraktKit */,
-				NT_614321509487 /* TraktKitTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		RBP_14767695348 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BF_855052103205 /* Assets.xcassets in Resources */,
-				BF_166432136087 /* LaunchScreen.storyboard in Resources */,
-				BF_816473807478 /* Main.storyboard in Resources */,
-				BF_240077596608 /* MovieDetailsViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		RBP_61432150948 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EDC232ED22018A8D008C65CB /* sync_history_movies_190430.json in Resources */,
-				ED6FFBE82211B91000A4FE75 /* sync_watched_movies.json in Resources */,
-				EDC232E72201861F008C65CB /* sync_history_shows.json in Resources */,
-				BF_511354271705 /* movies_boxoffice.json in Resources */,
-				BF_122386068420 /* movies_collected.json in Resources */,
-				BF_217946189406 /* movies_190430_watching.json in Resources */,
-				BF_445002476493 /* movies_played.json in Resources */,
-				BF_218554661071 /* movies_popular.json in Resources */,
-				EDC232DA22009A5C008C65CB /* addToHistoryAll_notFound.json in Resources */,
-				EDC232F322018E6A008C65CB /* sync_history_seasons_100.json in Resources */,
-				EDC232FD2201D792008C65CB /* sync_last_activities.json in Resources */,
-				BF_868972963442 /* movies_120_aliases.json in Resources */,
-				ED28F0F42204854600D7AB05 /* sync_watchlist_add_notFound.json in Resources */,
-				EDC232E92201862C008C65CB /* sync_history_episodes.json in Resources */,
-				BF_336519361364 /* movies_120_comments.json in Resources */,
-				EDC232F92201C226008C65CB /* removeHistory_movie.json in Resources */,
-				BF_552395504569 /* movies_120_full.json in Resources */,
-				BF_438815207897 /* movies_120_lists_.json in Resources */,
-				EDD2C77E22117B4800ADBEE1 /* sync_ratings.json in Resources */,
-				EDC232FB2201C2FE008C65CB /* removeHistory_notFound.json in Resources */,
-				ED0396BC225F6D89006E25CE /* users_test_stats.json in Resources */,
-				EDC232FF22042161008C65CB /* sync_playback.json in Resources */,
-				ED1C2733221316C800E3FC1E /* users_test_watching.json in Resources */,
-				EDC232EB220186DC008C65CB /* sync_history_seasons.json in Resources */,
-				BF_676201450828 /* movies_120_min.json in Resources */,
-				ED28F0F22204853200D7AB05 /* sync_watchlist_add.json in Resources */,
-				BF_440062734471 /* movies_120_people.json in Resources */,
-				ED9B5051211AB6ED00751E10 /* movies_trending_full.json in Resources */,
-				BF_211976527808 /* movies_120_ratings.json in Resources */,
-				BF_889152302242 /* movies_120_related.json in Resources */,
-				BF_109652539957 /* movies_120_releases.json in Resources */,
-				EDC232D8220098E1008C65CB /* addToHistory_movie.json in Resources */,
-				ED28F0F022045A0B00D7AB05 /* sync_watchlist.json in Resources */,
-				EDC2330122044236008C65CB /* sync_collection_movies.json in Resources */,
-				EDC232DC22009C0F008C65CB /* addToHistory_show.json in Resources */,
-				BF_762200467390 /* movies_120_stats.json in Resources */,
-				BF_437183614266 /* movies_trending_min.json in Resources */,
-				EDC232E522018542008C65CB /* sync_history_movies.json in Resources */,
-				BF_350467325001 /* movies_updates.json in Resources */,
-				EDC232F122018CD6008C65CB /* sync_history_shows_119095.json in Resources */,
-				EDC2330322044255008C65CB /* sync_collection_shows.json in Resources */,
-				BF_310018698725 /* movies_watched.json in Resources */,
-				EDD2C77C221176BC00ADBEE1 /* sync_watchlist_remove.json in Resources */,
-				EDC232EF22018B7F008C65CB /* sync_history_episodes_3335676.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		RBP_73843605760 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		SSBP_8390227841 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Cache.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Cache.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		SBP_14767695348 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BF_552189672838 /* AppDelegate.swift in Sources */,
-				ED189AC721FB47C300C87B72 /* Config.swift in Sources */,
-				BF_104297736026 /* MovieDetailsViewController.swift in Sources */,
-				BF_773705922471 /* ViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		SBP_61432150948 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BF_191174074258 /* StubHelper.swift in Sources */,
-				ED1C27582215BBFC00E3FC1E /* MoviesEndpointTests.swift in Sources */,
-				BF_461104952319 /* TraktKitTests.swift in Sources */,
-				ED189AC821FB4C4600C87B72 /* Config.swift in Sources */,
-				EDC232D2220039FA008C65CB /* SyncEndpointTests.swift in Sources */,
-				EDC232D422003A20008C65CB /* Mocks.swift in Sources */,
-				BC9394BAE8762DAD9B53C175 /* UsersEndpointTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		SBP_73843605760 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BF_282281077432 /* AccountSettings.swift in Sources */,
-				BF_334553359210 /* AddToWatchlist.swift in Sources */,
-				BF_527422358346 /* Alias.swift in Sources */,
-				BF_629513053953 /* AnticipatedMovie.swift in Sources */,
-				BF_896854005706 /* AnticipatedShow.swift in Sources */,
-				ED481777213D21BB001576CA /* ClientProvider.swift in Sources */,
-				BF_350401070107 /* AttachedMediaItem.swift in Sources */,
-				BF_289227732610 /* BoxOfficeMovie.swift in Sources */,
-				ED481778213D21BB001576CA /* Authenticator.swift in Sources */,
-				EDB8C8F721357F0900BA4485 /* Sync.swift in Sources */,
-				ED481772213D0F67001576CA /* ExtendedType.swift in Sources */,
-				BF_844204325655 /* CalendarMovie.swift in Sources */,
-				BF_796343854716 /* CalendarShow.swift in Sources */,
-				ED48176E213D0F34001576CA /* DateFormatter+ISO8601.swift in Sources */,
-				BF_306895900336 /* CastAndCrew.swift in Sources */,
-				BF_301965514324 /* CastMember.swift in Sources */,
-				BF_517823684905 /* Certification.swift in Sources */,
-				BF_759401822411 /* Checkin.swift in Sources */,
-				BF_855531865820 /* CodableEquatable.swift in Sources */,
-				BF_499717689956 /* CollectedItem.swift in Sources */,
-				ED2A79E1213978A6006FBEBD /* DecodableInteger.swift in Sources */,
-				BF_184722166805 /* Comment.swift in Sources */,
-				BF_817586782965 /* CommentLikedUser.swift in Sources */,
-				BF_350719453599 /* CrewMember.swift in Sources */,
-				BF_164999724022 /* DVDReleaseMovie.swift in Sources */,
-				BF_255770966306 /* Endpoint.swift in Sources */,
-				BF_496692404068 /* Episode.swift in Sources */,
-				BF_311784977456 /* EpisodeTranslation.swift in Sources */,
-				BF_190023165864 /* Filters.swift in Sources */,
-				BF_185837768735 /* FollowRequest.swift in Sources */,
-				BF_884725284687 /* FollowUserResult.swift in Sources */,
-				BF_474917567142 /* Friend.swift in Sources */,
-				BF_247012008317 /* Genre.swift in Sources */,
-				ED1755E1213679E600C07C73 /* Authentication.swift in Sources */,
-				BF_693718903731 /* HTTPLogger.swift in Sources */,
-				BF_520541965517 /* HTTPResponseHeaders.swift in Sources */,
-				BF_454370983078 /* HiddenItem.swift in Sources */,
-				BF_591873195104 /* HideItemResult.swift in Sources */,
-				BF_763435341304 /* HistoryItem.swift in Sources */,
-				ED2A79DB2136DA6D006FBEBD /* AddedToHistory.swift in Sources */,
-				ED2A79D92136DA58006FBEBD /* RemovedFromHistory.swift in Sources */,
-				BF_101157801524 /* Likes.swift in Sources */,
-				BF_333635740342 /* List.swift in Sources */,
-				BF_651594146644 /* ListItem.swift in Sources */,
-				BF_812699116446 /* ListItemPostResult.swift in Sources */,
-				BF_297504004527 /* MostMovie.swift in Sources */,
-				BF_761487634987 /* MostShow.swift in Sources */,
-				BF_460109712821 /* Movie.swift in Sources */,
-				BF_162368359271 /* MovieRelease.swift in Sources */,
-				BF_384685752787 /* MovieTranslation.swift in Sources */,
-				BF_128252572830 /* Movies.swift in Sources */,
-				BF_148118395783 /* NetworkClient.swift in Sources */,
-				BF_839193082933 /* Pagination.swift in Sources */,
-				BF_898787810624 /* Person.swift in Sources */,
-				BF_655241581703 /* PlaybackProgress.swift in Sources */,
-				BF_657023837661 /* Rating.swift in Sources */,
-				BF_976768655088 /* RatingDistribution.swift in Sources */,
-				BF_117269354340 /* RemoveFromCollectionResult.swift in Sources */,
-				BF_633794182176 /* RemoveFromWatchlist.swift in Sources */,
-				BF_538967994881 /* RemoveListItemResult.swift in Sources */,
-				BF_573853296018 /* RemoveRatingsResult.swift in Sources */,
-				ED1755E321367C1600C07C73 /* TokenResponse.swift in Sources */,
-				BF_683586895671 /* ScrobbleResult.swift in Sources */,
-				BF_631200670701 /* SearchResult.swift in Sources */,
-				BF_658363868773 /* Season.swift in Sources */,
-				BF_134049506900 /* Show.swift in Sources */,
-				EDC232F522018F55008C65CB /* String+TraktKit.swift in Sources */,
-				BF_255699670283 /* ShowCollectionProgress.swift in Sources */,
-				BF_383150831158 /* ShowTranslation.swift in Sources */,
-				BF_581408276604 /* Structures.swift in Sources */,
-				BF_441346256855 /* Trakt+Movies.swift in Sources */,
-				BF_454617449469 /* Trakt.swift in Sources */,
-				BF_540932823397 /* TraktError.swift in Sources */,
-				BF_229030910652 /* TrendingComment.swift in Sources */,
-				BF_572816121345 /* TrendingMovie.swift in Sources */,
-				ED45F2C521F242A300354A43 /* Trakt+Checkin.swift in Sources */,
-				BF_571114824703 /* TrendingShow.swift in Sources */,
-				BF_436833355593 /* URL+QueryItem.swift in Sources */,
-				BF_729247430192 /* UnhideItemResult.swift in Sources */,
-				BF_237663692712 /* Update.swift in Sources */,
-				EDB8C8FD2135841500BA4485 /* Trakt+Sync.swift in Sources */,
-				BF_151608712794 /* UpdatedMoviesResponse.swift in Sources */,
-				BF_495400808344 /* User.swift in Sources */,
-				BF_909626953758 /* UserStats.swift in Sources */,
-				BF_272654747656 /* UsersCollection.swift in Sources */,
-				BF_539803988547 /* UsersComments.swift in Sources */,
-				BF_262533740944 /* WatchedEpisodes.swift in Sources */,
-				BF_190978633717 /* WatchedItem.swift in Sources */,
-				BF_665309632909 /* WatchedMovie.swift in Sources */,
-				BF_410600844379 /* WatchedProgress.swift in Sources */,
-				BF_419211927326 /* WatchedSeason.swift in Sources */,
-				BF_371719715927 /* WatchedShow.swift in Sources */,
-				BF_819205715937 /* Watching.swift in Sources */,
-				BC939DB46268A275ABDE5068 /* Trakt+Users.swift in Sources */,
-				BC939FDB00C3017C42ED20BB /* Users.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		TD_426450142131 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = NT_738436057603 /* TraktKit */;
-			targetProxy = CIP_37909822679 /* PBXContainerItemProxy */;
-		};
-		TD_713904848215 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = NT_738436057603 /* TraktKit */;
-			targetProxy = CIP_57760921858 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		VG_632686469907 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FR_632686469907 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		VG_918574914753 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FR_918574914753 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		BC_146783641346 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = TraktDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktDemo;
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		BC_479945831424 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"DEBUG=1",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		BC_510495854684 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = TraktDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktDemo;
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		BC_581903446920 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = TraktKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktKitTests;
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		BC_584964412639 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = TraktKit/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
-		BC_676144843116 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = TraktKit/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
-		BC_769952221613 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = TraktKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pahnev.TraktKit.TraktKitTests;
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		BC_881114754245 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		CL_147676953480 /* Build configuration list for PBXNativeTarget "TraktDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BC_146783641346 /* Debug */,
-				BC_510495854684 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "";
-		};
-		CL_614321509487 /* Build configuration list for PBXNativeTarget "TraktKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BC_581903446920 /* Debug */,
-				BC_769952221613 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "";
-		};
-		CL_738436057603 /* Build configuration list for PBXProject "TraktKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BC_479945831424 /* Debug */,
-				BC_881114754245 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		"CL_738436057603-1" /* Build configuration list for PBXNativeTarget "TraktKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BC_584964412639 /* Debug */,
-				BC_676144843116 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "";
-		};
-/* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		ED692E5B23199136009D3FDB /* XCRemoteSwiftPackageReference "Nimble" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Quick/Nimble";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.2;
-			};
-		};
-		ED692E6423199A77009D3FDB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
-			requirement = {
-				branch = "feature/spm-support";
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		ED692E5C23199136009D3FDB /* Nimble */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ED692E5B23199136009D3FDB /* XCRemoteSwiftPackageReference "Nimble" */;
-			productName = Nimble;
-		};
-		ED692E6523199A77009D3FDB /* OHHTTPStubsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ED692E6423199A77009D3FDB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
-			productName = OHHTTPStubsSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
-	};
-	rootObject = P_7384360576030 /* Project object */;
+   archiveVersion = "1";
+   objectVersion = "46";
+   objects = {
+      "Nimble::Nimble" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_227";
+         buildPhases = (
+            "OBJ_230",
+            "OBJ_283"
+         );
+         dependencies = (
+         );
+         name = "Nimble";
+         productName = "Nimble";
+         productReference = "Nimble::Nimble::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "Nimble::Nimble::Product" = {
+         isa = "PBXFileReference";
+         path = "Nimble.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "Nimble::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_285";
+         buildPhases = (
+            "OBJ_288"
+         );
+         dependencies = (
+         );
+         name = "NimblePackageDescription";
+         productName = "NimblePackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "OBJ_1" = {
+         isa = "PBXProject";
+         attributes = {
+            LastSwiftMigration = "9999";
+            LastUpgradeCheck = "9999";
+         };
+         buildConfigurationList = "OBJ_2";
+         compatibilityVersion = "Xcode 3.2";
+         developmentRegion = "en";
+         hasScannedForEncodings = "0";
+         knownRegions = (
+            "en"
+         );
+         mainGroup = "OBJ_5";
+         productRefGroup = "OBJ_216";
+         projectDirPath = ".";
+         targets = (
+            "Nimble::Nimble",
+            "Nimble::SwiftPMPackageDescription",
+            "OHHTTPStubs::OHHTTPStubsCore",
+            "OHHTTPStubs::SwiftPMPackageDescription",
+            "OHHTTPStubs::OHHTTPStubsSwift",
+            "TraktKit::TraktKit",
+            "TraktKit::SwiftPMPackageDescription",
+            "TraktKit::TraktKitPackageTests::ProductTarget",
+            "TraktKit::TraktKitTests"
+         );
+      };
+      "OBJ_10" = {
+         isa = "PBXFileReference";
+         path = "Info.plist";
+         sourceTree = "<group>";
+      };
+      "OBJ_100" = {
+         isa = "PBXFileReference";
+         path = "Watching.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_101" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_102",
+            "OBJ_117",
+            "OBJ_120",
+            "OBJ_121",
+            "OBJ_122",
+            "OBJ_123",
+            "OBJ_126"
+         );
+         name = "Networking";
+         path = "Networking";
+         sourceTree = "<group>";
+      };
+      "OBJ_102" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_103",
+            "OBJ_104",
+            "OBJ_105",
+            "OBJ_106",
+            "OBJ_109",
+            "OBJ_112",
+            "OBJ_113",
+            "OBJ_114"
+         );
+         name = "API";
+         path = "API";
+         sourceTree = "<group>";
+      };
+      "OBJ_103" = {
+         isa = "PBXFileReference";
+         path = "Authenticator.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_104" = {
+         isa = "PBXFileReference";
+         path = "ClientProvider.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_105" = {
+         isa = "PBXFileReference";
+         path = "ExtendedType.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_106" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_107",
+            "OBJ_108"
+         );
+         name = "Movies";
+         path = "Movies";
+         sourceTree = "<group>";
+      };
+      "OBJ_107" = {
+         isa = "PBXFileReference";
+         path = "Movies.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_108" = {
+         isa = "PBXFileReference";
+         path = "Trakt+Movies.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_109" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_110",
+            "OBJ_111"
+         );
+         name = "Sync";
+         path = "Sync";
+         sourceTree = "<group>";
+      };
+      "OBJ_11" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_12",
+            "OBJ_13",
+            "OBJ_14"
+         );
+         name = "Extensions";
+         path = "Extensions";
+         sourceTree = "<group>";
+      };
+      "OBJ_110" = {
+         isa = "PBXFileReference";
+         path = "Sync.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_111" = {
+         isa = "PBXFileReference";
+         path = "Trakt+Sync.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_112" = {
+         isa = "PBXFileReference";
+         path = "Trakt+Checkin.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_113" = {
+         isa = "PBXFileReference";
+         path = "Trakt.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_114" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_115",
+            "OBJ_116"
+         );
+         name = "Users";
+         path = "Users";
+         sourceTree = "<group>";
+      };
+      "OBJ_115" = {
+         isa = "PBXFileReference";
+         path = "Trakt+Users.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_116" = {
+         isa = "PBXFileReference";
+         path = "Users.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_117" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_118",
+            "OBJ_119"
+         );
+         name = "Endpoints";
+         path = "Endpoints";
+         sourceTree = "<group>";
+      };
+      "OBJ_118" = {
+         isa = "PBXFileReference";
+         path = "Authentication.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_119" = {
+         isa = "PBXFileReference";
+         path = "Endpoint.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_12" = {
+         isa = "PBXFileReference";
+         path = "DateFormatter+ISO8601.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_120" = {
+         isa = "PBXFileReference";
+         path = "HTTPLogger.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_121" = {
+         isa = "PBXFileReference";
+         path = "HTTPResponseHeaders.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_122" = {
+         isa = "PBXFileReference";
+         path = "NetworkClient.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_123" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_124",
+            "OBJ_125"
+         );
+         name = "Responses";
+         path = "Responses";
+         sourceTree = "<group>";
+      };
+      "OBJ_124" = {
+         isa = "PBXFileReference";
+         path = "TokenResponse.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_125" = {
+         isa = "PBXFileReference";
+         path = "UpdatedMoviesResponse.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_126" = {
+         isa = "PBXFileReference";
+         path = "TraktError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_127" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_128"
+         );
+         name = "Tests";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_128" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_129",
+            "OBJ_130",
+            "OBJ_131",
+            "OBJ_132",
+            "OBJ_133",
+            "OBJ_134",
+            "OBJ_135"
+         );
+         name = "TraktKitTests";
+         path = "Tests/TraktKitTests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_129" = {
+         isa = "PBXFileReference";
+         path = "Info.plist";
+         sourceTree = "<group>";
+      };
+      "OBJ_13" = {
+         isa = "PBXFileReference";
+         path = "String+TraktKit.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_130" = {
+         isa = "PBXFileReference";
+         path = "Mocks.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_131" = {
+         isa = "PBXFileReference";
+         path = "MoviesEndpointTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_132" = {
+         isa = "PBXFileReference";
+         path = "StubHelper.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_133" = {
+         isa = "PBXFileReference";
+         path = "SyncEndpointTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_134" = {
+         isa = "PBXFileReference";
+         path = "TraktKitTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_135" = {
+         isa = "PBXFileReference";
+         path = "UsersEndpointTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_136" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_137",
+            "OBJ_196"
+         );
+         name = "Dependencies";
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_137" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_138",
+            "OBJ_195"
+         );
+         name = "Nimble 8.0.2";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_138" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_139",
+            "OBJ_149",
+            "OBJ_150",
+            "OBJ_151",
+            "OBJ_152",
+            "OBJ_153",
+            "OBJ_154",
+            "OBJ_155",
+            "OBJ_189"
+         );
+         name = "Nimble";
+         path = ".build/checkouts/Nimble/Sources/Nimble";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_139" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_140",
+            "OBJ_141",
+            "OBJ_142",
+            "OBJ_143",
+            "OBJ_144",
+            "OBJ_145",
+            "OBJ_146",
+            "OBJ_147"
+         );
+         name = "Adapters";
+         path = "Adapters";
+         sourceTree = "<group>";
+      };
+      "OBJ_14" = {
+         isa = "PBXFileReference";
+         path = "URL+QueryItem.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_140" = {
+         isa = "PBXFileReference";
+         path = "AdapterProtocols.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_141" = {
+         isa = "PBXFileReference";
+         path = "AssertionDispatcher.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_142" = {
+         isa = "PBXFileReference";
+         path = "AssertionRecorder.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_143" = {
+         isa = "PBXFileReference";
+         path = "NMBExpectation.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_144" = {
+         isa = "PBXFileReference";
+         path = "NMBObjCMatcher.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_145" = {
+         isa = "PBXFileReference";
+         path = "NimbleEnvironment.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_146" = {
+         isa = "PBXFileReference";
+         path = "NimbleXCTestHandler.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_147" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_148"
+         );
+         name = "NonObjectiveC";
+         path = "NonObjectiveC";
+         sourceTree = "<group>";
+      };
+      "OBJ_148" = {
+         isa = "PBXFileReference";
+         path = "ExceptionCapture.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_149" = {
+         isa = "PBXFileReference";
+         path = "DSL+Wait.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_15" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_16",
+            "OBJ_19",
+            "OBJ_21",
+            "OBJ_23",
+            "OBJ_24",
+            "OBJ_29",
+            "OBJ_30",
+            "OBJ_31",
+            "OBJ_33",
+            "OBJ_43",
+            "OBJ_44",
+            "OBJ_49",
+            "OBJ_51",
+            "OBJ_52",
+            "OBJ_56",
+            "OBJ_70",
+            "OBJ_71",
+            "OBJ_82"
+         );
+         name = "Model";
+         path = "Model";
+         sourceTree = "<group>";
+      };
+      "OBJ_150" = {
+         isa = "PBXFileReference";
+         path = "DSL.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_151" = {
+         isa = "PBXFileReference";
+         path = "Expectation.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_152" = {
+         isa = "PBXFileReference";
+         path = "ExpectationMessage.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_153" = {
+         isa = "PBXFileReference";
+         path = "Expression.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_154" = {
+         isa = "PBXFileReference";
+         path = "FailureMessage.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_155" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_156",
+            "OBJ_157",
+            "OBJ_158",
+            "OBJ_159",
+            "OBJ_160",
+            "OBJ_161",
+            "OBJ_162",
+            "OBJ_163",
+            "OBJ_164",
+            "OBJ_165",
+            "OBJ_166",
+            "OBJ_167",
+            "OBJ_168",
+            "OBJ_169",
+            "OBJ_170",
+            "OBJ_171",
+            "OBJ_172",
+            "OBJ_173",
+            "OBJ_174",
+            "OBJ_175",
+            "OBJ_176",
+            "OBJ_177",
+            "OBJ_178",
+            "OBJ_179",
+            "OBJ_180",
+            "OBJ_181",
+            "OBJ_182",
+            "OBJ_183",
+            "OBJ_184",
+            "OBJ_185",
+            "OBJ_186",
+            "OBJ_187",
+            "OBJ_188"
+         );
+         name = "Matchers";
+         path = "Matchers";
+         sourceTree = "<group>";
+      };
+      "OBJ_156" = {
+         isa = "PBXFileReference";
+         path = "AllPass.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_157" = {
+         isa = "PBXFileReference";
+         path = "Async.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_158" = {
+         isa = "PBXFileReference";
+         path = "BeAKindOf.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_159" = {
+         isa = "PBXFileReference";
+         path = "BeAnInstanceOf.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_16" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_17",
+            "OBJ_18"
+         );
+         name = "Calendar";
+         path = "Calendar";
+         sourceTree = "<group>";
+      };
+      "OBJ_160" = {
+         isa = "PBXFileReference";
+         path = "BeCloseTo.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_161" = {
+         isa = "PBXFileReference";
+         path = "BeEmpty.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_162" = {
+         isa = "PBXFileReference";
+         path = "BeGreaterThan.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_163" = {
+         isa = "PBXFileReference";
+         path = "BeGreaterThanOrEqualTo.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_164" = {
+         isa = "PBXFileReference";
+         path = "BeIdenticalTo.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_165" = {
+         isa = "PBXFileReference";
+         path = "BeLessThan.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_166" = {
+         isa = "PBXFileReference";
+         path = "BeLessThanOrEqual.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_167" = {
+         isa = "PBXFileReference";
+         path = "BeLogical.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_168" = {
+         isa = "PBXFileReference";
+         path = "BeNil.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_169" = {
+         isa = "PBXFileReference";
+         path = "BeVoid.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_17" = {
+         isa = "PBXFileReference";
+         path = "CalendarMovie.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_170" = {
+         isa = "PBXFileReference";
+         path = "BeginWith.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_171" = {
+         isa = "PBXFileReference";
+         path = "Contain.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_172" = {
+         isa = "PBXFileReference";
+         path = "ContainElementSatisfying.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_173" = {
+         isa = "PBXFileReference";
+         path = "ElementsEqual.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_174" = {
+         isa = "PBXFileReference";
+         path = "EndWith.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_175" = {
+         isa = "PBXFileReference";
+         path = "Equal.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_176" = {
+         isa = "PBXFileReference";
+         path = "HaveCount.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_177" = {
+         isa = "PBXFileReference";
+         path = "Match.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_178" = {
+         isa = "PBXFileReference";
+         path = "MatchError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_179" = {
+         isa = "PBXFileReference";
+         path = "MatcherFunc.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_18" = {
+         isa = "PBXFileReference";
+         path = "CalendarShow.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_180" = {
+         isa = "PBXFileReference";
+         path = "MatcherProtocols.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_181" = {
+         isa = "PBXFileReference";
+         path = "PostNotification.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_182" = {
+         isa = "PBXFileReference";
+         path = "Predicate.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_183" = {
+         isa = "PBXFileReference";
+         path = "RaisesException.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_184" = {
+         isa = "PBXFileReference";
+         path = "SatisfyAllOf.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_185" = {
+         isa = "PBXFileReference";
+         path = "SatisfyAnyOf.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_186" = {
+         isa = "PBXFileReference";
+         path = "ThrowAssertion.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_187" = {
+         isa = "PBXFileReference";
+         path = "ThrowError.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_188" = {
+         isa = "PBXFileReference";
+         path = "ToSucceed.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_189" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_190",
+            "OBJ_191",
+            "OBJ_192",
+            "OBJ_193",
+            "OBJ_194"
+         );
+         name = "Utils";
+         path = "Utils";
+         sourceTree = "<group>";
+      };
+      "OBJ_19" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_20"
+         );
+         name = "Certifications";
+         path = "Certifications";
+         sourceTree = "<group>";
+      };
+      "OBJ_190" = {
+         isa = "PBXFileReference";
+         path = "Await.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_191" = {
+         isa = "PBXFileReference";
+         path = "Errors.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_192" = {
+         isa = "PBXFileReference";
+         path = "Functional.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_193" = {
+         isa = "PBXFileReference";
+         path = "SourceLocation.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_194" = {
+         isa = "PBXFileReference";
+         path = "Stringers.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_195" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         name = "Package.swift";
+         path = "/Users/pahnki/Projects/Personal/TraktKit/.build/checkouts/Nimble/Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_196" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_197",
+            "OBJ_213",
+            "OBJ_215"
+         );
+         name = "OHHTTPStubs";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_197" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_198",
+            "OBJ_199",
+            "OBJ_200",
+            "OBJ_201",
+            "OBJ_202",
+            "OBJ_203",
+            "OBJ_204",
+            "OBJ_205"
+         );
+         name = "OHHTTPStubsCore";
+         path = ".build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsCore";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_198" = {
+         isa = "PBXFileReference";
+         path = "NSURLRequest+HTTPBodyTesting.m";
+         sourceTree = "<group>";
+      };
+      "OBJ_199" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubs+NSURLSessionConfiguration.m";
+         sourceTree = "<group>";
+      };
+      "OBJ_2" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_3",
+            "OBJ_4"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_20" = {
+         isa = "PBXFileReference";
+         path = "Certification.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_200" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubs.m";
+         sourceTree = "<group>";
+      };
+      "OBJ_201" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubsMethodSwizzling.m";
+         sourceTree = "<group>";
+      };
+      "OBJ_202" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubsResponse+JSON.m";
+         sourceTree = "<group>";
+      };
+      "OBJ_203" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubsResponse.m";
+         sourceTree = "<group>";
+      };
+      "OBJ_204" = {
+         isa = "PBXFileReference";
+         path = "OHPathHelpers.m";
+         sourceTree = "<group>";
+      };
+      "OBJ_205" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_206",
+            "OBJ_207",
+            "OBJ_208",
+            "OBJ_209",
+            "OBJ_210",
+            "OBJ_211",
+            "OBJ_212"
+         );
+         name = "include";
+         path = "include";
+         sourceTree = "<group>";
+      };
+      "OBJ_206" = {
+         isa = "PBXFileReference";
+         path = "Compatibility.h";
+         sourceTree = "<group>";
+      };
+      "OBJ_207" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubsResponse.h";
+         sourceTree = "<group>";
+      };
+      "OBJ_208" = {
+         isa = "PBXFileReference";
+         path = "NSURLRequest+HTTPBodyTesting.h";
+         sourceTree = "<group>";
+      };
+      "OBJ_209" = {
+         isa = "PBXFileReference";
+         path = "OHPathHelpers.h";
+         sourceTree = "<group>";
+      };
+      "OBJ_21" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_22"
+         );
+         name = "Checkin";
+         path = "Checkin";
+         sourceTree = "<group>";
+      };
+      "OBJ_210" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubs.h";
+         sourceTree = "<group>";
+      };
+      "OBJ_211" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubsResponse+JSON.h";
+         sourceTree = "<group>";
+      };
+      "OBJ_212" = {
+         isa = "PBXFileReference";
+         name = "module.modulemap";
+         path = "/Users/pahnki/Projects/Personal/TraktKit/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore/module.modulemap";
+         sourceTree = "<group>";
+      };
+      "OBJ_213" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_214"
+         );
+         name = "OHHTTPStubsSwift";
+         path = ".build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsSwift";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_214" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubsSwift.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_215" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         name = "Package.swift";
+         path = "/Users/pahnki/Projects/Personal/TraktKit/.build/checkouts/OHHTTPStubs/Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_216" = {
+         isa = "PBXGroup";
+         children = (
+            "Nimble::Nimble::Product",
+            "TraktKit::TraktKitTests::Product",
+            "OHHTTPStubs::OHHTTPStubsSwift::Product",
+            "TraktKit::TraktKit::Product",
+            "OHHTTPStubs::OHHTTPStubsCore::Product"
+         );
+         name = "Products";
+         path = "";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OBJ_22" = {
+         isa = "PBXFileReference";
+         path = "Checkin.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_222" = {
+         isa = "PBXFileReference";
+         path = "TraktDemo";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_223" = {
+         isa = "PBXFileReference";
+         path = "LICENSE";
+         sourceTree = "<group>";
+      };
+      "OBJ_224" = {
+         isa = "PBXFileReference";
+         path = "project.yml";
+         sourceTree = "<group>";
+      };
+      "OBJ_225" = {
+         isa = "PBXFileReference";
+         path = "README.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_227" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_228",
+            "OBJ_229"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_228" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/Nimble_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Nimble";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "Nimble";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_229" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/Nimble_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Nimble";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "Nimble";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Release";
+      };
+      "OBJ_23" = {
+         isa = "PBXFileReference";
+         path = "CodableEquatable.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_230" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_231",
+            "OBJ_232",
+            "OBJ_233",
+            "OBJ_234",
+            "OBJ_235",
+            "OBJ_236",
+            "OBJ_237",
+            "OBJ_238",
+            "OBJ_239",
+            "OBJ_240",
+            "OBJ_241",
+            "OBJ_242",
+            "OBJ_243",
+            "OBJ_244",
+            "OBJ_245",
+            "OBJ_246",
+            "OBJ_247",
+            "OBJ_248",
+            "OBJ_249",
+            "OBJ_250",
+            "OBJ_251",
+            "OBJ_252",
+            "OBJ_253",
+            "OBJ_254",
+            "OBJ_255",
+            "OBJ_256",
+            "OBJ_257",
+            "OBJ_258",
+            "OBJ_259",
+            "OBJ_260",
+            "OBJ_261",
+            "OBJ_262",
+            "OBJ_263",
+            "OBJ_264",
+            "OBJ_265",
+            "OBJ_266",
+            "OBJ_267",
+            "OBJ_268",
+            "OBJ_269",
+            "OBJ_270",
+            "OBJ_271",
+            "OBJ_272",
+            "OBJ_273",
+            "OBJ_274",
+            "OBJ_275",
+            "OBJ_276",
+            "OBJ_277",
+            "OBJ_278",
+            "OBJ_279",
+            "OBJ_280",
+            "OBJ_281",
+            "OBJ_282"
+         );
+      };
+      "OBJ_231" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_140";
+      };
+      "OBJ_232" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_141";
+      };
+      "OBJ_233" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_142";
+      };
+      "OBJ_234" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_143";
+      };
+      "OBJ_235" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_144";
+      };
+      "OBJ_236" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_145";
+      };
+      "OBJ_237" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_146";
+      };
+      "OBJ_238" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_148";
+      };
+      "OBJ_239" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_149";
+      };
+      "OBJ_24" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_25",
+            "OBJ_26",
+            "OBJ_27",
+            "OBJ_28"
+         );
+         name = "Comments";
+         path = "Comments";
+         sourceTree = "<group>";
+      };
+      "OBJ_240" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_150";
+      };
+      "OBJ_241" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_151";
+      };
+      "OBJ_242" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_152";
+      };
+      "OBJ_243" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_153";
+      };
+      "OBJ_244" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_154";
+      };
+      "OBJ_245" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_156";
+      };
+      "OBJ_246" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_157";
+      };
+      "OBJ_247" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_158";
+      };
+      "OBJ_248" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_159";
+      };
+      "OBJ_249" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_160";
+      };
+      "OBJ_25" = {
+         isa = "PBXFileReference";
+         path = "AttachedMediaItem.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_250" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_161";
+      };
+      "OBJ_251" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_162";
+      };
+      "OBJ_252" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_163";
+      };
+      "OBJ_253" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_164";
+      };
+      "OBJ_254" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_165";
+      };
+      "OBJ_255" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_166";
+      };
+      "OBJ_256" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_167";
+      };
+      "OBJ_257" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_168";
+      };
+      "OBJ_258" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_169";
+      };
+      "OBJ_259" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_170";
+      };
+      "OBJ_26" = {
+         isa = "PBXFileReference";
+         path = "Comment.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_260" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_171";
+      };
+      "OBJ_261" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_172";
+      };
+      "OBJ_262" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_173";
+      };
+      "OBJ_263" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_174";
+      };
+      "OBJ_264" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_175";
+      };
+      "OBJ_265" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_176";
+      };
+      "OBJ_266" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_177";
+      };
+      "OBJ_267" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_178";
+      };
+      "OBJ_268" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_179";
+      };
+      "OBJ_269" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_180";
+      };
+      "OBJ_27" = {
+         isa = "PBXFileReference";
+         path = "CommentLikedUser.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_270" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_181";
+      };
+      "OBJ_271" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_182";
+      };
+      "OBJ_272" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_183";
+      };
+      "OBJ_273" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_184";
+      };
+      "OBJ_274" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_185";
+      };
+      "OBJ_275" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_186";
+      };
+      "OBJ_276" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_187";
+      };
+      "OBJ_277" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_188";
+      };
+      "OBJ_278" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_190";
+      };
+      "OBJ_279" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_191";
+      };
+      "OBJ_28" = {
+         isa = "PBXFileReference";
+         path = "TrendingComment.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_280" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_192";
+      };
+      "OBJ_281" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_193";
+      };
+      "OBJ_282" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_194";
+      };
+      "OBJ_283" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_285" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_286",
+            "OBJ_287"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_286" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "5"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_287" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "5"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Release";
+      };
+      "OBJ_288" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_289"
+         );
+      };
+      "OBJ_289" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_195";
+      };
+      "OBJ_29" = {
+         isa = "PBXFileReference";
+         path = "DecodableInteger.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_291" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_292",
+            "OBJ_293"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_292" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            DEFINES_MODULE = "NO";
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(SRCROOT)/.build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsCore/include"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/OHHTTPStubsCore_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "OHHTTPStubsCore";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            TARGET_NAME = "OHHTTPStubsCore";
+         };
+         name = "Debug";
+      };
+      "OBJ_293" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            DEFINES_MODULE = "NO";
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(SRCROOT)/.build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsCore/include"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/OHHTTPStubsCore_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "OHHTTPStubsCore";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            TARGET_NAME = "OHHTTPStubsCore";
+         };
+         name = "Release";
+      };
+      "OBJ_294" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_295",
+            "OBJ_296",
+            "OBJ_297",
+            "OBJ_298",
+            "OBJ_299",
+            "OBJ_300",
+            "OBJ_301"
+         );
+      };
+      "OBJ_295" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_198";
+      };
+      "OBJ_296" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_199";
+      };
+      "OBJ_297" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_200";
+      };
+      "OBJ_298" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_201";
+      };
+      "OBJ_299" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_202";
+      };
+      "OBJ_3" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "NO";
+            DEBUG_INFORMATION_FORMAT = "dwarf";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            ENABLE_NS_ASSERTIONS = "YES";
+            GCC_OPTIMIZATION_LEVEL = "0";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1",
+               "DEBUG=1"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            ONLY_ACTIVE_ARCH = "YES";
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE",
+               "DEBUG"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Debug";
+      };
+      "OBJ_30" = {
+         isa = "PBXFileReference";
+         path = "Filters.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_300" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_203";
+      };
+      "OBJ_301" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_204";
+      };
+      "OBJ_302" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_304" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_305",
+            "OBJ_306"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_305" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "4"
+            );
+            SWIFT_VERSION = "4.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_306" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "4",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "4"
+            );
+            SWIFT_VERSION = "4.0";
+         };
+         name = "Release";
+      };
+      "OBJ_307" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_308"
+         );
+      };
+      "OBJ_308" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_215";
+      };
+      "OBJ_31" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_32"
+         );
+         name = "Genres";
+         path = "Genres";
+         sourceTree = "<group>";
+      };
+      "OBJ_310" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_311",
+            "OBJ_312"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_311" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(SRCROOT)/.build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsCore/include",
+               "$(SRCROOT)/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/OHHTTPStubsSwift_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-Xcc",
+               "-fmodule-map-file=$(SRCROOT)/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore/module.modulemap"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "OHHTTPStubsSwift";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "OHHTTPStubsSwift";
+         };
+         name = "Debug";
+      };
+      "OBJ_312" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(SRCROOT)/.build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsCore/include",
+               "$(SRCROOT)/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/OHHTTPStubsSwift_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-Xcc",
+               "-fmodule-map-file=$(SRCROOT)/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore/module.modulemap"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "OHHTTPStubsSwift";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "OHHTTPStubsSwift";
+         };
+         name = "Release";
+      };
+      "OBJ_313" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_314"
+         );
+      };
+      "OBJ_314" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_214";
+      };
+      "OBJ_315" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_316"
+         );
+      };
+      "OBJ_316" = {
+         isa = "PBXBuildFile";
+         fileRef = "OHHTTPStubs::OHHTTPStubsCore::Product";
+      };
+      "OBJ_317" = {
+         isa = "PBXTargetDependency";
+         target = "OHHTTPStubs::OHHTTPStubsCore";
+      };
+      "OBJ_319" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_320",
+            "OBJ_321"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_32" = {
+         isa = "PBXFileReference";
+         path = "Genre.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_320" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/TraktKit_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "TraktKit";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "TraktKit";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_321" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/TraktKit_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "TraktKit";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "TraktKit";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Release";
+      };
+      "OBJ_322" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_323",
+            "OBJ_324",
+            "OBJ_325",
+            "OBJ_326",
+            "OBJ_327",
+            "OBJ_328",
+            "OBJ_329",
+            "OBJ_330",
+            "OBJ_331",
+            "OBJ_332",
+            "OBJ_333",
+            "OBJ_334",
+            "OBJ_335",
+            "OBJ_336",
+            "OBJ_337",
+            "OBJ_338",
+            "OBJ_339",
+            "OBJ_340",
+            "OBJ_341",
+            "OBJ_342",
+            "OBJ_343",
+            "OBJ_344",
+            "OBJ_345",
+            "OBJ_346",
+            "OBJ_347",
+            "OBJ_348",
+            "OBJ_349",
+            "OBJ_350",
+            "OBJ_351",
+            "OBJ_352",
+            "OBJ_353",
+            "OBJ_354",
+            "OBJ_355",
+            "OBJ_356",
+            "OBJ_357",
+            "OBJ_358",
+            "OBJ_359",
+            "OBJ_360",
+            "OBJ_361",
+            "OBJ_362",
+            "OBJ_363",
+            "OBJ_364",
+            "OBJ_365",
+            "OBJ_366",
+            "OBJ_367",
+            "OBJ_368",
+            "OBJ_369",
+            "OBJ_370",
+            "OBJ_371",
+            "OBJ_372",
+            "OBJ_373",
+            "OBJ_374",
+            "OBJ_375",
+            "OBJ_376",
+            "OBJ_377",
+            "OBJ_378",
+            "OBJ_379",
+            "OBJ_380",
+            "OBJ_381",
+            "OBJ_382",
+            "OBJ_383",
+            "OBJ_384",
+            "OBJ_385",
+            "OBJ_386",
+            "OBJ_387",
+            "OBJ_388",
+            "OBJ_389",
+            "OBJ_390",
+            "OBJ_391",
+            "OBJ_392",
+            "OBJ_393",
+            "OBJ_394",
+            "OBJ_395",
+            "OBJ_396",
+            "OBJ_397",
+            "OBJ_398",
+            "OBJ_399",
+            "OBJ_400",
+            "OBJ_401",
+            "OBJ_402",
+            "OBJ_403",
+            "OBJ_404",
+            "OBJ_405",
+            "OBJ_406",
+            "OBJ_407",
+            "OBJ_408",
+            "OBJ_409",
+            "OBJ_410",
+            "OBJ_411",
+            "OBJ_412",
+            "OBJ_413",
+            "OBJ_414",
+            "OBJ_415",
+            "OBJ_416",
+            "OBJ_417"
+         );
+      };
+      "OBJ_323" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_12";
+      };
+      "OBJ_324" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_13";
+      };
+      "OBJ_325" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_14";
+      };
+      "OBJ_326" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_17";
+      };
+      "OBJ_327" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_18";
+      };
+      "OBJ_328" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_20";
+      };
+      "OBJ_329" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_22";
+      };
+      "OBJ_33" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_34",
+            "OBJ_35",
+            "OBJ_36",
+            "OBJ_37",
+            "OBJ_38",
+            "OBJ_39",
+            "OBJ_40",
+            "OBJ_41",
+            "OBJ_42"
+         );
+         name = "Movies";
+         path = "Movies";
+         sourceTree = "<group>";
+      };
+      "OBJ_330" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_23";
+      };
+      "OBJ_331" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_25";
+      };
+      "OBJ_332" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_26";
+      };
+      "OBJ_333" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_27";
+      };
+      "OBJ_334" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_28";
+      };
+      "OBJ_335" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_29";
+      };
+      "OBJ_336" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_30";
+      };
+      "OBJ_337" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_32";
+      };
+      "OBJ_338" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_34";
+      };
+      "OBJ_339" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_35";
+      };
+      "OBJ_34" = {
+         isa = "PBXFileReference";
+         path = "AnticipatedMovie.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_340" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_36";
+      };
+      "OBJ_341" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_37";
+      };
+      "OBJ_342" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_38";
+      };
+      "OBJ_343" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_39";
+      };
+      "OBJ_344" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_40";
+      };
+      "OBJ_345" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_41";
+      };
+      "OBJ_346" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_42";
+      };
+      "OBJ_347" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_43";
+      };
+      "OBJ_348" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_45";
+      };
+      "OBJ_349" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_46";
+      };
+      "OBJ_35" = {
+         isa = "PBXFileReference";
+         path = "BoxOfficeMovie.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_350" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_47";
+      };
+      "OBJ_351" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_48";
+      };
+      "OBJ_352" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_50";
+      };
+      "OBJ_353" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_51";
+      };
+      "OBJ_354" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_53";
+      };
+      "OBJ_355" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_54";
+      };
+      "OBJ_356" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_55";
+      };
+      "OBJ_357" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_57";
+      };
+      "OBJ_358" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_58";
+      };
+      "OBJ_359" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_59";
+      };
+      "OBJ_36" = {
+         isa = "PBXFileReference";
+         path = "DVDReleaseMovie.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_360" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_60";
+      };
+      "OBJ_361" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_61";
+      };
+      "OBJ_362" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_62";
+      };
+      "OBJ_363" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_63";
+      };
+      "OBJ_364" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_64";
+      };
+      "OBJ_365" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_65";
+      };
+      "OBJ_366" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_66";
+      };
+      "OBJ_367" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_67";
+      };
+      "OBJ_368" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_68";
+      };
+      "OBJ_369" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_69";
+      };
+      "OBJ_37" = {
+         isa = "PBXFileReference";
+         path = "MostMovie.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_370" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_70";
+      };
+      "OBJ_371" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_72";
+      };
+      "OBJ_372" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_73";
+      };
+      "OBJ_373" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_74";
+      };
+      "OBJ_374" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_75";
+      };
+      "OBJ_375" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_76";
+      };
+      "OBJ_376" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_77";
+      };
+      "OBJ_377" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_78";
+      };
+      "OBJ_378" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_79";
+      };
+      "OBJ_379" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_80";
+      };
+      "OBJ_38" = {
+         isa = "PBXFileReference";
+         path = "Movie.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_380" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_81";
+      };
+      "OBJ_381" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_83";
+      };
+      "OBJ_382" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_84";
+      };
+      "OBJ_383" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_85";
+      };
+      "OBJ_384" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_86";
+      };
+      "OBJ_385" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_87";
+      };
+      "OBJ_386" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_88";
+      };
+      "OBJ_387" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_89";
+      };
+      "OBJ_388" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_90";
+      };
+      "OBJ_389" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_91";
+      };
+      "OBJ_39" = {
+         isa = "PBXFileReference";
+         path = "MovieRelease.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_390" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_92";
+      };
+      "OBJ_391" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_93";
+      };
+      "OBJ_392" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_94";
+      };
+      "OBJ_393" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_95";
+      };
+      "OBJ_394" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_96";
+      };
+      "OBJ_395" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_97";
+      };
+      "OBJ_396" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_98";
+      };
+      "OBJ_397" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_99";
+      };
+      "OBJ_398" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_100";
+      };
+      "OBJ_399" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_103";
+      };
+      "OBJ_4" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "YES";
+            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            GCC_OPTIMIZATION_LEVEL = "s";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "macosx",
+               "iphoneos",
+               "iphonesimulator",
+               "appletvos",
+               "appletvsimulator",
+               "watchos",
+               "watchsimulator"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Release";
+      };
+      "OBJ_40" = {
+         isa = "PBXFileReference";
+         path = "MovieTranslation.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_400" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_104";
+      };
+      "OBJ_401" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_105";
+      };
+      "OBJ_402" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_107";
+      };
+      "OBJ_403" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_108";
+      };
+      "OBJ_404" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_110";
+      };
+      "OBJ_405" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_111";
+      };
+      "OBJ_406" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_112";
+      };
+      "OBJ_407" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_113";
+      };
+      "OBJ_408" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_115";
+      };
+      "OBJ_409" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_116";
+      };
+      "OBJ_41" = {
+         isa = "PBXFileReference";
+         path = "TrendingMovie.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_410" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_118";
+      };
+      "OBJ_411" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_119";
+      };
+      "OBJ_412" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_120";
+      };
+      "OBJ_413" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_121";
+      };
+      "OBJ_414" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_122";
+      };
+      "OBJ_415" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_124";
+      };
+      "OBJ_416" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_125";
+      };
+      "OBJ_417" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_126";
+      };
+      "OBJ_418" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_42" = {
+         isa = "PBXFileReference";
+         path = "WatchedMovie.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_420" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_421",
+            "OBJ_422"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_421" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "5.1"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_422" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk",
+               "-package-description-version",
+               "5.1"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Release";
+      };
+      "OBJ_423" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_424"
+         );
+      };
+      "OBJ_424" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_426" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_427",
+            "OBJ_428"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_427" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_428" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_429" = {
+         isa = "PBXTargetDependency";
+         target = "TraktKit::TraktKitTests";
+      };
+      "OBJ_43" = {
+         isa = "PBXFileReference";
+         path = "Pagination.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_431" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_432",
+            "OBJ_433"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_432" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(SRCROOT)/.build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsCore/include",
+               "$(SRCROOT)/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/TraktKitTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-Xcc",
+               "-fmodule-map-file=$(SRCROOT)/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore/module.modulemap"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "TraktKitTests";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_433" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(SRCROOT)/.build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsCore/include",
+               "$(SRCROOT)/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore"
+            );
+            INFOPLIST_FILE = "TraktKit.xcodeproj/TraktKitTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "8.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-Xcc",
+               "-fmodule-map-file=$(SRCROOT)/TraktKit.xcodeproj/GeneratedModuleMap/OHHTTPStubsCore/module.modulemap"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "TraktKitTests";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Release";
+      };
+      "OBJ_434" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_435",
+            "OBJ_436",
+            "OBJ_437",
+            "OBJ_438",
+            "OBJ_439",
+            "OBJ_440"
+         );
+      };
+      "OBJ_435" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_130";
+      };
+      "OBJ_436" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_131";
+      };
+      "OBJ_437" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_132";
+      };
+      "OBJ_438" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_133";
+      };
+      "OBJ_439" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_134";
+      };
+      "OBJ_44" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_45",
+            "OBJ_46",
+            "OBJ_47",
+            "OBJ_48"
+         );
+         name = "People";
+         path = "People";
+         sourceTree = "<group>";
+      };
+      "OBJ_440" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_135";
+      };
+      "OBJ_441" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_442",
+            "OBJ_443",
+            "OBJ_444",
+            "OBJ_445"
+         );
+      };
+      "OBJ_442" = {
+         isa = "PBXBuildFile";
+         fileRef = "Nimble::Nimble::Product";
+      };
+      "OBJ_443" = {
+         isa = "PBXBuildFile";
+         fileRef = "OHHTTPStubs::OHHTTPStubsSwift::Product";
+      };
+      "OBJ_444" = {
+         isa = "PBXBuildFile";
+         fileRef = "OHHTTPStubs::OHHTTPStubsCore::Product";
+      };
+      "OBJ_445" = {
+         isa = "PBXBuildFile";
+         fileRef = "TraktKit::TraktKit::Product";
+      };
+      "OBJ_446" = {
+         isa = "PBXTargetDependency";
+         target = "Nimble::Nimble";
+      };
+      "OBJ_447" = {
+         isa = "PBXTargetDependency";
+         target = "OHHTTPStubs::OHHTTPStubsSwift";
+      };
+      "OBJ_448" = {
+         isa = "PBXTargetDependency";
+         target = "OHHTTPStubs::OHHTTPStubsCore";
+      };
+      "OBJ_449" = {
+         isa = "PBXTargetDependency";
+         target = "TraktKit::TraktKit";
+      };
+      "OBJ_45" = {
+         isa = "PBXFileReference";
+         path = "CastAndCrew.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_46" = {
+         isa = "PBXFileReference";
+         path = "CastMember.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_47" = {
+         isa = "PBXFileReference";
+         path = "CrewMember.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_48" = {
+         isa = "PBXFileReference";
+         path = "Person.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_49" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_50"
+         );
+         name = "Scrobbble";
+         path = "Scrobbble";
+         sourceTree = "<group>";
+      };
+      "OBJ_5" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_6",
+            "OBJ_7",
+            "OBJ_127",
+            "OBJ_136",
+            "OBJ_216",
+            "OBJ_222",
+            "OBJ_223",
+            "OBJ_224",
+            "OBJ_225"
+         );
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_50" = {
+         isa = "PBXFileReference";
+         path = "ScrobbleResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_51" = {
+         isa = "PBXFileReference";
+         path = "SearchResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_52" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_53",
+            "OBJ_54",
+            "OBJ_55"
+         );
+         name = "Shared";
+         path = "Shared";
+         sourceTree = "<group>";
+      };
+      "OBJ_53" = {
+         isa = "PBXFileReference";
+         path = "Alias.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_54" = {
+         isa = "PBXFileReference";
+         path = "RatingDistribution.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_55" = {
+         isa = "PBXFileReference";
+         path = "Update.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_56" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_57",
+            "OBJ_58",
+            "OBJ_59",
+            "OBJ_60",
+            "OBJ_61",
+            "OBJ_62",
+            "OBJ_63",
+            "OBJ_64",
+            "OBJ_65",
+            "OBJ_66",
+            "OBJ_67",
+            "OBJ_68",
+            "OBJ_69"
+         );
+         name = "Shows";
+         path = "Shows";
+         sourceTree = "<group>";
+      };
+      "OBJ_57" = {
+         isa = "PBXFileReference";
+         path = "AnticipatedShow.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_58" = {
+         isa = "PBXFileReference";
+         path = "Episode.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_59" = {
+         isa = "PBXFileReference";
+         path = "EpisodeTranslation.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_6" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         path = "Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_60" = {
+         isa = "PBXFileReference";
+         path = "MostShow.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_61" = {
+         isa = "PBXFileReference";
+         path = "Season.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_62" = {
+         isa = "PBXFileReference";
+         path = "Show.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_63" = {
+         isa = "PBXFileReference";
+         path = "ShowCollectionProgress.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_64" = {
+         isa = "PBXFileReference";
+         path = "ShowTranslation.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_65" = {
+         isa = "PBXFileReference";
+         path = "TrendingShow.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_66" = {
+         isa = "PBXFileReference";
+         path = "WatchedEpisodes.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_67" = {
+         isa = "PBXFileReference";
+         path = "WatchedProgress.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_68" = {
+         isa = "PBXFileReference";
+         path = "WatchedSeason.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_69" = {
+         isa = "PBXFileReference";
+         path = "WatchedShow.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_7" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_8"
+         );
+         name = "Sources";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_70" = {
+         isa = "PBXFileReference";
+         path = "Structures.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_71" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_72",
+            "OBJ_73",
+            "OBJ_74",
+            "OBJ_75",
+            "OBJ_76",
+            "OBJ_77",
+            "OBJ_78",
+            "OBJ_79",
+            "OBJ_80",
+            "OBJ_81"
+         );
+         name = "Sync";
+         path = "Sync";
+         sourceTree = "<group>";
+      };
+      "OBJ_72" = {
+         isa = "PBXFileReference";
+         path = "AddToWatchlist.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_73" = {
+         isa = "PBXFileReference";
+         path = "AddedToHistory.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_74" = {
+         isa = "PBXFileReference";
+         path = "CollectedItem.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_75" = {
+         isa = "PBXFileReference";
+         path = "HistoryItem.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_76" = {
+         isa = "PBXFileReference";
+         path = "PlaybackProgress.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_77" = {
+         isa = "PBXFileReference";
+         path = "Rating.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_78" = {
+         isa = "PBXFileReference";
+         path = "RemoveFromCollectionResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_79" = {
+         isa = "PBXFileReference";
+         path = "RemoveFromWatchlist.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_8" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_9",
+            "OBJ_10",
+            "OBJ_11",
+            "OBJ_15",
+            "OBJ_101"
+         );
+         name = "TraktKit";
+         path = "Sources/TraktKit";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_80" = {
+         isa = "PBXFileReference";
+         path = "RemoveRatingsResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_81" = {
+         isa = "PBXFileReference";
+         path = "RemovedFromHistory.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_82" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_83",
+            "OBJ_84",
+            "OBJ_85",
+            "OBJ_86",
+            "OBJ_87",
+            "OBJ_88",
+            "OBJ_89",
+            "OBJ_90",
+            "OBJ_91",
+            "OBJ_92",
+            "OBJ_93",
+            "OBJ_94",
+            "OBJ_95",
+            "OBJ_96",
+            "OBJ_97",
+            "OBJ_98",
+            "OBJ_99",
+            "OBJ_100"
+         );
+         name = "Users";
+         path = "Users";
+         sourceTree = "<group>";
+      };
+      "OBJ_83" = {
+         isa = "PBXFileReference";
+         path = "AccountSettings.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_84" = {
+         isa = "PBXFileReference";
+         path = "FollowRequest.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_85" = {
+         isa = "PBXFileReference";
+         path = "FollowUserResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_86" = {
+         isa = "PBXFileReference";
+         path = "Friend.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_87" = {
+         isa = "PBXFileReference";
+         path = "HiddenItem.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_88" = {
+         isa = "PBXFileReference";
+         path = "HideItemResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_89" = {
+         isa = "PBXFileReference";
+         path = "Likes.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_9" = {
+         isa = "PBXFileReference";
+         path = "TraktKit.h";
+         sourceTree = "<group>";
+      };
+      "OBJ_90" = {
+         isa = "PBXFileReference";
+         path = "List.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_91" = {
+         isa = "PBXFileReference";
+         path = "ListItem.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_92" = {
+         isa = "PBXFileReference";
+         path = "ListItemPostResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_93" = {
+         isa = "PBXFileReference";
+         path = "RemoveListItemResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_94" = {
+         isa = "PBXFileReference";
+         path = "UnhideItemResult.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_95" = {
+         isa = "PBXFileReference";
+         path = "User.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_96" = {
+         isa = "PBXFileReference";
+         path = "UserStats.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_97" = {
+         isa = "PBXFileReference";
+         path = "UsersCollection.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_98" = {
+         isa = "PBXFileReference";
+         path = "UsersComments.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_99" = {
+         isa = "PBXFileReference";
+         path = "WatchedItem.swift";
+         sourceTree = "<group>";
+      };
+      "OHHTTPStubs::OHHTTPStubsCore" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_291";
+         buildPhases = (
+            "OBJ_294",
+            "OBJ_302"
+         );
+         dependencies = (
+         );
+         name = "OHHTTPStubsCore";
+         productName = "OHHTTPStubsCore";
+         productReference = "OHHTTPStubs::OHHTTPStubsCore::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "OHHTTPStubs::OHHTTPStubsCore::Product" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubsCore.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OHHTTPStubs::OHHTTPStubsSwift" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_310";
+         buildPhases = (
+            "OBJ_313",
+            "OBJ_315"
+         );
+         dependencies = (
+            "OBJ_317"
+         );
+         name = "OHHTTPStubsSwift";
+         productName = "OHHTTPStubsSwift";
+         productReference = "OHHTTPStubs::OHHTTPStubsSwift::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "OHHTTPStubs::OHHTTPStubsSwift::Product" = {
+         isa = "PBXFileReference";
+         path = "OHHTTPStubsSwift.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OHHTTPStubs::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_304";
+         buildPhases = (
+            "OBJ_307"
+         );
+         dependencies = (
+         );
+         name = "OHHTTPStubsPackageDescription";
+         productName = "OHHTTPStubsPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "TraktKit::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_420";
+         buildPhases = (
+            "OBJ_423"
+         );
+         dependencies = (
+         );
+         name = "TraktKitPackageDescription";
+         productName = "TraktKitPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "TraktKit::TraktKit" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_319";
+         buildPhases = (
+            "OBJ_322",
+            "OBJ_418"
+         );
+         dependencies = (
+         );
+         name = "TraktKit";
+         productName = "TraktKit";
+         productReference = "TraktKit::TraktKit::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "TraktKit::TraktKit::Product" = {
+         isa = "PBXFileReference";
+         path = "TraktKit.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "TraktKit::TraktKitPackageTests::ProductTarget" = {
+         isa = "PBXAggregateTarget";
+         buildConfigurationList = "OBJ_426";
+         buildPhases = (
+         );
+         dependencies = (
+            "OBJ_429"
+         );
+         name = "TraktKitPackageTests";
+         productName = "TraktKitPackageTests";
+      };
+      "TraktKit::TraktKitTests" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_431";
+         buildPhases = (
+            "OBJ_434",
+            "OBJ_441"
+         );
+         dependencies = (
+            "OBJ_446",
+            "OBJ_447",
+            "OBJ_448",
+            "OBJ_449"
+         );
+         name = "TraktKitTests";
+         productName = "TraktKitTests";
+         productReference = "TraktKit::TraktKitTests::Product";
+         productType = "com.apple.product-type.bundle.unit-test";
+      };
+      "TraktKit::TraktKitTests::Product" = {
+         isa = "PBXFileReference";
+         path = "TraktKitTests.xctest";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+   };
+   rootObject = "OBJ_1";
 }

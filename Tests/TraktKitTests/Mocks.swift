@@ -10,11 +10,11 @@ import TraktKit
 
 struct MockClient: ClientProvider {
     var secret: String? {
-        return Config.secret
+        return "made up secret"
     }
 
     var clientId: String {
-        return Config.clientId
+        return "made up client id"
     }
 }
 

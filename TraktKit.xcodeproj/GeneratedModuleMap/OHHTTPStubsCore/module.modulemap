@@ -1,0 +1,4 @@
+module OHHTTPStubsCore {
+    umbrella "/Users/pahnki/Projects/Personal/TraktKit/.build/checkouts/OHHTTPStubs/Sources/OHHTTPStubsCore/include"
+    export *
+}
