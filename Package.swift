@@ -12,7 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/AliSoftware/OHHTTPStubs.git", .branch("feature/spm-support")),
-        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.2")
+        .package(url: "https://github.com/Quick/Nimble.git", .exact("8.0.2"))
     ],
     targets: [
         .target(
