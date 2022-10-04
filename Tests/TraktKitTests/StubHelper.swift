@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import OHHTTPStubsCore
-import OHHTTPStubsSwift
 import XCTest
 @testable import TraktKit
 

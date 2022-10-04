@@ -6,8 +6,6 @@
 //
 
 import Nimble
-import OHHTTPStubsCore
-import OHHTTPStubsSwift
 import XCTest
 
 @testable import TraktKit
