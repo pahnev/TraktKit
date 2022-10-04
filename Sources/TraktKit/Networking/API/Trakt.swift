@@ -22,9 +22,24 @@ public final class Trakt {
     private let networkClient: NetworkClient
     var auth: Authenticator?
 
-    public init(traktClient: ClientProvider) throws {
+    init(traktClient: ClientProvider, networkClient: NetworkClient) {
         self.traktClient = traktClient
-        networkClient = NetworkClient(traktClient: traktClient)
+        self.networkClient = networkClient
+    }
+
+    public convenience init(traktClient: ClientProvider) {
+        let urlConfiguration = URLSessionConfiguration.default
+        urlConfiguration.urlCache = nil
+        urlConfiguration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        urlConfiguration.httpAdditionalHeaders = [
+            "trakt-api-key": traktClient.clientId,
+            "trakt-api-version": "2",
+            "Content-type": "application/json"
+        ]
+
+        self.init(traktClient: traktClient,
+                  networkClient: NetworkClient(traktClient: traktClient,
+                                               urlSession: URLSession(configuration: urlConfiguration)))
     }
 
     public func authenticate(_ auth: Authenticator) {
