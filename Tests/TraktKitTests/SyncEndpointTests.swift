@@ -13,20 +13,12 @@ import XCTest
 
 @testable import TraktKit
 
-class SyncEndpointTests: XCTestCase {
-    var trakt: Trakt!
-    let stubHelper = StubHelper()
+class SyncEndpointTests: TraktKitTestCase {
     let mockAuth = MockAuth()
 
     override func setUp() {
-        guard let trakt = try? Trakt(traktClient: MockClient()) else { preconditionFailure() }
-        self.trakt = trakt
+        super.setUp()
         trakt.authenticate(mockAuth)
-    }
-
-    override func tearDown() {
-        trakt.clearCaches()
-        super.tearDown()
     }
 
     func testGettingLastActivities() {
@@ -111,8 +103,8 @@ class SyncEndpointTests: XCTestCase {
         expect(results?.first?.lastUpdatedAt).toEventuallyNot(beNil())
     }
 
-    func testAddingMovieToHistoryHasCorrectBody() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testAddingMovieToHistoryHasCorrectBody() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "ids":[],
         "movies":[{
@@ -133,8 +125,8 @@ class SyncEndpointTests: XCTestCase {
         expect(result?.added.movies).toEventually(be(1))
     }
 
-    func testAddingShowToHistoryHasCorrectBody() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testAddingShowToHistoryHasCorrectBody() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "ids":[],
         "movies":[],
@@ -155,8 +147,8 @@ class SyncEndpointTests: XCTestCase {
         expect(result?.added.episodes).toEventually(be(1))
     }
 
-    func testAddingEpisodeToHistoryHasCorrectBody() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testAddingEpisodeToHistoryHasCorrectBody() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "ids":[],
         "movies":[],
@@ -177,8 +169,8 @@ class SyncEndpointTests: XCTestCase {
         expect(result?.added.episodes).toEventually(be(1))
     }
 
-    func testAddingMovieEpisodeAndShowToHistoryHasCorrectBody() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testAddingMovieEpisodeAndShowToHistoryHasCorrectBody() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "ids":[],
         "movies":[{
@@ -307,8 +299,8 @@ class SyncEndpointTests: XCTestCase {
         XCTAssertEqual(endpoint.url.absoluteString, "https://api.trakt.tv/sync/history/movies/3?page=1&limit=2&extended=full&start_at=123&end_at=456")
     }
 
-    func testRemoveFromHistoryHasCorrectBody() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testRemoveFromHistoryHasCorrectBody() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "ids":[],
         "movies":[{
@@ -329,8 +321,8 @@ class SyncEndpointTests: XCTestCase {
         expect(result?.deleted.movies).toEventually(be(1))
     }
 
-    func testRemoveFromHistoryNotFound() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testRemoveFromHistoryNotFound() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "ids":[],
         "movies":[{
@@ -367,8 +359,8 @@ class SyncEndpointTests: XCTestCase {
         XCTAssertEqual(allTypesEndpoint.url.absoluteString, "https://api.trakt.tv/sync/watchlist/?extended=metadata&page=1&limit=1")
     }
 
-    func testAddToWatchlist() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testAddToWatchlist() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "seasons":[],
         "movies":[{
@@ -388,8 +380,8 @@ class SyncEndpointTests: XCTestCase {
         expect(result).toEventuallyNot(beNil())
     }
 
-    func testAddToWatchlistAlreadyExistsOrNotFound() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testAddToWatchlistAlreadyExistsOrNotFound() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "seasons":[],
         "movies":[{
@@ -411,8 +403,8 @@ class SyncEndpointTests: XCTestCase {
         expect(result?.notFound.episodes.count).to(be(1))
     }
 
-    func testRemoveFromWatchlistBodyIsCorrect() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testRemoveFromWatchlistBodyIsCorrect() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "seasons":[],
         "movies":[{
@@ -450,10 +442,10 @@ class SyncEndpointTests: XCTestCase {
         XCTAssertEqual(moviesEndpoint.url.absoluteString, "https://api.trakt.tv/sync/ratings/movies?extended=full")
     }
 
-    func testAddingRating() {
+    func testAddingRating() throws {
         let movieId = 1
         let rating = 1
-        stubHelper.stubPOSTRequest(expectedBody: """
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "seasons":[],
         "movies":[{
@@ -474,8 +466,8 @@ class SyncEndpointTests: XCTestCase {
         expect(result).toEventuallyNot(beNil())
     }
 
-    func testRemovingRatings() {
-        stubHelper.stubPOSTRequest(expectedBody: """
+    func testRemovingRatings() throws {
+        try stubHelper.stubPOSTRequest(expectedBody: """
         {
         "seasons":[],
         "movies":[{

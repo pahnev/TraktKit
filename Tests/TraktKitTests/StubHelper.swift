@@ -21,39 +21,44 @@ class StubHelper {
         "x-pagination-page-count": "4"
     ]
 
-    func fixtureFor(_ endpoint: Endpoint, info: InfoLevel? = nil, headers: [String: Any] = defaultPaginationHeaders) -> OHHTTPStubsResponse {
+    func fixtureFor(_ endpoint: Endpoint, info: InfoLevel? = nil, headers: [String: Any] = defaultPaginationHeaders) throws -> Data {
         print("---- Stubbing URL path: \(endpoint.url.path) with local file ----")
         var fileName = endpoint.url.path.dropFirst().replacingOccurrences(of: "/", with: "_")
         if let info = info {
             fileName.append("_\(info.rawValue)")
         }
 
-        let file = fixtureCache["\(fileName).json"]
-        return OHHTTPStubsResponse(data: try! Data(contentsOf: file!), statusCode: 200, headers: headers)
+        let file = try XCTUnwrap(fixtureCache["\(fileName).json"])
+        return try XCTUnwrap(Data(contentsOf: file))
     }
 
     func stubWithResponseCode(_ code: Int, endpoint: Endpoint) {
-        stub(condition: isPath(endpoint.url.path), response: { _ in
-            let stubData = "".data(using: .utf8)
-            return OHHTTPStubsResponse(data: stubData!, statusCode: Int32(code), headers: nil)
-        })
-    }
-
-    func stubWithLocalFile(_ endpoint: Endpoint, info: InfoLevel? = nil, headers: [String: Any] = defaultPaginationHeaders) {
-        stub(condition: isPath(endpoint.url.path)) { _ in
-            self.fixtureFor(endpoint, info: info, headers: headers)
+        MockURLProtocol.requestHandler = { _ in
+            let stubData = "".data(using: .utf8)!
+            return (HTTPURLResponse(url: endpoint.url, statusCode: code, httpVersion: nil, headerFields: nil)!, stubData)
         }
     }
 
-    func stubPOSTRequest(expectedBody: String, responseFile: String) {
-        OHHTTPStubs.stubRequests(passingTest: { request -> Bool in
-            let body = String(data: request.ohhttpStubs_httpBody!, encoding: String.Encoding.utf8)
+    func stubWithLocalFile(_ endpoint: Endpoint, info: InfoLevel? = nil, headers: [String: String] = defaultPaginationHeaders) {
+        MockURLProtocol.requestHandler = { _ in
+            let data = try self.fixtureFor(endpoint, info: info, headers: headers)
+            return (HTTPURLResponse(url: endpoint.url, statusCode: 200, httpVersion: nil, headerFields: headers)!, data)
+        }
+    }
+
+    func stubPOSTRequest(expectedBody: String, responseFile: String) throws {
+        MockURLProtocol.requestHandler = { request in
+            let bodyStream = try XCTUnwrap(request.httpBodyStream)
+            let bodyData = try XCTUnwrap(Data(reading: bodyStream))
+            let body = String(data: bodyData, encoding: .utf8)
+
             XCTAssertEqual(request.httpMethod, "POST")
             XCTAssertEqual(body, expectedBody)
-            return true
-        }) { _ -> OHHTTPStubsResponse in
-            let file = self.fixtureCache["\(responseFile).json"]
-            return OHHTTPStubsResponse(data: try! Data(contentsOf: file!), statusCode: 200, headers: nil)
+
+            let file = try XCTUnwrap(self.fixtureCache["\(responseFile).json"])
+            let responseData = try XCTUnwrap(Data(contentsOf: file))
+
+            return (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!, responseData)
         }
     }
 
@@ -79,5 +84,33 @@ class StubHelper {
         return currentFileURL
             .deletingLastPathComponent()
             .deletingLastPathComponent()
+    }
+}
+
+// Thanks: https://stackoverflow.com/a/42561021/2143387
+extension Data {
+    init(reading input: InputStream) throws {
+        self.init()
+        input.open()
+        defer {
+            input.close()
+        }
+
+        let bufferSize = 1024
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        defer {
+            buffer.deallocate()
+        }
+        while input.hasBytesAvailable {
+            let read = input.read(buffer, maxLength: bufferSize)
+            if read < 0 {
+                //Stream error occurred
+                throw input.streamError!
+            } else if read == 0 {
+                //EOF
+                break
+            }
+            append(buffer, count: read)
+        }
     }
 }
