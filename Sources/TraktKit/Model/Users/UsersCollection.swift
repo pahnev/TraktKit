@@ -13,14 +13,14 @@ public struct UsersCollection: CodableEquatable {
     public let movie: Movie?
     public let show: Show?
     public let metadata: Metadata?
-    
+
     public struct Metadata: CodableEquatable {
         public let mediaType: MediaType?
         public let resolution: Resolution?
         public let audio: Audio?
         public let audioChannels: AudioChannels?
         public let is3D: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case mediaType = "media_type"
             case resolution
@@ -29,7 +29,7 @@ public struct UsersCollection: CodableEquatable {
             case is3D = "3d"
         }
     }
-    
+
     public enum MediaType: String, CodableEquatable {
         case digital
         case bluray
@@ -40,7 +40,7 @@ public struct UsersCollection: CodableEquatable {
         case betamax
         case videoCD = "vcd"
     }
-    
+
     public enum Resolution: String, CodableEquatable {
         case udh4k = "uhd_4k"
         case hd1080p = "hd_1080p"
@@ -51,7 +51,7 @@ public struct UsersCollection: CodableEquatable {
         case sd576p = "sd_576p"
         case sd576i = "sd_576i"
     }
-    
+
     public enum Audio: String, CodableEquatable {
         case dolbyDigital = "dolby_digital"
         case dolbyDigitalPlus = "dolby_digital_plus"
@@ -65,7 +65,7 @@ public struct UsersCollection: CodableEquatable {
         case ogg
         case wma
     }
-    
+
     public enum AudioChannels: String, CodableEquatable {
         case sevenOne = "7.1"
         case sixOne = "6.1"

@@ -12,5 +12,4 @@ public struct AnticipatedShow: CodableEquatable {
     // Extended: Min
     public let listCount: Int
     public let show: Show
-    
 }

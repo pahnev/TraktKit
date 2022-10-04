@@ -17,18 +17,18 @@ public struct UnhideItemResult: CodableEquatable {
         let shows: Int
         let seasons: Int
     }
-    
+
     public struct NotFound: CodableEquatable {
         let movies: [ID]
         let shows: [ID]
         let seasons: [ID]
-        
+
         enum CodingKeys: String, CodingKey {
             case movies
             case shows
             case seasons
         }
-        
+
         public init(from decoder: Decoder) throws {
 //            let container = try decoder.container(keyedBy: CodingKeys.self)
 //            let m = try container.decode([[String: ID]].self, forKey: .movies)

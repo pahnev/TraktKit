@@ -38,7 +38,7 @@ extension Movies: Endpoint {
         return nil
     }
 
-    var requestHeaders: [String : String] {
+    var requestHeaders: [String: String] {
         return [:]
     }
 
@@ -97,5 +97,4 @@ extension Movies: Endpoint {
                 .appendingInfo(params.infoLevel)
         }
     }
-
 }

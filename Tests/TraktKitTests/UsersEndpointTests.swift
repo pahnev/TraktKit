@@ -2,13 +2,12 @@
 // Created by Kirill Pahnev on 2019-02-12.
 //
 
-import XCTest
 import Foundation
 import Nimble
+import XCTest
 @testable import TraktKit
 
 class UsersEndpointTests: XCTestCase {
-
     var trakt: Trakt!
     let stubHelper = StubHelper()
 
@@ -52,6 +51,5 @@ class UsersEndpointTests: XCTestCase {
             result = try! res.get()
         }
         expect(result).toEventuallyNot(beNil())
-
     }
 }

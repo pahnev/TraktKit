@@ -6,11 +6,10 @@
 //  Copyright © 2018 Pahnev. All rights reserved.
 //
 
-import UIKit
 import TraktKit
+import UIKit
 
 class MovieDetailsViewController: UIViewController {
-
     let movie: Movie
     private let trakt: Trakt
     private var fullMovie: Movie? {
@@ -19,8 +18,9 @@ class MovieDetailsViewController: UIViewController {
             ratingLabel.text = String(describing: fullMovie.votes)
         }
     }
-    @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var watchedLabel: UILabel!
+
+    @IBOutlet var ratingLabel: UILabel!
+    @IBOutlet var watchedLabel: UILabel!
 
     init(trakt: Trakt, movie: Movie) {
         self.trakt = trakt
@@ -53,9 +53,11 @@ class MovieDetailsViewController: UIViewController {
         }
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     @IBAction func removeFromWatched(_ sender: UIButton) {
         trakt.removeFromHistory(movies: [movie.ids.trakt]) { result in
             print(result)

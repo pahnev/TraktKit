@@ -13,7 +13,7 @@ public struct Watching: CodableEquatable {
     public let startedAt: Date
     public let action: String
     public let type: String
-    
+
     public let episode: Episode?
     public let show: Show?
     public let movie: Movie?

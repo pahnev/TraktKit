@@ -6,15 +6,14 @@
 //  Copyright © 2018 Pahnev. All rights reserved.
 //
 
-import XCTest
 import Nimble
-import OHHTTPStubsSwift
 import OHHTTPStubsCore
+import OHHTTPStubsSwift
+import XCTest
 
 @testable import TraktKit
 
 class TraktKitTests: XCTestCase {
-
     var trakt: Trakt!
     let stubHelper = StubHelper()
 
@@ -61,8 +60,8 @@ class TraktKitTests: XCTestCase {
                 "x-pagination-item-count": "1",
                 "x-pagination-limit": "2",
                 "x-pagination-page": "3",
-                "x-pagination-page-count": "4",
-                ]
+                "x-pagination-page-count": "4"
+            ]
 
             return self.stubHelper.fixtureFor(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min),
                                               info: .min,
@@ -97,5 +96,4 @@ class TraktKitTests: XCTestCase {
         XCTAssertEqual(HTTPResponseHeaders(["Cache-Control": "no-cache, no-store, must-revalidate, max-age=60"]).maxAge, 60)
         XCTAssertEqual(HTTPResponseHeaders(["Cache-Control": "no-cache, no-store,   max-age=60      , must-revalidate,  "]).maxAge, 60)
     }
-
 }

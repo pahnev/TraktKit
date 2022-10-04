@@ -18,11 +18,11 @@ public struct RemoveRatingsResult: CodableEquatable {
         public let seasons: Int
         public let episodes: Int
     }
-    
+
     public struct NotFound: CodableEquatable {
         public let movies: [ID]
         public let shows: [ID]
         public let seasons: [ID]
         public let episodes: [ID]
-    }    
+    }
 }

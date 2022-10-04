@@ -7,14 +7,12 @@
 
 import Foundation
 
-extension Trakt {
-
-
+public extension Trakt {
     /// The type that represents different objects that can be sent to server to indicate that the user is currently watching it.
     ///
     /// - movie: A movie object, which has `TraktId`.
     /// - episode: An episode object, which has `TraktId`.
-    public enum CheckinType {
+    enum CheckinType {
         case movie(TraktId), episode(TraktId)
     }
 
@@ -24,17 +22,17 @@ extension Trakt {
     /// - Parameters:
     ///   - type: The type of the object checking in.
     ///   - completion: A closure that returns on completion either `Checkin` object or `TraktError`
-    public func checkin(type: CheckinType, completion: @escaping TraktResult<Checkin>) {
+    func checkin(type: CheckinType, completion: @escaping TraktResult<Checkin>) {
         assertLoggedInUser()
 
         struct CheckinEndpoint: Endpoint {
             let httpMethod: HTTPMethod = .POST
             let httpBody: Data?
-            let requestHeaders: [String : String] = [:]
+            let requestHeaders: [String: String] = [:]
             let url: URL = baseURL.appendingPathComponent("checkin")
 
             init(body: Data) {
-                self.httpBody = body
+                httpBody = body
             }
         }
 
@@ -62,11 +60,14 @@ private struct CheckinPayload {
         struct ObjectId {
             let trakt: TraktId
         }
+
         let ids: ObjectId
     }
+
     let movie: CheckinObject?
     let episode: CheckinObject?
 }
-extension CheckinPayload.CheckinObject.ObjectId: Codable { }
-extension CheckinPayload.CheckinObject: Codable { }
-extension CheckinPayload: Codable { }
+
+extension CheckinPayload.CheckinObject.ObjectId: Codable {}
+extension CheckinPayload.CheckinObject: Codable {}
+extension CheckinPayload: Codable {}

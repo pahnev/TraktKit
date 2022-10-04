@@ -37,6 +37,5 @@ public extension URL {
 
     func appendingInfo(_ info: InfoLevel) -> URL {
         return appendingQueryItem(URLQueryItem(name: "extended", value: info.rawValue))
-
     }
 }

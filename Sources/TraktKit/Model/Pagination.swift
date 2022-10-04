@@ -16,9 +16,9 @@ public struct Pagination {
     public let page: Int
     /// Number of results to return per page.
     public let limit: Int
-    
+
     public init(page: Int, limit: Int) {
         self.page = page
         self.limit = limit
-    }    
+    }
 }

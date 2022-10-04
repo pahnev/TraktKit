@@ -11,5 +11,5 @@ import Foundation
 public struct CalendarShow: CodableEquatable {
     let firstAired: Date
     let episode: Episode
-    let show: Show    
+    let show: Show
 }

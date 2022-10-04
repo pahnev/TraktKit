@@ -11,9 +11,8 @@ import Foundation
 public struct HiddenItem: CodableEquatable {
     public let hiddenAt: Date
     public let type: String
-    
+
     public let movie: Movie?
     public let show: Show?
     public let season: Season?
-    
 }

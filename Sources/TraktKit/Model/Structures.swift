@@ -18,7 +18,6 @@ public typealias HistoryItemId = DecodableInteger<HistoryIdType>
 public enum PlaybackIdType {}
 public typealias PlaybackProgressId = DecodableInteger<PlaybackIdType>
 
-
 // MARK: - TV & Movies
 
 public struct ID: CodableEquatable {
@@ -28,7 +27,6 @@ public struct ID: CodableEquatable {
     public let imdb: String?
     public let tmdb: Int?
     public let tvrage: Int?
-    
 }
 
 public struct SeasonId: CodableEquatable {

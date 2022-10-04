@@ -7,12 +7,10 @@
 
 import Foundation
 
-
 /// Represents the amount of data the backend should send in the response.
 ///
 /// - min: For minimal info about the movie item. Typically all you need to match locally cached items and includes the title, year, and ids.
 /// - full: For complete info of the movie item.
-
 
 /// Represents the amount of data the backend should send in the response.
 ///
@@ -24,37 +22,34 @@ public enum InfoLevel: String {
 }
 
 public extension Trakt {
-
     func getTrendingMovies(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel = .min, completion: @escaping PaginatedTraktResult<[TrendingMovie]>) {
         fetchPaginatedObject(ofType: [TrendingMovie].self,
-                    endpoint: Movies.trending(pageNumber: pageNumber, resultsPerPage: resultsPerPage, infoLevel: infoLevel),
-                    completion: completion)
+                             endpoint: Movies.trending(pageNumber: pageNumber, resultsPerPage: resultsPerPage, infoLevel: infoLevel),
+                             completion: completion)
     }
 
     func getPopularMovies(pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[Movie]>) {
         fetchPaginatedObject(ofType: [Movie].self,
-                    endpoint: Movies.popular(pageNumber: pageNumber, resultsPerPage: resultsPerPage),
-                    completion: completion)
+                             endpoint: Movies.popular(pageNumber: pageNumber, resultsPerPage: resultsPerPage),
+                             completion: completion)
     }
 
     func getMostPlayedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
         fetchPaginatedObject(ofType: [MostMovie].self,
-                    endpoint: Movies.mostPlayed(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
-                    completion: completion)
-
+                             endpoint: Movies.mostPlayed(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
+                             completion: completion)
     }
 
     func getMostWatchedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
         fetchPaginatedObject(ofType: [MostMovie].self,
-                    endpoint: Movies.mostWatched(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
-                    completion: completion)
-
+                             endpoint: Movies.mostWatched(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
+                             completion: completion)
     }
 
     func getMostCollectedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
         fetchPaginatedObject(ofType: [MostMovie].self,
-                    endpoint: Movies.mostCollected(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
-                    completion: completion)
+                             endpoint: Movies.mostCollected(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
+                             completion: completion)
     }
 
     /// Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
@@ -66,8 +61,8 @@ public extension Trakt {
 
     func getRecentlyUpdatedMovies(pageNumber: Int, startDate: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[UpdatedMoviesResponse]>) {
         fetchPaginatedObject(ofType: [UpdatedMoviesResponse].self,
-                    endpoint: Movies.recentlyUpdated(pageNumber: pageNumber, startDate: startDate, resultsPerPage: resultsPerPage),
-                    completion: completion)
+                             endpoint: Movies.recentlyUpdated(pageNumber: pageNumber, startDate: startDate, resultsPerPage: resultsPerPage),
+                             completion: completion)
     }
 
     func getMovieDetails(for movieId: TraktId, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {

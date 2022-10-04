@@ -9,7 +9,6 @@
 import Foundation
 
 public struct HideItemResult: CodableEquatable {
-    
     let added: Added
 //    let notFound: NotFound
 
@@ -18,12 +17,12 @@ public struct HideItemResult: CodableEquatable {
         let shows: Int
         let seasons: Int
     }
-    
+
     public struct NotFound: CodableEquatable {
         let movies: [ID]
         let shows: [ID]
         let seasons: [ID]
-                
+
         public init(from decoder: Decoder) throws {
             movies = []
             shows = []

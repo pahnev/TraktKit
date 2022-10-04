@@ -9,10 +9,9 @@
 import Foundation
 
 public struct WatchedShow: CodableEquatable {
-    
     // Extended: Min
     public let plays: Int // Total number of plays
     public let lastWatchedAt: Date?
     public let show: Show
-    public let seasons: [WatchedSeason]    
+    public let seasons: [WatchedSeason]
 }

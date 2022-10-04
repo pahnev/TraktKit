@@ -11,7 +11,7 @@ import Foundation
 public struct AccountSettings: CodableEquatable {
     public let user: User
     public let connections: Connections
-    
+
     public struct Connections: CodableEquatable {
         public let facebook: Bool
         public let twitter: Bool

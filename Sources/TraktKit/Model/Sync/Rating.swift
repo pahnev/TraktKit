@@ -12,7 +12,7 @@ public struct Rating: CodableEquatable {
     public let ratedAt: Date
     public let rating: Int
     public let type: String // TODO: What types? Add type safety.
-    
+
     public let movie: Movie?
     public let show: Show?
     public let season: Season?

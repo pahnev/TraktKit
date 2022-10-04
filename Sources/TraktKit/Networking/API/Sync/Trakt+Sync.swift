@@ -19,14 +19,13 @@ public enum RateableContent: String, CodableEquatable {
     case movie, show, season, episode
 }
 
-extension Trakt {
-
+public extension Trakt {
     /// This method is a useful first step in the syncing process. We recommended caching these dates locally, then you can compare to know exactly what data has changed recently. This can greatly optimize your syncs so you don't pull down a ton of data only to see nothing has actually changed.
     ///
     /// 🔒 OAuth Required
     ///
     /// - Parameter completion: The closure called on completion with `LastActivities`or `TraktError`.
-    public func getLastActivities(completion: @escaping TraktResult<LastActivities>) {
+    func getLastActivities(completion: @escaping TraktResult<LastActivities>) {
         assertLoggedInUser()
 
         fetchObject(ofType: LastActivities.self, endpoint: Sync.lastActivities, completion: completion)
@@ -40,12 +39,12 @@ extension Trakt {
     ///   - type: You can pass specific type to only get those items.
     ///   - limit: Limit the amount of items returned. By default all results will be returned.
     ///   - completion: The closure called on completion with a list of `PlaybackProgress` items or `TraktError`.
-    public func getPlaybackProgress(type: WatchedType = .all, limit: Int, completion: @escaping PaginatedTraktResult<[PlaybackProgress]>) {
+    func getPlaybackProgress(type: WatchedType = .all, limit: Int, completion: @escaping PaginatedTraktResult<[PlaybackProgress]>) {
         assertLoggedInUser()
 
         fetchPaginatedObject(ofType: [PlaybackProgress].self,
-                    endpoint: Sync.getPlaybackProgress(type: type, limit: limit),
-                    completion: completion)
+                             endpoint: Sync.getPlaybackProgress(type: type, limit: limit),
+                             completion: completion)
     }
 
     /// Remove a playback item from a user's playback progress list. A 404 will be returned if the `id` is invalid.
@@ -53,7 +52,7 @@ extension Trakt {
     /// 🔒 OAuth Required
     ///
     /// - Parameter id: The id of the `PlaybackProgress` item to be removed.
-    public func removePlaybackItemWith(_ id: PlaybackProgressId, completion: @escaping RequestResult<Void>) {
+    func removePlaybackItemWith(_ id: PlaybackProgressId, completion: @escaping RequestResult<Void>) {
         assertLoggedInUser()
 
         authenticatedRequest(for: Sync.removePlayback(id), completion: { result in
@@ -74,7 +73,7 @@ extension Trakt {
     /// - Parameters:
     ///   - infoLevel: The info level of the items.
     ///   - completion: The closure called on completion with a list of `CollectedMovie` items or `TraktError`.
-    public func getCollectedMovies(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedMovie]>) {
+    func getCollectedMovies(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedMovie]>) {
         assertLoggedInUser()
 
         fetchObject(ofType: [CollectedMovie].self,
@@ -90,7 +89,7 @@ extension Trakt {
     /// - Parameters:
     ///   - infoLevel: The info level of the items.
     ///   - completion: The closure called on completion with a list of `CollectedShow` items or `TraktError`.
-    public func getCollectedShows(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedShow]>) {
+    func getCollectedShows(infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[CollectedShow]>) {
         assertLoggedInUser()
 
         fetchObject(ofType: [CollectedShow].self,
@@ -98,13 +97,13 @@ extension Trakt {
                     completion: completion)
     }
 
-    func addToCollection() {
-        // TODO:
-    }
-    func removeFromCollection() {
+    internal func addToCollection() {
         // TODO:
     }
 
+    internal func removeFromCollection() {
+        // TODO:
+    }
 
     /// Returns all movies or shows a user has watched sorted by most plays.
     /// Each `Movie` and `Show` object contains `lastWatchedAt` and `lastUpdatedAt` timestamps.
@@ -117,7 +116,7 @@ extension Trakt {
     ///   - type: The type of the watched items.
     ///   - infoLevel: The info level of the items. Defaults to `InfoLevel.min`.
     ///   - completion: The closure called on completion with a list of `WatchedItem` objects or `TraktError`.
-    public func getWatched(type: CollectableType, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[WatchedItem]>) {
+    func getWatched(type: CollectableType, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[WatchedItem]>) {
         assertLoggedInUser()
         let endpoint = Sync.getWatched(type: type, infoLevel: infoLevel)
         fetchObject(ofType: [WatchedItem].self,
@@ -129,31 +128,31 @@ extension Trakt {
     /// The `id` in each `HistoryItem` uniquely identifies the event and can be used to remove individual events by using the `removeFromHistory` method.
     ///
     /// 🔒 OAuth Required 📄 Pagination ✨ Extended Info
-    public func getHistory(type: ContentType,
-                           pageNumber: PageNumber,
-                           resultsPerPage: Int = 10,
-                           traktId: Int? = nil,
-                           infoLevel: InfoLevel = .min,
-                           startDate: String? = nil,
-                           endDate: String? = nil,
-                           completion: @escaping PaginatedTraktResult<[HistoryItem]>) {
+    func getHistory(type: ContentType,
+                    pageNumber: PageNumber,
+                    resultsPerPage: Int = 10,
+                    traktId: Int? = nil,
+                    infoLevel: InfoLevel = .min,
+                    startDate: String? = nil,
+                    endDate: String? = nil,
+                    completion: @escaping PaginatedTraktResult<[HistoryItem]>) {
         assertLoggedInUser()
 
         let payload = HistoryPayload(type: type, pageNumber: pageNumber, resultsPerPage: resultsPerPage, traktId: traktId, infoLevel: infoLevel, startDate: startDate, endDate: endDate)
 
         fetchPaginatedObject(ofType: [HistoryItem].self,
-                    endpoint: Sync.getHistory(payload: payload),
-                    completion: completion)
+                             endpoint: Sync.getHistory(payload: payload),
+                             completion: completion)
     }
 
-    public func addToHistory(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], completion: @escaping TraktResult<AddedToHistory>) {
+    func addToHistory(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], completion: @escaping TraktResult<AddedToHistory>) {
         assertLoggedInUser()
 
         let data = syncPayload(movies: movies, shows: shows, episodes: episodes, items: [])
         authenticatedRequestAndParse(Sync.addToHistory(data), completion: completion)
     }
 
-    public func removeFromHistory(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], items: [HistoryItemId] = [], completion: @escaping TraktResult<RemovedFromHistory>) {
+    func removeFromHistory(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], items: [HistoryItemId] = [], completion: @escaping TraktResult<RemovedFromHistory>) {
         assertLoggedInUser()
 
         let data = syncPayload(movies: movies, shows: shows, episodes: episodes, items: items)
@@ -168,7 +167,7 @@ extension Trakt {
     ///   - type: The type of the content.
     ///   - infoLevel: The info level of the items.
     ///   - completion: The closure called on completion with a list of `Rating` items or `TraktError`.
-    public func getRatings(type: ContentType = .all, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[Rating]>) {
+    func getRatings(type: ContentType = .all, infoLevel: InfoLevel = .min, completion: @escaping TraktResult<[Rating]>) {
         assertLoggedInUser()
         let endpoint = Sync.getRatings(type: type, infoLevel: infoLevel)
         fetchObject(ofType: [Rating].self,
@@ -187,9 +186,9 @@ extension Trakt {
     ///   - id: The `TraktId` of the item.
     ///   - ratedAt: The date of when the rating was set.
     ///   - completion: The closure called on completion with a `AddedToHistory` object or `TraktError`.
-    public func addRating(_ rating: Int, to contentType: RateableContent, withId id: TraktId, ratedAt: Date?, completion: @escaping TraktResult<AddedToHistory>) {
+    func addRating(_ rating: Int, to contentType: RateableContent, withId id: TraktId, ratedAt: Date?, completion: @escaping TraktResult<AddedToHistory>) {
         assertLoggedInUser()
-        precondition(rating>=1 && rating<=10, "Rating has to be between 1 and 10")
+        precondition(rating >= 1 && rating <= 10, "Rating has to be between 1 and 10")
 
         let rateable = Sync.RateablePayload.Rateable(rating: rating, ratedAt: ratedAt, ids: TraktIdContainer.Id(trakt: id))
         let payload: Sync.RateablePayload
@@ -219,7 +218,7 @@ extension Trakt {
     ///   - episodes: The movies of which ratings to be removed.
     ///   - seasons: The movies of which ratings to be removed.
     ///   - completion: The closure called on completion with a `RemoveFromWatchlist` object or `TraktError`.
-    public func removeRatingsFrom(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
+    func removeRatingsFrom(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
         assertLoggedInUser()
         let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
                                          seasons: seasons)
@@ -237,12 +236,12 @@ extension Trakt {
     ///   - page: The page of the results.
     ///   - resultsPerPage: The amount of results per page should be returned. Defaults to 10 results.
     ///   - completion: The closure called on completion with a list of `ListItem`s or `TraktError`.
-    public func getWatchlist(type: ContentType = .all, infoLevel: InfoLevel = .min, page: Int, resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[ListItem]>) {
+    func getWatchlist(type: ContentType = .all, infoLevel: InfoLevel = .min, page: Int, resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[ListItem]>) {
         assertLoggedInUser()
         let getWatchlist = Sync.getWatchlist(type: type, infoLevel: infoLevel, pagination: Pagination(page: page, limit: resultsPerPage))
         fetchPaginatedObject(ofType: [ListItem].self,
-                    endpoint: getWatchlist,
-                    completion: completion)
+                             endpoint: getWatchlist,
+                             completion: completion)
     }
 
     /// Add one of more items to a user's watchlist. Accepts shows, seasons, episodes and movies. If only a show is passed, only the show itself will be added. If seasons are specified, all of those seasons will be added.
@@ -255,7 +254,7 @@ extension Trakt {
     ///   - episodes: The ids of the episodes to be added.
     ///   - seasons: the ids of seasons to be added.
     ///   - completion: The closure called on completion with a `AddToWatchlist` or `TraktError`.
-    public func addToWatchlist(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<AddToWatchlist>) {
+    func addToWatchlist(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<AddToWatchlist>) {
         assertLoggedInUser()
         let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
                                          seasons: seasons)
@@ -272,13 +271,12 @@ extension Trakt {
     ///   - episodes: The ids of the episodes to be added.
     ///   - seasons: the ids of seasons to be added.
     ///   - completion: The closure called on completion with a `RemoveFromWatchlistResult` or `TraktError`.
-    public func removeFromWatchlist(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
+    func removeFromWatchlist(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
         assertLoggedInUser()
         let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
                                          seasons: seasons)
         authenticatedRequestAndParse(Sync.removeFromWatchlist(payload), completion: completion)
     }
-
 }
 
 // MARK: - Private
@@ -290,6 +288,7 @@ private extension Trakt {
             .map { TraktIdContainer(ids: $0) }
         return Sync.CollectablePayload(syncPayload: syncPayload, seasons: seasons)
     }
+
     private func syncPayload(movies: [TraktId], shows: [TraktId], episodes: [TraktId], items: [HistoryItemId]) -> Sync.Payload {
         func containers(from ids: [TraktId]) -> [TraktIdContainer] {
             return ids

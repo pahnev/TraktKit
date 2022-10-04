@@ -9,7 +9,6 @@
 import Foundation
 
 public struct WatchedSeason: CodableEquatable {
-    
     // Extended: Min
     public let number: Int // Season number
     public let episodes: [WatchedEpisodes]

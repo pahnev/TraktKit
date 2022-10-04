@@ -5,16 +5,15 @@
 //  Created by Kirill Pahnev on 29/01/2019.
 //
 
-import XCTest
 import Foundation
 import Nimble
-import OHHTTPStubsSwift
 import OHHTTPStubsCore
+import OHHTTPStubsSwift
+import XCTest
 
 @testable import TraktKit
 
 class SyncEndpointTests: XCTestCase {
-
     var trakt: Trakt!
     let stubHelper = StubHelper()
     let mockAuth = MockAuth()
@@ -92,7 +91,7 @@ class SyncEndpointTests: XCTestCase {
         stubHelper.stubWithLocalFile(Sync.getCollection(type: .movies, infoLevel: .min))
 
         var results: [CollectedMovie]?
-        trakt.getCollectedMovies() { res in
+        trakt.getCollectedMovies { res in
             results = try! res.get()
         }
         expect(results).toEventuallyNot(beNil())
@@ -104,7 +103,7 @@ class SyncEndpointTests: XCTestCase {
         stubHelper.stubWithLocalFile(Sync.getCollection(type: .shows, infoLevel: .min))
 
         var results: [CollectedShow]?
-        trakt.getCollectedShows() { res in
+        trakt.getCollectedShows { res in
             results = try! res.get()
         }
         expect(results).toEventuallyNot(beNil())
@@ -214,7 +213,6 @@ class SyncEndpointTests: XCTestCase {
     }
 
     func testGetMovieHistory() {
-
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .movies, pageNumber: 1)))
 
         var history: [HistoryItem]?

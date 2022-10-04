@@ -10,7 +10,6 @@ import Foundation
 
 /// Used for most played, watched, and collected shows
 public struct MostShow: CodableEquatable {
-    
     // Extended: Min
     public let watcherCount: Int
     public let playCount: Int

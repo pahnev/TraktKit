@@ -12,6 +12,7 @@ public struct RemovedFromHistory: CodableEquatable {
         let movies: Int
         let episodes: Int
     }
+
     public struct NotFound: CodableEquatable {
         public let movies: [TraktIdContainer]
         public let shows: [TraktIdContainer]

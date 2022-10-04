@@ -12,12 +12,12 @@ public protocol FilterType {
     func value() -> (key: String, value: String)
 }
 
-//public extension TraktManager {
+// public extension TraktManager {
 //    /**
 //     Some `movies`, `shows`, `calendars`, and `search` methods support additional filters and will be tagged with 🎚 Filters. Applying these filters refines the results and helps your users to more easily discover new items.
-//     
+//
 //     Add a query string (i.e. `?years=2016&genres=action`) with any filters you want to use. Some filters allow multiples which can be sent as comma delimited parameters. For example, `?genres=action,adventure` would match the `action` OR `adventure` genre.
-//     
+//
 //     **Note**: Make sure to properly URL encode the parameters including spaces and special characters.
 //     */
 //    public enum Filter: FilterType {
@@ -44,7 +44,7 @@ public protocol FilterType {
 //         Range between `0` and `100`.
 //         */
 //        case ratings(ratings: (lower: NSNumber, upper: NSNumber))
-//        
+//
 //        // FilterType
 //        public func value() -> (key: String, value: String) {
 //            switch self {
@@ -63,13 +63,13 @@ public protocol FilterType {
 //            }
 //        }
 //    }
-//    
+//
 //    public enum MovieFilter: FilterType {
 //        /**
 //         US content certification.
 //         */
 //        case certifications(certifications: [String])
-//        
+//
 //        // FilterType
 //        public func value() -> (key: String, value: String) {
 //            switch self {
@@ -78,7 +78,7 @@ public protocol FilterType {
 //            }
 //        }
 //    }
-//    
+//
 //    public enum ShowFilter: FilterType {
 //        /**
 //         US content certification.
@@ -92,7 +92,7 @@ public protocol FilterType {
 //         Set to `returning series`, `in production`, `planned`, `canceled`, or `ended`.
 //         */
 //        case status(status: [String])
-//        
+//
 //        // FilterType
 //        public func value() -> (key: String, value: String) {
 //            switch self {
@@ -105,4 +105,4 @@ public protocol FilterType {
 //            }
 //        }
 //    }
-//}
+// }

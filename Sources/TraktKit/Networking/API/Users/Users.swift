@@ -22,7 +22,7 @@ public enum Users: Endpoint {
         }
     }
 
-    var requestHeaders: [String : String] {
+    var requestHeaders: [String: String] {
         switch self {
         case .getWatching, .getStats:
             return [:]

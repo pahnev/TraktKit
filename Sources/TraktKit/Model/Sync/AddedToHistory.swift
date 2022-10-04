@@ -11,6 +11,7 @@ public struct TraktIdContainer: CodableEquatable {
     public struct Id: CodableEquatable {
         public let trakt: TraktId
     }
+
     public let ids: Id
 }
 

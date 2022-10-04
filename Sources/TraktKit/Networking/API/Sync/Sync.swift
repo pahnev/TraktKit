@@ -41,6 +41,7 @@ enum Sync: Endpoint {
             let ratedAt: Date?
             let ids: TraktIdContainer.Id
         }
+
         let movies: [Rateable]
         let shows: [Rateable]
         let episodes: [Rateable]
@@ -99,8 +100,8 @@ enum Sync: Endpoint {
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try! encoder.encode(params)
         case .addToWatchlist(let payload),
-            .removeFromWatchlist(let payload),
-            .removeRatings(let payload):
+             .removeFromWatchlist(let payload),
+             .removeRatings(let payload):
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try! encoder.encode(payload)
@@ -111,7 +112,7 @@ enum Sync: Endpoint {
         }
     }
 
-    var requestHeaders: [String : String] {
+    var requestHeaders: [String: String] {
         switch self {
         case .lastActivities,
              .getPlaybackProgress,
@@ -167,17 +168,17 @@ enum Sync: Endpoint {
         case .getRatings(let params):
             return sync.appendingPathComponent("ratings/\(params.type.rawValue)")
                 .appendingInfo(params.infoLevel)
-        case .addRatings(_):
+        case .addRatings:
             return sync.appendingPathComponent("ratings")
-        case .removeRatings(_):
+        case .removeRatings:
             return sync.appendingPathComponent("ratings/remove")
         case .getWatchlist(let params):
             return sync.appendingPathComponent("watchlist/\(params.type.rawValue)")
                 .appendingInfo(params.infoLevel)
                 .appendingPagination(params.pagination)
-        case .addToWatchlist(_):
+        case .addToWatchlist:
             return sync.appendingPathComponent("watchlist")
-        case .removeFromWatchlist(_):
+        case .removeFromWatchlist:
             return sync.appendingPathComponent("watchlist")
         }
     }
@@ -233,9 +234,9 @@ extension HistoryPayload {
 
 extension Sync.CollectablePayload {
     init(syncPayload: Sync.Payload, seasons: [TraktIdContainer]) {
-        self.movies = syncPayload.movies
-        self.shows = syncPayload.shows
-        self.episodes = syncPayload.episodes
+        movies = syncPayload.movies
+        shows = syncPayload.shows
+        episodes = syncPayload.episodes
         self.seasons = seasons
     }
 }

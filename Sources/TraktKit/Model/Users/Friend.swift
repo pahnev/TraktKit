@@ -10,5 +10,5 @@ import Foundation
 
 public struct Friend: CodableEquatable {
     let friendsAt: Date
-    let user: User    
+    let user: User
 }

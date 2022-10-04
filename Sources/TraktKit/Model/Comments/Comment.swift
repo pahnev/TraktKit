@@ -19,19 +19,17 @@ public struct Comment: CodableEquatable {
     public let likes: Int
     public let userRating: Int?
     public let user: User
-    
 }
 
 public extension Sequence where Iterator.Element == Comment {
     func hideSpoilers() -> [Comment] {
         var copy: [Comment] = self as! [Comment]
-        
+
         for (index, var comment) in copy.enumerated() {
             var text = comment.comment
-            
+
             if let start = text.range(of: "[spoiler]"),
-                let end = text.range(of: "[/spoiler]") {
-                
+               let end = text.range(of: "[/spoiler]") {
                 let range = Range(uncheckedBounds: (start.lowerBound, end.upperBound))
                 // Clean up title
                 text.removeSubrange(range)
