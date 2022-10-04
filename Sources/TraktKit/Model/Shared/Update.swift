@@ -11,5 +11,5 @@ import Foundation
 public struct Update: CodableEquatable {
     public let updatedAt: Date
     public let movie: Movie?
-    public let show: Show?    
+    public let show: Show?
 }

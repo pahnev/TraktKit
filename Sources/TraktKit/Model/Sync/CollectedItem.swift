@@ -22,7 +22,6 @@ public struct CollectedMovie: CodableEquatable {
 public struct CollectedShow: CodableEquatable {
     public struct Season: CodableEquatable {
         public struct Episode: CodableEquatable {
-
             public let number: Int
             public let collectedAt: Date
         }

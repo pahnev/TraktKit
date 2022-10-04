@@ -15,13 +15,12 @@ public struct ShareSettings: CodableEquatable {
 }
 
 public struct Checkin: CodableEquatable {
-    
     /// Trakt History ID
     public let id: Int
     public let watchedAt: Date
     public let sharing: ShareSettings
-    
+
     public let movie: Movie?
     public let show: Show?
-    public let episode: Episode?    
+    public let episode: Episode?
 }

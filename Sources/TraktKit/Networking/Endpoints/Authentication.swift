@@ -15,6 +15,7 @@ enum Authentication: Endpoint {
         let redirectUri: String
         let grantType: String
     }
+
     case authorize(clientId: String, redirectURI: String)
     case getToken(TokenData)
 
@@ -38,7 +39,7 @@ enum Authentication: Endpoint {
         }
     }
 
-    var requestHeaders: [String : String] {
+    var requestHeaders: [String: String] {
         switch self {
         case .authorize, .getToken:
             return [:]
@@ -57,5 +58,4 @@ enum Authentication: Endpoint {
             return baseURL.appendingPathComponent("oauth/token")
         }
     }
-
 }

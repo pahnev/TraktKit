@@ -36,9 +36,11 @@ final class NetworkClient {
         let urlConfiguration = URLSessionConfiguration.default
         urlConfiguration.urlCache = nil
         urlConfiguration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        urlConfiguration.httpAdditionalHeaders = ["trakt-api-key": traktClient.clientId,
-                                                  "trakt-api-version": "2",
-                                                  "Content-type": "application/json"]
+        urlConfiguration.httpAdditionalHeaders = [
+            "trakt-api-key": traktClient.clientId,
+            "trakt-api-version": "2",
+            "Content-type": "application/json"
+        ]
         urlSession = URLSession(configuration: urlConfiguration)
     }
 
@@ -55,7 +57,6 @@ final class NetworkClient {
 
         startRequest(request, completion: completion)
     }
-
 }
 
 private extension NetworkClient {
@@ -64,7 +65,7 @@ private extension NetworkClient {
 
         request.httpMethod = endpoint.httpMethod.rawValue
         request.allHTTPHeaderFields = endpoint.requestHeaders
-        additionalHeaders.forEach { key, value in request.addValue(value, forHTTPHeaderField: key)}
+        additionalHeaders.forEach { key, value in request.addValue(value, forHTTPHeaderField: key) }
 
         if let httpBody = endpoint.httpBody {
             request.httpBody = httpBody

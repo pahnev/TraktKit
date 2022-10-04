@@ -5,9 +5,9 @@
 //  Created by Kirill Pahnev on 01/08/2018.
 //
 
-import UIKit
-import TraktKit
 import SafariServices
+import TraktKit
+import UIKit
 
 struct Client: ClientProvider {
     let clientId: String
@@ -19,7 +19,7 @@ struct Auth: Authenticator {
 }
 
 class ViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
     let accessTokenKey = "accessToken"
 
     let client = Client(clientId: Config.clientId,
@@ -55,9 +55,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: UIButton) {
-        let completion : SFAuthenticationSession.CompletionHandler = { [weak self] callbackURL, error in
+        let completion: SFAuthenticationSession.CompletionHandler = { [weak self] callbackURL, error in
             guard let strongSelf = self,
-                let callbackURL = callbackURL else { return }
+                  let callbackURL = callbackURL else { return }
             strongSelf.trakt.getToken(from: callbackURL, redirectURI: Config.redirectURI, completion: { result in
                 switch result {
                 case .failure(let error):
@@ -74,13 +74,13 @@ class ViewController: UIViewController {
         safariSession = SFAuthenticationSession(url: authURL, callbackURLScheme: nil, completionHandler: completion)
         safariSession?.start()
     }
-
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 

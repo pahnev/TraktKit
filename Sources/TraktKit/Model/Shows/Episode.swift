@@ -9,13 +9,12 @@
 import Foundation
 
 public struct Episode: CodableEquatable {
-    
     // Extended: Min
     public let season: Int
     public let number: Int
     public let title: String?
     public let ids: EpisodeId
-    
+
     // Extended: Full
     public let overview: String?
     public let rating: Double?

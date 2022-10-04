@@ -16,7 +16,7 @@ public struct RemoveFromCollectionResult: CodableEquatable {
         let movies: Int
         let episodes: Int
     }
-    
+
     public struct NotFound: CodableEquatable {
         let movies: [ID]
         let shows: [ID]

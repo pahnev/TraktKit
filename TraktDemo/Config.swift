@@ -8,9 +8,9 @@
 import Foundation
 
 let placeHolderValue = "123"
-struct Config {
+enum Config {
     static let clientId = placeHolderValue
     static let secret = placeHolderValue
-    #warning ("Remember to the URL type in the project settings as well")
+    #warning("Remember to add the URL type in the project settings as well")
     static let redirectURI = "yourapp://oauth"
 }

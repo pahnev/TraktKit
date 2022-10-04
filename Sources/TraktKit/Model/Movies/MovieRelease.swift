@@ -11,11 +11,11 @@ import Foundation
 public struct MovieRelease: CodableEquatable {
     let country: String
     let certification: String
-    // TODO
+    // TODO:
     let releaseDate: String
     let releaseType: ReleaseType
     let note: String?
-        
+
     public enum ReleaseType: String, CodableEquatable {
         case unknown
         case premiere

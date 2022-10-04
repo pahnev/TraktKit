@@ -15,12 +15,11 @@ public struct Airs: CodableEquatable {
 }
 
 public struct Show: CodableEquatable {
-    
     // Extended: Min
     public let title: String
     public let year: Int?
     public let ids: ID
-    
+
     // Extended: Full
     public let overview: String?
     public let firstAired: Date?

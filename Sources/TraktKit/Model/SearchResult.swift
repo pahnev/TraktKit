@@ -11,7 +11,7 @@ import Foundation
 public struct SearchResult: CodableEquatable {
     public let type: String // Can be movie, show, episode, person, list
     public let score: Double?
-    
+
     public let movie: Movie?
     public let show: Show?
     public let episode: Episode?

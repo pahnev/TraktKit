@@ -9,7 +9,6 @@
 import Foundation
 
 public struct TrendingShow: CodableEquatable {
-    
     // Extended: Min
     public let watchers: Int
     public let show: Show

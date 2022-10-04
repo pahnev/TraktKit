@@ -3,7 +3,6 @@
 //
 
 public extension Trakt {
-
     /// Returns a `Movie` or `Episode` if the user is currently watching something.
     ///
     /// 🔒 OAuth Optional ✨ Extended Info

@@ -9,16 +9,17 @@ import Foundation
 
 extension String {
     init(_ value: Int?) {
-        guard let value = value else { self.init(""); return }
+        guard let value = value else { self.init("")
+            return
+        }
         self.init(value)
     }
 
     func withoutLinebreaks() -> String {
-        return self.replacingOccurrences(of: "\n", with: "")
+        return replacingOccurrences(of: "\n", with: "")
     }
 
     var asInt: Int? {
         return Int(self)
     }
-
 }

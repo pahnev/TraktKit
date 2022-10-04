@@ -12,5 +12,5 @@ public struct WatchedEpisodes: CodableEquatable {
     // Extended: Min
     public let number: Int
     public let plays: Int
-    public let lastWatchedAt: Date?    
+    public let lastWatchedAt: Date?
 }

@@ -20,7 +20,7 @@ public struct ListItemPostResult: CodableEquatable {
         let episodes: Int
         let people: Int
     }
-    
+
     public struct NotFound: CodableEquatable {
         let movies: [ID]
         let shows: [ID]

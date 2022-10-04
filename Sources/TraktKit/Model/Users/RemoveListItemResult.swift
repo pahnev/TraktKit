@@ -19,7 +19,7 @@ public struct RemoveListItemResult: CodableEquatable {
         let episodes: Int
         let people: Int
     }
-    
+
     public struct NotFound: CodableEquatable {
         let movies: [ID]
         let shows: [ID]
@@ -27,5 +27,4 @@ public struct RemoveListItemResult: CodableEquatable {
         let episodes: [ID]
         let people: [ID]
     }
-    
 }

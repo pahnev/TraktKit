@@ -12,12 +12,11 @@ public struct Person: CodableEquatable {
     // Extended: Min
     public let name: String
     public let ids: ID
-    
+
     // Extended: Full
     public let biography: String?
     public let birthday: Date?
     public let death: Date?
     public let birthplace: String?
     public let homepage: URL?
-
 }

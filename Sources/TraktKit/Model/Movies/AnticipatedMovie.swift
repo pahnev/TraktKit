@@ -11,5 +11,5 @@ import Foundation
 public struct AnticipatedMovie: CodableEquatable {
     // Extended: Min
     public let listCount: Int
-    public let movie: Movie    
+    public let movie: Movie
 }

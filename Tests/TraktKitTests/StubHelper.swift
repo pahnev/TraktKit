@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import OHHTTPStubsSwift
 import OHHTTPStubsCore
+import OHHTTPStubsSwift
 import XCTest
 @testable import TraktKit
 
@@ -38,10 +38,10 @@ class StubHelper {
             return OHHTTPStubsResponse(data: stubData!, statusCode: Int32(code), headers: nil)
         })
     }
-    
+
     func stubWithLocalFile(_ endpoint: Endpoint, info: InfoLevel? = nil, headers: [String: Any] = defaultPaginationHeaders) {
         stub(condition: isPath(endpoint.url.path)) { _ in
-            return self.fixtureFor(endpoint, info: info, headers: headers)
+            self.fixtureFor(endpoint, info: info, headers: headers)
         }
     }
 
@@ -51,7 +51,7 @@ class StubHelper {
             XCTAssertEqual(request.httpMethod, "POST")
             XCTAssertEqual(body, expectedBody)
             return true
-        }) { request -> OHHTTPStubsResponse in
+        }) { _ -> OHHTTPStubsResponse in
             let file = self.fixtureCache["\(responseFile).json"]
             return OHHTTPStubsResponse(data: try! Data(contentsOf: file!), statusCode: 200, headers: nil)
         }
@@ -61,12 +61,11 @@ class StubHelper {
         var cache: [String: URL] = [:] // Save all local files in this cache
         let baseURL = StubHelper.urlForRestServicesTestsDir()
 
-        guard let enumerator = FileManager.default.enumerator(
-            at: baseURL,
-            includingPropertiesForKeys: [.nameKey],
-            options: [.skipsHiddenFiles, .skipsPackageDescendants],
-            errorHandler: nil) else {
-                fatalError("Could not enumerate \(baseURL)")
+        guard let enumerator = FileManager.default.enumerator(at: baseURL,
+                                                              includingPropertiesForKeys: [.nameKey],
+                                                              options: [.skipsHiddenFiles, .skipsPackageDescendants],
+                                                              errorHandler: nil) else {
+            fatalError("Could not enumerate \(baseURL)")
         }
 
         for case let url as URL in enumerator where url.isFileURL {

@@ -20,7 +20,7 @@ public struct DecodableInteger<T>: CodableEquatable, CustomStringConvertible, Ex
 
     public init(_ value: Int) {
         self.value = value
-        self.hashValue = value.hashValue
+        hashValue = value.hashValue
     }
 
     public var description: String {
@@ -30,19 +30,17 @@ public struct DecodableInteger<T>: CodableEquatable, CustomStringConvertible, Ex
     public var integerValue: Int {
         return value
     }
-
 }
 
-extension DecodableInteger {
-    public init(from decoder: Decoder) throws {
+public extension DecodableInteger {
+    init(from decoder: Decoder) throws {
         let root = try decoder.singleValueContainer()
         value = try root.decode(Int.self)
         hashValue = value.hashValue
     }
 
-    public func encode(to encoder: Encoder) throws {
+    func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(self.value)
+        try container.encode(value)
     }
-
 }

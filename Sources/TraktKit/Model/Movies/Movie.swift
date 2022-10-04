@@ -13,7 +13,7 @@ public struct Movie: CodableEquatable {
     public let title: String
     public let year: Int?
     public let ids: ID
-    
+
     // Extended: Full
     public let tagline: String?
     public let overview: String?
@@ -29,5 +29,4 @@ public struct Movie: CodableEquatable {
     public let availableTranslations: [String]?
     public let genres: [String]?
     public let certification: String?
-    
 }

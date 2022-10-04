@@ -19,11 +19,9 @@ public struct ShowWatchedProgress: CodableEquatable {
     public let lastWatchedAt: Date?
     public let seasons: [SeasonWatchedProgress]
     public let nextEpisode: Episode?
-    
 }
 
 public struct SeasonWatchedProgress: CodableEquatable {
-    
     // Extended: Min
     /// Season number
     public let number: Int

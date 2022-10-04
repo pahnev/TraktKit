@@ -9,7 +9,6 @@
 import Foundation
 
 public struct ShowCollectionProgress: CodableEquatable {
-    
     public let aired: Int
     public let completed: Int
     public let lastCollectedAt: Date
@@ -23,7 +22,7 @@ public struct ShowCollectionProgress: CodableEquatable {
         let completed: Int
         let episodes: [CollectedEpisode]
     }
-    
+
     public struct CollectedEpisode: CodableEquatable {
         let number: Int
         let completed: Bool
