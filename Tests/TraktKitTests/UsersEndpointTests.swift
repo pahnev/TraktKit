@@ -8,7 +8,6 @@ import XCTest
 @testable import TraktKit
 
 class UsersEndpointTests: TraktKitTestCase {
-
     func testWatchingIsReturned() {
         stubHelper.stubWithLocalFile(Users.getWatching(userId: "test", infoLevel: .full))
         var result: Watching?

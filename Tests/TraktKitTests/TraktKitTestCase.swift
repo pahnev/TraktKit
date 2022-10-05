@@ -1,6 +1,6 @@
 //
 //  TraktKitTestCase.swift
-//  
+//
 //
 //  Created by Pahnev, Kirill on 4.10.2022.
 //

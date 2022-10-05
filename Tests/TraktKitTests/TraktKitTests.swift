@@ -48,11 +48,10 @@ class TraktKitTests: TraktKitTestCase {
                 "x-pagination-page-count": "4"
             ]
             let data = try self.stubHelper.fixtureFor(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min),
-                                              info: .min,
-                                              headers: responseHeaders)
+                                                      info: .min,
+                                                      headers: responseHeaders)
 
             return (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: responseHeaders)!, data)
-
         }
 
         // First request should be received by the "server"
