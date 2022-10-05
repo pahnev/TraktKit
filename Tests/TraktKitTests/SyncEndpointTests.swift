@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Nimble
 import XCTest
 
 @testable import TraktKit
@@ -19,15 +18,13 @@ class SyncEndpointTests: TraktKitTestCase {
         trakt.authenticate(mockAuth)
     }
 
-    func testGettingLastActivities() {
+    func testGettingLastActivities() throws {
         stubHelper.stubWithLocalFile(Sync.lastActivities)
 
-        var lastActivities: LastActivities?
-        trakt.getLastActivities { res in
-            lastActivities = try! res.get()
-        }
-        expect(lastActivities).toEventuallyNot(beNil())
-        expectCorrectDateFormattingFor(lastActivities!.all)
+        let lastActivities = try awaitFor { trakt.getLastActivities(completion: $0) }.get()
+
+        XCTAssertNotNil(lastActivities)
+        expectCorrectDateFormattingFor(lastActivities.all)
     }
 
     private func expectCorrectDateFormattingFor(_ date: Date) {
@@ -41,14 +38,12 @@ class SyncEndpointTests: TraktKitTestCase {
         XCTAssertEqual(expectedDate, date)
     }
 
-    func testGetPlaybackProgress() {
+    func testGetPlaybackProgress() throws {
         stubHelper.stubWithLocalFile(Sync.getPlaybackProgress(type: .all, limit: 0))
 
-        var progress: [PlaybackProgress]?
-        trakt.getPlaybackProgress(type: .all, limit: 0) { res in
-            progress = try! res.get().type
-        }
-        expect(progress).toEventuallyNot(beNil())
+        let progress = try awaitFor { trakt.getPlaybackProgress(type: .all, limit: 0, completion: $0) }.get().type
+
+        XCTAssertNotNil(progress)
     }
 
     func testPlaybackProgressURL() {
@@ -62,43 +57,35 @@ class SyncEndpointTests: TraktKitTestCase {
         XCTAssertEqual(endpointWithTypeAll.url.absoluteString, "https://api.trakt.tv/sync/playback/?limit=")
     }
 
-    func testRemovePlaybackItem() {
+    func testRemovePlaybackItem() throws {
         stubHelper.stubWithResponseCode(204, endpoint: Sync.removePlayback(1))
 
         var error: TraktError? = TraktError.emptyDataReceivedError
-        trakt.removePlaybackItemWith(PlaybackProgressId(1)) { res in
-            switch res {
-            case .failure(let err):
-                error = err
-            case .success:
-                error = nil
-            }
-        }
-        expect(error).toEventually(beNil())
+
+        error = try awaitFor { trakt.removePlaybackItemWith(PlaybackProgressId(1), completion: $0) }.error
+
+        XCTAssertNil(error)
+
     }
 
-    func testGetCollectionMovies() {
+    func testGetCollectionMovies() throws {
         stubHelper.stubWithLocalFile(Sync.getCollection(type: .movies, infoLevel: .min))
 
-        var results: [CollectedMovie]?
-        trakt.getCollectedMovies { res in
-            results = try! res.get()
-        }
-        expect(results).toEventuallyNot(beNil())
-        expect(results?.first?.collectedAt).toEventuallyNot(beNil())
-        expect(results?.first?.updatedAt).toEventuallyNot(beNil())
+        let results = try awaitFor { trakt.getCollectedMovies(completion: $0) }.get()
+
+        XCTAssertNotNil(results)
+        XCTAssertNotNil(results.first?.collectedAt)
+        XCTAssertNotNil(results.first?.updatedAt)
     }
 
-    func testGetCollectedShows() {
+    func testGetCollectedShows() throws {
         stubHelper.stubWithLocalFile(Sync.getCollection(type: .shows, infoLevel: .min))
 
-        var results: [CollectedShow]?
-        trakt.getCollectedShows { res in
-            results = try! res.get()
-        }
-        expect(results).toEventuallyNot(beNil())
-        expect(results?.first?.lastCollectedAt).toEventuallyNot(beNil())
-        expect(results?.first?.lastUpdatedAt).toEventuallyNot(beNil())
+        let results = try awaitFor { trakt.getCollectedShows(completion: $0) }.get()
+
+        XCTAssertNotNil(results)
+        XCTAssertNotNil(results.first?.lastCollectedAt)
+        XCTAssertNotNil(results.first?.lastUpdatedAt)
     }
 
     func testAddingMovieToHistoryHasCorrectBody() throws {
@@ -115,12 +102,10 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "addToHistory_movie")
 
-        var result: AddedToHistory?
-        trakt.addToHistory(movies: [0]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.added.movies).toEventually(be(1))
+        let results = try awaitFor { trakt.addToHistory(movies: [0], completion: $0) }.get()
+
+        XCTAssertNotNil(results)
+        XCTAssertEqual(results.added.movies, 1)
     }
 
     func testAddingShowToHistoryHasCorrectBody() throws {
@@ -137,12 +122,10 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "addToHistory_show")
 
-        var result: AddedToHistory?
-        trakt.addToHistory(shows: [0]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.added.episodes).toEventually(be(1))
+        let results = try awaitFor { trakt.addToHistory(shows: [0], completion: $0) }.get()
+
+        XCTAssertNotNil(results)
+        XCTAssertEqual(results.added.episodes, 1)
     }
 
     func testAddingEpisodeToHistoryHasCorrectBody() throws {
@@ -159,12 +142,10 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "addToHistory_show")
 
-        var result: AddedToHistory?
-        trakt.addToHistory(episodes: [0]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.added.episodes).toEventually(be(1))
+        let results = try awaitFor { trakt.addToHistory(episodes: [0], completion: $0) }.get()
+
+        XCTAssertNotNil(results)
+        XCTAssertEqual(results.added.episodes, 1)
     }
 
     func testAddingMovieEpisodeAndShowToHistoryHasCorrectBody() throws {
@@ -189,107 +170,87 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "addToHistoryAll_notFound")
 
-        var result: AddedToHistory?
-        trakt.addToHistory(movies: [0], shows: [0], episodes: [0]) { res in
-            result = try! res.get()
-        }
+        let results = try awaitFor { trakt.addToHistory(movies: [0], shows: [0], episodes: [0], completion: $0) }.get()
 
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.added.episodes).toEventually(be(0))
-        expect(result?.added.movies).toEventually(be(0))
-        expect(result?.notFound.movies.first?.ids.trakt.integerValue).toEventually(be(0))
-        expect(result?.notFound.shows.first?.ids.trakt.integerValue).toEventually(be(0))
-        expect(result?.notFound.episodes.first?.ids.trakt.integerValue).toEventually(be(0))
+        XCTAssertNotNil(results)
+        XCTAssertEqual(results.added.episodes, 0)
+        XCTAssertEqual(results.added.movies, 0)
+        XCTAssertEqual(results.notFound.movies.first?.ids.trakt.integerValue, 0)
+        XCTAssertEqual(results.notFound.shows.first?.ids.trakt.integerValue, 0)
+        XCTAssertEqual(results.notFound.episodes.first?.ids.trakt.integerValue, 0)
     }
 
-    func testGetMovieHistory() {
+    func testGetMovieHistory() throws {
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .movies, pageNumber: 1)))
 
-        var history: [HistoryItem]?
-        trakt.getHistory(type: .movies, pageNumber: 1) { res in
-            history = try! res.get().type
-        }
-        expect(history).toEventuallyNot(beNil())
+        let history = try awaitFor { trakt.getHistory(type: .movies, pageNumber: 1, completion: $0) }.get().type
+
+        XCTAssertNotNil(history)
     }
 
-    func testGetSpecificMovieHistory() {
+    func testGetSpecificMovieHistory() throws {
         let movieId = 190430
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .movies, pageNumber: 1, traktId: movieId)))
 
-        var history: [HistoryItem]?
-        trakt.getHistory(type: .movies, pageNumber: 1, traktId: movieId, startDate: nil, endDate: nil) { res in
-            history = try! res.get().type
-        }
+        let history = try awaitFor { trakt.getHistory(type: .movies, pageNumber: 1, traktId: movieId, startDate: nil, endDate: nil, completion: $0) }.get().type
 
-        expect(history).toEventuallyNot(beNil())
-        expect(history?.count).toEventually(be(1))
-        expect(history?.first?.movie).toEventuallyNot(beNil())
+        XCTAssertNotNil(history)
+        XCTAssertEqual(history.count, 1)
+        XCTAssertNotNil(history.first?.movie)
     }
 
-    func testGetEpisodeHistory() {
+    func testGetEpisodeHistory() throws {
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .episodes, pageNumber: 1)))
 
-        var history: [HistoryItem]?
-        trakt.getHistory(type: .episodes, pageNumber: 1) { res in
-            history = try! res.get().type
-        }
-        expect(history).toEventuallyNot(beNil())
+        let history = try awaitFor { trakt.getHistory(type: .episodes, pageNumber: 1, completion: $0) }.get().type
+
+        XCTAssertNotNil(history)
     }
 
-    func testGetSpecificEpisodeHistory() {
+    func testGetSpecificEpisodeHistory() throws {
         let episodeId = 3335676
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .episodes, pageNumber: 1, traktId: episodeId)))
 
-        var history: [HistoryItem]?
-        trakt.getHistory(type: .episodes, pageNumber: 1, traktId: episodeId) { res in
-            history = try! res.get().type
-        }
-        expect(history).toEventuallyNot(beNil())
-        expect(history?.count).toEventually(be(1))
-        expect(history?.first?.show).toEventuallyNot(beNil())
-        expect(history?.first?.episode).toEventuallyNot(beNil())
+        let history = try awaitFor { trakt.getHistory(type: .episodes, pageNumber: 1, traktId: episodeId, completion: $0) }.get().type
+
+        XCTAssertNotNil(history)
+        XCTAssertEqual(history.count, 1)
+        XCTAssertNotNil(history.first?.show)
+        XCTAssertNotNil(history.first?.episode)
     }
 
-    func testGetShowHistory() {
+    func testGetShowHistory() throws {
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .shows, pageNumber: 1)))
 
-        var history: [HistoryItem]?
-        trakt.getHistory(type: .shows, pageNumber: 1) { res in
-            history = try! res.get().type
-        }
-        expect(history).toEventuallyNot(beNil())
+        let history = try awaitFor { trakt.getHistory(type: .shows, pageNumber: 1, completion: $0) }.get().type
+
+        XCTAssertNotNil(history)
     }
 
-    func testGetSpecificShowHistory() {
+    func testGetSpecificShowHistory() throws {
         let showId = 119095
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .shows, pageNumber: 1, traktId: showId)))
 
-        var history: [HistoryItem]?
-        trakt.getHistory(type: .shows, pageNumber: 1, traktId: showId) { res in
-            history = try! res.get().type
-        }
-        expect(history).toEventuallyNot(beNil())
+        let history = try awaitFor { trakt.getHistory(type: .shows, pageNumber: 1, traktId: showId, completion: $0) }.get().type
+
+        XCTAssertNotNil(history)
     }
 
-    func testGetSeasonHistory() {
+    func testGetSeasonHistory() throws {
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .seasons, pageNumber: 1)))
 
-        var history: [HistoryItem]?
-        trakt.getHistory(type: .seasons, pageNumber: 1) { res in
-            history = try! res.get().type
-        }
-        expect(history).toEventuallyNot(beNil())
+        let history = try awaitFor { trakt.getHistory(type: .seasons, pageNumber: 1, completion: $0) }.get().type
+
+        XCTAssertNotNil(history)
     }
 
-    func testGetSpecificSeasonHistory() {
+    func testGetSpecificSeasonHistory() throws {
         let seasonId = 100
         stubHelper.stubWithLocalFile(Sync.getHistory(payload: HistoryPayload(type: .seasons, pageNumber: 1, traktId: seasonId)))
 
-        var history: [HistoryItem]?
-        trakt.getHistory(type: .seasons, pageNumber: 1, traktId: seasonId) { res in
-            history = try! res.get().type
-        }
-        expect(history).toEventuallyNot(beNil())
+        let history = try awaitFor { trakt.getHistory(type: .seasons, pageNumber: 1, traktId: seasonId, completion: $0) }.get().type
+
+        XCTAssertNotNil(history)
     }
 
     func testAllGetHistoryParametersAreUsedForUrl() {
@@ -311,12 +272,10 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "removeHistory_movie")
 
-        var result: RemovedFromHistory?
-        trakt.removeFromHistory(movies: [0]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.deleted.movies).toEventually(be(1))
+        let result = try awaitFor { trakt.removeFromHistory(movies: [0], completion: $0) }.get()
+
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.deleted.movies, 1)
     }
 
     func testRemoveFromHistoryNotFound() throws {
@@ -333,21 +292,18 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "removeHistory_notFound")
 
-        var result: RemovedFromHistory?
-        trakt.removeFromHistory(movies: [0]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.notFound.ids.count).toEventually(be(1))
+        let result = try awaitFor { trakt.removeFromHistory(movies: [0], completion: $0) }.get()
+
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.notFound.ids.count, 1)
     }
 
-    func testGetWatchlist() {
+    func testGetWatchlist() throws {
         stubHelper.stubWithLocalFile(Sync.getWatchlist(type: .all, infoLevel: .min, pagination: Pagination(page: 1, limit: 1)))
-        var results: [ListItem]?
-        trakt.getWatchlist(page: 1) { res in
-            results = try! res.get().type
-        }
-        expect(results).toEventuallyNot(beNil())
+
+        let results = try awaitFor { trakt.getWatchlist(page: 1, completion: $0) }.get()
+
+        XCTAssertNotNil(results)
     }
 
     func testWatchlistURL() {
@@ -371,11 +327,9 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "sync_watchlist_add")
 
-        var result: AddToWatchlist?
-        trakt.addToWatchlist(movies: [0]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
+        let results = try awaitFor { trakt.addToWatchlist(movies: [0], completion: $0) }.get()
+
+        XCTAssertNotNil(results)
     }
 
     func testAddToWatchlistAlreadyExistsOrNotFound() throws {
@@ -392,13 +346,11 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "sync_watchlist_add_notFound")
 
-        var result: AddToWatchlist?
-        trakt.addToWatchlist(movies: [0]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.existing.movies).to(be(1))
-        expect(result?.notFound.episodes.count).to(be(1))
+        let results = try awaitFor { trakt.addToWatchlist(movies: [0], completion: $0) }.get()
+
+        XCTAssertNotNil(results)
+        XCTAssertEqual(results.existing.movies, 1)
+        XCTAssertEqual(results.notFound.episodes.count, 1)
     }
 
     func testRemoveFromWatchlistBodyIsCorrect() throws {
@@ -415,22 +367,18 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "sync_watchlist_remove")
 
-        var result: RemoveFromWatchlist?
-        trakt.removeFromWatchlist(movies: [0]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
+        let results = try awaitFor { trakt.removeFromWatchlist(movies: [0], completion: $0) }.get()
+
+        XCTAssertNotNil(results)
     }
 
-    func testGetRatingsIsReturned() {
+    func testGetRatingsIsReturned() throws {
         stubHelper.stubWithLocalFile(Sync.getRatings(type: .all, infoLevel: .min))
 
-        var result: [Rating]?
-        trakt.getRatings { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.first?.type).to(be("movie"))
+        let results = try awaitFor { trakt.getRatings(completion: $0) }.get()
+
+        XCTAssertNotNil(results)
+        XCTAssertEqual(results.first?.type, "movie")
     }
 
     func testGetRatingsURL() {
@@ -457,11 +405,9 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "sync_watchlist_add")
 
-        var result: AddedToHistory?
-        trakt.addRating(rating, to: .movie, withId: TraktId(movieId), ratedAt: nil) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
+        let results = try awaitFor { trakt.addRating(rating, to: .movie, withId: TraktId(movieId), ratedAt: nil, completion: $0) }.get()
+
+        XCTAssertNotNil(results)
     }
 
     func testRemovingRatings() throws {
@@ -478,20 +424,27 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "sync_watchlist_remove")
 
-        var result: RemoveFromWatchlist?
-        trakt.removeRatingsFrom(movies: [1]) { res in
-            result = try! res.get()
-        }
-        expect(result).toEventuallyNot(beNil())
+        let results = try awaitFor { trakt.removeRatingsFrom(movies: [1], completion: $0) }.get()
+
+        XCTAssertNotNil(results)
     }
 
-    func testGettingWatchedReturns() {
+    func testGettingWatchedReturns() throws {
         stubHelper.stubWithLocalFile(Sync.getWatched(type: .movies, infoLevel: .min))
-        var result: [WatchedItem]?
-        trakt.getWatched(type: .movies) { res in
-            result = try! res.get()
+        let results = try awaitFor { trakt.getWatched(type: .movies, completion: $0) }.get()
+
+        XCTAssertNotNil(results)
+        XCTAssertEqual(results.first?.movie?.title, "Guardians of the Galaxy")
+    }
+}
+
+extension Result {
+    /// Returns the underlying Error object.
+    var error: Failure? {
+        if case .failure(let error) = self {
+            return error
         }
-        expect(result).toEventuallyNot(beNil())
-        expect(result?.first?.movie?.title).toEventually(match("Guardians of the Galaxy"))
+
+        return nil
     }
 }

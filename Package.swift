@@ -11,7 +11,6 @@ let package = Package(
             targets: ["TraktKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Nimble.git", .exact("8.0.2"))
     ],
     targets: [
         .target(
@@ -19,6 +18,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "TraktKitTests",
-            dependencies: ["TraktKit", "Nimble"]),
+            dependencies: ["TraktKit"]),
     ]
 )
