@@ -11,7 +11,6 @@ let package = Package(
             targets: ["TraktKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/AliSoftware/OHHTTPStubs.git", .branch("feature/spm-support")),
         .package(url: "https://github.com/Quick/Nimble.git", .exact("8.0.2"))
     ],
     targets: [
@@ -20,6 +19,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "TraktKitTests",
-            dependencies: ["TraktKit", "OHHTTPStubsSwift", "Nimble"]),
+            dependencies: ["TraktKit", "Nimble"]),
     ]
 )

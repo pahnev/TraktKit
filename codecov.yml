@@ -1,0 +1,4 @@
+ignore:
+  - "Tests"
+  - "TraktDemo"
+  - "Package.swift"

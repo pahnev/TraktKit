@@ -25,7 +25,7 @@ final class NetworkClient {
     private let urlSession: URLSession
     private let cache: URLCache
 
-    init(traktClient: ClientProvider, cache: URLCache = URLCache.shared) {
+    init(traktClient: ClientProvider, urlSession: URLSession, cache: URLCache = URLCache.shared) {
         self.traktClient = traktClient
         self.cache = cache
         httpLogger = HTTPLogger()
@@ -33,15 +33,7 @@ final class NetworkClient {
         cache.diskCapacity = 100 * 1024 * 1024
         cache.memoryCapacity = 100 * 1024 * 1024
 
-        let urlConfiguration = URLSessionConfiguration.default
-        urlConfiguration.urlCache = nil
-        urlConfiguration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        urlConfiguration.httpAdditionalHeaders = [
-            "trakt-api-key": traktClient.clientId,
-            "trakt-api-version": "2",
-            "Content-type": "application/json"
-        ]
-        urlSession = URLSession(configuration: urlConfiguration)
+        self.urlSession = urlSession
     }
 
     func cacheDiskStorageSize() -> Int {

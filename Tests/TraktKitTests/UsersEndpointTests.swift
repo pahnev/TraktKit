@@ -7,20 +7,7 @@ import Nimble
 import XCTest
 @testable import TraktKit
 
-class UsersEndpointTests: XCTestCase {
-    var trakt: Trakt!
-    let stubHelper = StubHelper()
-
-    override func setUp() {
-        guard let trakt = try? Trakt(traktClient: MockClient()) else { preconditionFailure() }
-        self.trakt = trakt
-    }
-
-    override func tearDown() {
-        URLCache.shared.removeAllCachedResponses() // Something weird with `testWatchingReturnsNoData` test here, don't wanna deal with it now
-        trakt.clearCaches()
-        super.tearDown()
-    }
+class UsersEndpointTests: TraktKitTestCase {
 
     func testWatchingIsReturned() {
         stubHelper.stubWithLocalFile(Users.getWatching(userId: "test", infoLevel: .full))
@@ -32,13 +19,15 @@ class UsersEndpointTests: XCTestCase {
     }
 
     func testWatchingReturnsNoData() {
-        stubHelper.stubWithResponseCode(204, endpoint: Users.getWatching(userId: "test", infoLevel: .min))
+        stubHelper.stubWithResponseCode(204, endpoint: Users.getWatching(userId: "test2", infoLevel: .min))
         var error: TraktError!
-        trakt.getWatching(userId: "test") { res in
+        trakt.getWatching(userId: "test2") { res in
             switch res {
             case .failure(let err):
                 error = err
-            case .success: fatalError()
+            case .success(let object):
+                print(object as Any)
+                XCTFail("Expected failure result not success.")
             }
         }
         expect(error).toEventually(matchError(TraktError.emptyContent))

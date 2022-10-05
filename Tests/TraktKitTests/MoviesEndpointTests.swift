@@ -6,28 +6,13 @@
 //
 
 import Nimble
-import OHHTTPStubsCore
-import OHHTTPStubsSwift
 import XCTest
 
 @testable import TraktKit
 
-class MoviesEndpointTests: XCTestCase {
-    var trakt: Trakt!
-    let stubHelper = StubHelper()
-
+class MoviesEndpointTests: TraktKitTestCase {
     let darkKnightId = TraktId(120)
     let deadPoolId = TraktId(190430)
-
-    override func setUp() {
-        guard let trakt = try? Trakt(traktClient: MockClient()) else { preconditionFailure() }
-        self.trakt = trakt
-    }
-
-    override func tearDown() {
-        trakt.clearCaches()
-        super.tearDown()
-    }
 
     func testReturnsMinimalTrendingMovies() {
         stubHelper.stubWithLocalFile(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min), info: .min)

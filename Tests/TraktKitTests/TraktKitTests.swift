@@ -7,28 +7,13 @@
 //
 
 import Nimble
-import OHHTTPStubsCore
-import OHHTTPStubsSwift
 import XCTest
 
 @testable import TraktKit
 
-class TraktKitTests: XCTestCase {
-    var trakt: Trakt!
-    let stubHelper = StubHelper()
-
+class TraktKitTests: TraktKitTestCase {
     let darkKnightId = TraktId(120)
     let deadPoolId = TraktId(190430)
-
-    override func setUp() {
-        guard let trakt = try? Trakt(traktClient: MockClient()) else { preconditionFailure() }
-        self.trakt = trakt
-    }
-
-    override func tearDown() {
-        trakt.clearCaches()
-        super.tearDown()
-    }
 
     func testReturnsPaginationInfoForPaginatedEndpoint() {
         let responseHeaders = [
@@ -49,11 +34,11 @@ class TraktKitTests: XCTestCase {
         expect(pagination?.totalPages).to(be(4))
     }
 
-    func testCacheIsUsedOnSecondFetch() {
+    func testCacheIsUsedOnSecondFetch() throws {
         var requestCount = 0
 
         // Listen to requests "server" gets
-        stub(condition: isMethodGET()) { _ in
+        MockURLProtocol.requestHandler = { request in
             requestCount += 1
             let responseHeaders = [
                 "Cache-Control": "max-age=60",
@@ -62,10 +47,12 @@ class TraktKitTests: XCTestCase {
                 "x-pagination-page": "3",
                 "x-pagination-page-count": "4"
             ]
-
-            return self.stubHelper.fixtureFor(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min),
+            let data = try self.stubHelper.fixtureFor(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min),
                                               info: .min,
                                               headers: responseHeaders)
+
+            return (HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: responseHeaders)!, data)
+
         }
 
         // First request should be received by the "server"
