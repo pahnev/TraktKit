@@ -6,7 +6,6 @@
 //  Copyright © 2018 Pahnev. All rights reserved.
 //
 
-import Nimble
 import XCTest
 
 @testable import TraktKit
@@ -15,7 +14,7 @@ class TraktKitTests: TraktKitTestCase {
     let darkKnightId = TraktId(120)
     let deadPoolId = TraktId(190430)
 
-    func testReturnsPaginationInfoForPaginatedEndpoint() {
+    func testReturnsPaginationInfoForPaginatedEndpoint() throws {
         let responseHeaders = [
             "x-pagination-item-count": "1",
             "x-pagination-limit": "2",
@@ -23,15 +22,14 @@ class TraktKitTests: TraktKitTestCase {
             "x-pagination-page-count": "4"
         ]
         stubHelper.stubWithLocalFile(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min), info: .min, headers: responseHeaders)
-        var pagination: PaginationData?
-        trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min) { result in
-            pagination = try! result.get().pagination
-        }
-        expect(pagination).toEventuallyNot(beNil())
-        expect(pagination?.itemCount).to(be(1))
-        expect(pagination?.limit).to(be(2))
-        expect(pagination?.currentPage).to(be(3))
-        expect(pagination?.totalPages).to(be(4))
+
+        let pagination = try awaitFor { trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min, completion: $0) }.get().pagination
+
+        XCTAssertNotNil(pagination)
+        XCTAssertEqual(pagination?.itemCount, 1)
+        XCTAssertEqual(pagination?.limit, 2)
+        XCTAssertEqual(pagination?.currentPage, 3)
+        XCTAssertEqual(pagination?.totalPages, 4)
     }
 
     func testCacheIsUsedOnSecondFetch() throws {
@@ -55,20 +53,16 @@ class TraktKitTests: TraktKitTestCase {
         }
 
         // First request should be received by the "server"
-        var firstResponse: [TrendingMovie]?
-        trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min) { result in
-            firstResponse = try! result.get().type
-        }
-        expect(firstResponse?.first?.movie.title).toEventually(match("Deadpool 2"))
+        let firstResponse = try awaitFor { trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min, completion: $0) }.get().type
+
+        XCTAssertEqual(firstResponse.first?.movie.title, "Deadpool 2")
 
         // Second request should not
-        var secondResponse: [TrendingMovie]?
-        trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min) { result in
-            secondResponse = try! result.get().type
-        }
-        expect(secondResponse?.first?.movie.title).toEventually(match("Deadpool 2"))
+        let secondResponse = try awaitFor { trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min, completion: $0) }.get().type
 
-        expect(requestCount).toEventually(be(1))
+        XCTAssertEqual(firstResponse.first?.movie.title, "Deadpool 2")
+
+        XCTAssertEqual(requestCount, 1, "Expected second request to be fetched from cache and not hit the server")
     }
 
     func testHTTPResponseHeadersCacheControl() {
