@@ -1,6 +1,6 @@
 //
 //  XCTestCase+Await.swift
-//  
+//
 //
 //  Created by Pahnev, Kirill on 5.10.2022.
 //

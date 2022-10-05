@@ -65,7 +65,6 @@ class SyncEndpointTests: TraktKitTestCase {
         error = try awaitFor { trakt.removePlaybackItemWith(PlaybackProgressId(1), completion: $0) }.error
 
         XCTAssertNil(error)
-
     }
 
     func testGetCollectionMovies() throws {
