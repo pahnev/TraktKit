@@ -11,8 +11,8 @@ import XCTest
 @testable import TraktKit
 
 class TraktKitTests: TraktKitTestCase {
-    let darkKnightId = TraktId(120)
-    let deadPoolId = TraktId(190430)
+    let darkKnightId = 120
+    let deadPoolId = 190430
 
     func testReturnsPaginationInfoForPaginatedEndpoint() throws {
         let responseHeaders = [

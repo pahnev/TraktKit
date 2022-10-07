@@ -24,7 +24,7 @@ enum Sync: Endpoint {
         let episodes: [TraktIdContainer]
 
         /// Specific item ids. Used to remove items from history.
-        let ids: [HistoryItemId]
+        let ids: [Int]
     }
 
     struct CollectablePayload: CodableEquatable {
@@ -50,7 +50,7 @@ enum Sync: Endpoint {
 
     case lastActivities
     case getPlaybackProgress(type: WatchedType, limit: Int?)
-    case removePlayback(PlaybackProgressId)
+    case removePlayback(Int)
 
     case getCollection(type: CollectableType, infoLevel: InfoLevel)
     case addToCollection(Payload)
@@ -144,7 +144,7 @@ enum Sync: Endpoint {
                 .appendingPathComponent("playback/\(type.rawValue)")
                 .appendingLimitQuery(limit: limit)
         case .removePlayback(let id):
-            return sync.appendingPathComponent("playback/\(String(id.integerValue))")
+            return sync.appendingPathComponent("playback/\(String(id))")
         case .getCollection(let type, let infoLevel):
             return sync
                 .appendingPathComponent("collection/\(type.rawValue)")

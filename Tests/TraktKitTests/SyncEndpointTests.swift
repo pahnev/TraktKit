@@ -62,7 +62,7 @@ class SyncEndpointTests: TraktKitTestCase {
 
         var error: TraktError? = TraktError.emptyDataReceivedError
 
-        error = try awaitFor { trakt.removePlaybackItemWith(PlaybackProgressId(1), completion: $0) }.error
+        error = try awaitFor { trakt.removePlaybackItemWith(1, completion: $0) }.error
 
         XCTAssertNil(error)
     }
@@ -174,9 +174,9 @@ class SyncEndpointTests: TraktKitTestCase {
         XCTAssertNotNil(results)
         XCTAssertEqual(results.added.episodes, 0)
         XCTAssertEqual(results.added.movies, 0)
-        XCTAssertEqual(results.notFound.movies.first?.ids.trakt.integerValue, 0)
-        XCTAssertEqual(results.notFound.shows.first?.ids.trakt.integerValue, 0)
-        XCTAssertEqual(results.notFound.episodes.first?.ids.trakt.integerValue, 0)
+        XCTAssertEqual(results.notFound.movies.first?.ids.trakt, 0)
+        XCTAssertEqual(results.notFound.shows.first?.ids.trakt, 0)
+        XCTAssertEqual(results.notFound.episodes.first?.ids.trakt, 0)
     }
 
     func testGetMovieHistory() throws {
@@ -404,7 +404,7 @@ class SyncEndpointTests: TraktKitTestCase {
         }
         """.withoutLinebreaks(), responseFile: "sync_watchlist_add")
 
-        let results = try awaitFor { trakt.addRating(rating, to: .movie, withId: TraktId(movieId), ratedAt: nil, completion: $0) }.get()
+        let results = try awaitFor { trakt.addRating(rating, to: .movie, withId: movieId, ratedAt: nil, completion: $0) }.get()
 
         XCTAssertNotNil(results)
     }

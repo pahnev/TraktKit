@@ -8,24 +8,24 @@
 import Foundation
 
 public enum Movies {
-    case aliases(movieId: TraktId)
+    case aliases(movieId: Int)
     case boxOffice
-    case comments(movieId: TraktId, sort: String, pageNumber: Int, resultsPerPage: Int)
-    case currentlyWatching(movieId: TraktId)
-    case details(movieId: TraktId, infoLevel: InfoLevel)
-    case lists(movieId: TraktId, type: String, sort: String, pageNumber: Int, resultsPerPage: Int)
+    case comments(movieId: Int, sort: String, pageNumber: Int, resultsPerPage: Int)
+    case currentlyWatching(movieId: Int)
+    case details(movieId: Int, infoLevel: InfoLevel)
+    case lists(movieId: Int, type: String, sort: String, pageNumber: Int, resultsPerPage: Int)
     case mostAnticipated(pageNumber: Int, resultsPerPage: Int)
     case mostCollected(pageNumber: Int, timePeriod: String, resultsPerPage: Int)
     case mostPlayed(pageNumber: Int, timePeriod: String, resultsPerPage: Int)
     case mostWatched(pageNumber: Int, timePeriod: String, resultsPerPage: Int)
-    case people(movieId: TraktId)
+    case people(movieId: Int)
     case popular(pageNumber: Int, resultsPerPage: Int)
-    case ratings(movieId: TraktId)
+    case ratings(movieId: Int)
     case recentlyUpdated(pageNumber: Int, startDate: String, resultsPerPage: Int)
-    case related(movieId: TraktId, pageNumber: Int, resultsPerPage: Int)
-    case releases(movieId: TraktId, country: String)
-    case stats(movieId: TraktId)
-    case translations(movieId: TraktId, language: String)
+    case related(movieId: Int, pageNumber: Int, resultsPerPage: Int)
+    case releases(movieId: Int, country: String)
+    case stats(movieId: Int)
+    case translations(movieId: Int, language: String)
     case trending(pageNumber: Int, resultsPerPage: Int, infoLevel: InfoLevel)
 }
 

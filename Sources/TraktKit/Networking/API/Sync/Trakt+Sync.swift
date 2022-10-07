@@ -52,7 +52,7 @@ public extension Trakt {
     /// 🔒 OAuth Required
     ///
     /// - Parameter id: The id of the `PlaybackProgress` item to be removed.
-    func removePlaybackItemWith(_ id: PlaybackProgressId, completion: @escaping RequestResult<Void>) {
+    func removePlaybackItemWith(_ id: Int, completion: @escaping RequestResult<Void>) {
         assertLoggedInUser()
 
         authenticatedRequest(for: Sync.removePlayback(id), completion: { result in
@@ -145,14 +145,14 @@ public extension Trakt {
                              completion: completion)
     }
 
-    func addToHistory(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], completion: @escaping TraktResult<AddedToHistory>) {
+    func addToHistory(movies: [Int] = [], shows: [Int] = [], episodes: [Int] = [], completion: @escaping TraktResult<AddedToHistory>) {
         assertLoggedInUser()
 
         let data = syncPayload(movies: movies, shows: shows, episodes: episodes, items: [])
         authenticatedRequestAndParse(Sync.addToHistory(data), completion: completion)
     }
 
-    func removeFromHistory(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], items: [HistoryItemId] = [], completion: @escaping TraktResult<RemovedFromHistory>) {
+    func removeFromHistory(movies: [Int] = [], shows: [Int] = [], episodes: [Int] = [], items: [Int] = [], completion: @escaping TraktResult<RemovedFromHistory>) {
         assertLoggedInUser()
 
         let data = syncPayload(movies: movies, shows: shows, episodes: episodes, items: items)
@@ -186,7 +186,7 @@ public extension Trakt {
     ///   - id: The `TraktId` of the item.
     ///   - ratedAt: The date of when the rating was set.
     ///   - completion: The closure called on completion with a `AddedToHistory` object or `TraktError`.
-    func addRating(_ rating: Int, to contentType: RateableContent, withId id: TraktId, ratedAt: Date?, completion: @escaping TraktResult<AddedToHistory>) {
+    func addRating(_ rating: Int, to contentType: RateableContent, withId id: Int, ratedAt: Date?, completion: @escaping TraktResult<AddedToHistory>) {
         assertLoggedInUser()
         precondition(rating >= 1 && rating <= 10, "Rating has to be between 1 and 10")
 
@@ -218,7 +218,7 @@ public extension Trakt {
     ///   - episodes: The movies of which ratings to be removed.
     ///   - seasons: The movies of which ratings to be removed.
     ///   - completion: The closure called on completion with a `RemoveFromWatchlist` object or `TraktError`.
-    func removeRatingsFrom(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
+    func removeRatingsFrom(movies: [Int] = [], shows: [Int] = [], episodes: [Int] = [], seasons: [Int] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
         assertLoggedInUser()
         let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
                                          seasons: seasons)
@@ -254,7 +254,7 @@ public extension Trakt {
     ///   - episodes: The ids of the episodes to be added.
     ///   - seasons: the ids of seasons to be added.
     ///   - completion: The closure called on completion with a `AddToWatchlist` or `TraktError`.
-    func addToWatchlist(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<AddToWatchlist>) {
+    func addToWatchlist(movies: [Int] = [], shows: [Int] = [], episodes: [Int] = [], seasons: [Int] = [], completion: @escaping TraktResult<AddToWatchlist>) {
         assertLoggedInUser()
         let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
                                          seasons: seasons)
@@ -271,7 +271,7 @@ public extension Trakt {
     ///   - episodes: The ids of the episodes to be added.
     ///   - seasons: the ids of seasons to be added.
     ///   - completion: The closure called on completion with a `RemoveFromWatchlistResult` or `TraktError`.
-    func removeFromWatchlist(movies: [TraktId] = [], shows: [TraktId] = [], episodes: [TraktId] = [], seasons: [TraktId] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
+    func removeFromWatchlist(movies: [Int] = [], shows: [Int] = [], episodes: [Int] = [], seasons: [Int] = [], completion: @escaping TraktResult<RemoveFromWatchlist>) {
         assertLoggedInUser()
         let payload = collectablePayload(syncPayload: syncPayload(movies: movies, shows: shows, episodes: episodes, items: []),
                                          seasons: seasons)
@@ -282,15 +282,15 @@ public extension Trakt {
 // MARK: - Private
 
 private extension Trakt {
-    private func collectablePayload(syncPayload: Sync.Payload, seasons: [TraktId]) -> Sync.CollectablePayload {
+    private func collectablePayload(syncPayload: Sync.Payload, seasons: [Int]) -> Sync.CollectablePayload {
         let seasons = seasons
             .map { TraktIdContainer.Id(trakt: $0) }
             .map { TraktIdContainer(ids: $0) }
         return Sync.CollectablePayload(syncPayload: syncPayload, seasons: seasons)
     }
 
-    private func syncPayload(movies: [TraktId], shows: [TraktId], episodes: [TraktId], items: [HistoryItemId]) -> Sync.Payload {
-        func containers(from ids: [TraktId]) -> [TraktIdContainer] {
+    private func syncPayload(movies: [Int], shows: [Int], episodes: [Int], items: [Int]) -> Sync.Payload {
+        func containers(from ids: [Int]) -> [TraktIdContainer] {
             return ids
                 .map { TraktIdContainer.Id(trakt: $0) }
                 .map { TraktIdContainer(ids: $0) }

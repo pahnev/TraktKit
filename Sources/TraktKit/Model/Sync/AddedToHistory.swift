@@ -9,7 +9,7 @@ import Foundation
 
 public struct TraktIdContainer: CodableEquatable {
     public struct Id: CodableEquatable {
-        public let trakt: TraktId
+        public let trakt: Int
     }
 
     public let ids: Id
