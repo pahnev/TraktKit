@@ -48,12 +48,12 @@ enum Authentication: Endpoint {
 
     var url: URL {
         switch self {
-        case .authorize(let params):
+        case .authorize(let clientId, let redirectURI):
             return baseURL
                 .appendingPathComponent("oauth/authorize")
                 .appendingQueryItem(URLQueryItem(name: "response_type", value: "code"))
-                .appendingQueryItem(URLQueryItem(name: "client_id", value: params.clientId))
-                .appendingQueryItem(URLQueryItem(name: "redirect_uri", value: params.redirectURI))
+                .appendingQueryItem(URLQueryItem(name: "client_id", value: clientId))
+                .appendingQueryItem(URLQueryItem(name: "redirect_uri", value: redirectURI))
         case .getToken:
             return baseURL.appendingPathComponent("oauth/token")
         }

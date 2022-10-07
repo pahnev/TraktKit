@@ -60,7 +60,7 @@ class TraktKitTests: TraktKitTestCase {
         // Second request should not
         let secondResponse = try awaitFor { trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min, completion: $0) }.get().type
 
-        XCTAssertEqual(firstResponse.first?.movie.title, "Deadpool 2")
+        XCTAssertEqual(secondResponse.first?.movie.title, "Deadpool 2")
 
         XCTAssertEqual(requestCount, 1, "Expected second request to be fetched from cache and not hit the server")
     }

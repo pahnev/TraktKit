@@ -139,24 +139,24 @@ enum Sync: Endpoint {
         switch self {
         case .lastActivities:
             return sync.appendingPathComponent("last_activities")
-        case .getPlaybackProgress(let params):
+        case .getPlaybackProgress(let type, let limit):
             return sync
-                .appendingPathComponent("playback/\(params.type.rawValue)")
-                .appendingLimitQuery(limit: params.limit)
+                .appendingPathComponent("playback/\(type.rawValue)")
+                .appendingLimitQuery(limit: limit)
         case .removePlayback(let id):
             return sync.appendingPathComponent("playback/\(String(id.integerValue))")
-        case .getCollection(let params):
+        case .getCollection(let type, let infoLevel):
             return sync
-                .appendingPathComponent("collection/\(params.type.rawValue)")
-                .appendingInfo(params.infoLevel)
+                .appendingPathComponent("collection/\(type.rawValue)")
+                .appendingInfo(infoLevel)
         case .addToCollection:
             return sync.appendingPathComponent("collection")
         case .removeFromCollection:
             return sync.appendingPathComponent("collection/remove")
-        case .getWatched(let params):
+        case .getWatched(let type, let infoLevel):
             return sync
-                .appendingPathComponent("watched/\(params.type.rawValue)")
-                .appendingInfo(params.infoLevel)
+                .appendingPathComponent("watched/\(type.rawValue)")
+                .appendingInfo(infoLevel)
         case .getHistory(let payload):
             return sync
                 .appendingPathComponent("history/\(payload.type.rawValue)/\(String(payload.traktId))")
@@ -165,17 +165,17 @@ enum Sync: Endpoint {
             return sync.appendingPathComponent("history")
         case .removeFromHistory:
             return sync.appendingPathComponent("history/remove")
-        case .getRatings(let params):
-            return sync.appendingPathComponent("ratings/\(params.type.rawValue)")
-                .appendingInfo(params.infoLevel)
+        case .getRatings(let type, let infoLevel):
+            return sync.appendingPathComponent("ratings/\(type.rawValue)")
+                .appendingInfo(infoLevel)
         case .addRatings:
             return sync.appendingPathComponent("ratings")
         case .removeRatings:
             return sync.appendingPathComponent("ratings/remove")
-        case .getWatchlist(let params):
-            return sync.appendingPathComponent("watchlist/\(params.type.rawValue)")
-                .appendingInfo(params.infoLevel)
-                .appendingPagination(params.pagination)
+        case .getWatchlist(let type, let infoLevel, let pagination):
+            return sync.appendingPathComponent("watchlist/\(type.rawValue)")
+                .appendingInfo(infoLevel)
+                .appendingPagination(pagination)
         case .addToWatchlist:
             return sync.appendingPathComponent("watchlist")
         case .removeFromWatchlist:

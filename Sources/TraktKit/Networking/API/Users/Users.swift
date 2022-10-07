@@ -32,8 +32,8 @@ public enum Users: Endpoint {
     var url: URL {
         let users = baseURL.appendingPathComponent("users")
         switch self {
-        case .getWatching(let params):
-            return users.appendingPathComponent("\(params.userId)/watching")
+        case .getWatching(let userId, _):
+            return users.appendingPathComponent("\(userId)/watching")
         case .getStats(let userId):
             return users.appendingPathComponent("\(userId)/stats")
         }
