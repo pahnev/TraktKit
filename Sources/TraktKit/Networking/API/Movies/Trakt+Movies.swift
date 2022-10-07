@@ -65,52 +65,52 @@ public extension Trakt {
                              completion: completion)
     }
 
-    func getMovieDetails(for movieId: TraktId, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {
+    func getMovieDetails(for movieId: Int, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {
         fetchObject(ofType: Movie.self,
                     endpoint: Movies.details(movieId: movieId, infoLevel: infoLevel),
                     completion: completion)
     }
 
-    func getAliases(for movieId: TraktId, completion: @escaping TraktResult<[Alias]>) {
+    func getAliases(for movieId: Int, completion: @escaping TraktResult<[Alias]>) {
         fetchObject(ofType: [Alias].self, endpoint: Movies.aliases(movieId: movieId), completion: completion)
     }
 
-    func getReleases(for movieId: TraktId, country: String, completion: @escaping TraktResult<[MovieRelease]>) {
+    func getReleases(for movieId: Int, country: String, completion: @escaping TraktResult<[MovieRelease]>) {
         fetchObject(ofType: [MovieRelease].self,
                     endpoint: Movies.releases(movieId: movieId, country: country),
                     completion: completion)
     }
 
-    func getComments(for movieId: TraktId, pageNumber: Int, resultsPerPage: Int = 10, sort: String, completion: @escaping TraktResult<[Comment]>) {
+    func getComments(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, sort: String, completion: @escaping TraktResult<[Comment]>) {
         fetchObject(ofType: [Comment].self,
                     endpoint: Movies.comments(movieId: movieId, sort: sort, pageNumber: pageNumber, resultsPerPage: resultsPerPage), completion: completion)
     }
 
-    func getLists(for movieId: TraktId, type: String, sortBy: String, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[List]>) {
+    func getLists(for movieId: Int, type: String, sortBy: String, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[List]>) {
         fetchObject(ofType: [List].self,
                     endpoint: Movies.lists(movieId: movieId, type: type, sort: sortBy, pageNumber: pageNumber, resultsPerPage: resultsPerPage),
                     completion: completion)
     }
 
-    func getPeople(for movieId: TraktId, completion: @escaping TraktResult<CastAndCrew>) {
+    func getPeople(for movieId: Int, completion: @escaping TraktResult<CastAndCrew>) {
         fetchObject(ofType: CastAndCrew.self, endpoint: Movies.people(movieId: movieId), completion: completion)
     }
 
-    func getRatings(for movieId: TraktId, completion: @escaping TraktResult<RatingDistribution>) {
+    func getRatings(for movieId: Int, completion: @escaping TraktResult<RatingDistribution>) {
         fetchObject(ofType: RatingDistribution.self, endpoint: Movies.ratings(movieId: movieId), completion: completion)
     }
 
-    func getRelatedMovies(for movieId: TraktId, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[Movie]>) {
+    func getRelatedMovies(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[Movie]>) {
         fetchObject(ofType: [Movie].self,
                     endpoint: Movies.related(movieId: movieId, pageNumber: pageNumber, resultsPerPage: resultsPerPage),
                     completion: completion)
     }
 
-    func getStats(for movieId: TraktId, completion: @escaping TraktResult<Stats>) {
+    func getStats(for movieId: Int, completion: @escaping TraktResult<Stats>) {
         fetchObject(ofType: Stats.self, endpoint: Movies.stats(movieId: movieId), completion: completion)
     }
 
-    func getCurrentlyWatching(for movieId: TraktId, completion: @escaping TraktResult<[User]>) {
+    func getCurrentlyWatching(for movieId: Int, completion: @escaping TraktResult<[User]>) {
         fetchObject(ofType: [User].self, endpoint: Movies.currentlyWatching(movieId: movieId), completion: completion)
     }
 }

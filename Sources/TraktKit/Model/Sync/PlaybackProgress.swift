@@ -11,7 +11,7 @@ import Foundation
 public struct PlaybackProgress: CodableEquatable {
     public let progress: Float
     public let pausedAt: Date
-    public let id: PlaybackProgressId
+    public let id: Int
     public let type: String
     public let movie: Movie?
     public let episode: Episode?

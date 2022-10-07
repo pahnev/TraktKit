@@ -9,7 +9,7 @@
 import Foundation
 
 public struct HistoryItem: CodableEquatable {
-    public let id: HistoryItemId
+    public let id: Int
     public let watchedAt: Date
     public let action: String
     public let type: String

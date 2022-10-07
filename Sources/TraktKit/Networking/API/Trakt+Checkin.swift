@@ -13,7 +13,7 @@ public extension Trakt {
     /// - movie: A movie object, which has `TraktId`.
     /// - episode: An episode object, which has `TraktId`.
     enum CheckinType {
-        case movie(TraktId), episode(TraktId)
+        case movie(Int), episode(Int)
     }
 
     /// Check into a movie or episode. This should be tied to a user action to manually indicate they are watching something. The item will display as watching on the site, then automatically switch to watched status once the duration has elapsed. A unique history id (64-bit integer) will be returned and can be used to reference this checkin directly.
@@ -58,7 +58,7 @@ public extension Trakt {
 private struct CheckinPayload {
     struct CheckinObject {
         struct ObjectId {
-            let trakt: TraktId
+            let trakt: Int
         }
 
         let ids: ObjectId

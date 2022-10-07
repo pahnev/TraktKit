@@ -11,8 +11,8 @@ import XCTest
 @testable import TraktKit
 
 class TraktKitTests: TraktKitTestCase {
-    let darkKnightId = TraktId(120)
-    let deadPoolId = TraktId(190430)
+    let darkKnightId = 120
+    let deadPoolId = 190430
 
     func testReturnsPaginationInfoForPaginatedEndpoint() throws {
         let responseHeaders = [
@@ -60,7 +60,7 @@ class TraktKitTests: TraktKitTestCase {
         // Second request should not
         let secondResponse = try awaitFor { trakt.getTrendingMovies(pageNumber: 1, infoLevel: .min, completion: $0) }.get().type
 
-        XCTAssertEqual(firstResponse.first?.movie.title, "Deadpool 2")
+        XCTAssertEqual(secondResponse.first?.movie.title, "Deadpool 2")
 
         XCTAssertEqual(requestCount, 1, "Expected second request to be fetched from cache and not hit the server")
     }

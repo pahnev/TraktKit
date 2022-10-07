@@ -8,20 +8,10 @@
 
 import Foundation
 
-// For each typealias we define a phantom type
-public enum TraktIdType {}
-public typealias TraktId = DecodableInteger<TraktIdType>
-
-public enum HistoryIdType {}
-public typealias HistoryItemId = DecodableInteger<HistoryIdType>
-
-public enum PlaybackIdType {}
-public typealias PlaybackProgressId = DecodableInteger<PlaybackIdType>
-
 // MARK: - TV & Movies
 
 public struct ID: CodableEquatable {
-    public let trakt: TraktId
+    public let trakt: Int
     public let slug: String
     public let tvdb: Int?
     public let imdb: String?
@@ -30,14 +20,14 @@ public struct ID: CodableEquatable {
 }
 
 public struct SeasonId: CodableEquatable {
-    public let trakt: TraktId
+    public let trakt: Int
     public let tvdb: Int?
     public let tmdb: Int?
     public let tvrage: Int?
 }
 
 public struct EpisodeId: CodableEquatable {
-    public let trakt: TraktId
+    public let trakt: Int
     public let tvdb: Int?
     public let imdb: String?
     public let tmdb: Int?
@@ -45,7 +35,7 @@ public struct EpisodeId: CodableEquatable {
 }
 
 public struct ListId: CodableEquatable {
-    public let trakt: TraktId
+    public let trakt: Int
     public let slug: String
 }
 
