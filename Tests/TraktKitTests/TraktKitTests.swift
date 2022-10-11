@@ -21,7 +21,7 @@ class TraktKitTests: TraktKitTestCase {
             "x-pagination-page": "3",
             "x-pagination-page-count": "4"
         ]
-        stubHelper.stubWithLocalFile(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min), info: .min, headers: responseHeaders)
+        stubHelper.stubWithLocalFile(Movies.trending(pagination: .default, infoLevel: .min), info: .min, headers: responseHeaders)
 
         let pagination = try awaitFor { trakt.movies.trending(pageNumber: 1, infoLevel: .min, completion: $0) }.get().pagination
 
@@ -45,7 +45,7 @@ class TraktKitTests: TraktKitTestCase {
                 "x-pagination-page": "3",
                 "x-pagination-page-count": "4"
             ]
-            let data = try self.stubHelper.fixtureFor(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min),
+            let data = try self.stubHelper.fixtureFor(Movies.trending(pagination: .default, infoLevel: nil),
                                                       info: .min,
                                                       headers: responseHeaders)
 

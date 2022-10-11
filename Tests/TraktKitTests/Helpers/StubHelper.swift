@@ -26,6 +26,7 @@ class StubHelper {
             fileName.append("_\(info.rawValue)")
         }
 
+        print("---- With a file: \(fileName) ----")
         let file = try XCTUnwrap(fixtureCache["\(fileName).json"])
         return try XCTUnwrap(Data(contentsOf: file))
     }
