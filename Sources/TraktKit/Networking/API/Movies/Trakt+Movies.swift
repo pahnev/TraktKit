@@ -22,95 +22,99 @@ public enum InfoLevel: String {
 }
 
 public extension Trakt {
-    func getTrendingMovies(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel = .min, completion: @escaping PaginatedTraktResult<[TrendingMovie]>) {
-        fetchPaginatedObject(ofType: [TrendingMovie].self,
-                             endpoint: Movies.trending(pageNumber: pageNumber, resultsPerPage: resultsPerPage, infoLevel: infoLevel),
-                             completion: completion)
-    }
+    struct MovieEndpoints {
+        let trakt: Trakt
 
-    func getPopularMovies(pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[Movie]>) {
-        fetchPaginatedObject(ofType: [Movie].self,
-                             endpoint: Movies.popular(pageNumber: pageNumber, resultsPerPage: resultsPerPage),
-                             completion: completion)
-    }
+        func getTrendingMovies(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel = .min, completion: @escaping PaginatedTraktResult<[TrendingMovie]>) {
+            trakt.fetchPaginatedObject(ofType: [TrendingMovie].self,
+                                       endpoint: Movies.trending(pageNumber: pageNumber, resultsPerPage: resultsPerPage, infoLevel: infoLevel),
+                                       completion: completion)
+        }
 
-    func getMostPlayedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
-        fetchPaginatedObject(ofType: [MostMovie].self,
-                             endpoint: Movies.mostPlayed(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
-                             completion: completion)
-    }
+        func getPopularMovies(pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[Movie]>) {
+            trakt.fetchPaginatedObject(ofType: [Movie].self,
+                                       endpoint: Movies.popular(pageNumber: pageNumber, resultsPerPage: resultsPerPage),
+                                       completion: completion)
+        }
 
-    func getMostWatchedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
-        fetchPaginatedObject(ofType: [MostMovie].self,
-                             endpoint: Movies.mostWatched(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
-                             completion: completion)
-    }
+        func getMostPlayedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+            trakt.fetchPaginatedObject(ofType: [MostMovie].self,
+                                       endpoint: Movies.mostPlayed(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
+                                       completion: completion)
+        }
 
-    func getMostCollectedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
-        fetchPaginatedObject(ofType: [MostMovie].self,
-                             endpoint: Movies.mostCollected(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
-                             completion: completion)
-    }
+        func getMostWatchedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+            trakt.fetchPaginatedObject(ofType: [MostMovie].self,
+                                       endpoint: Movies.mostWatched(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
+                                       completion: completion)
+        }
 
-    /// Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
-    ///
-    /// - Parameter completion: The closure callend on completion with list of Movies or TraktError
-    func getBoxOffice(completion: @escaping TraktResult<[BoxOfficeMovie]>) {
-        fetchObject(ofType: [BoxOfficeMovie].self, endpoint: Movies.boxOffice, completion: completion)
-    }
+        func getMostCollectedMovies(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+            trakt.fetchPaginatedObject(ofType: [MostMovie].self,
+                                       endpoint: Movies.mostCollected(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),
+                                       completion: completion)
+        }
 
-    func getRecentlyUpdatedMovies(pageNumber: Int, startDate: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[UpdatedMoviesResponse]>) {
-        fetchPaginatedObject(ofType: [UpdatedMoviesResponse].self,
-                             endpoint: Movies.recentlyUpdated(pageNumber: pageNumber, startDate: startDate, resultsPerPage: resultsPerPage),
-                             completion: completion)
-    }
+        /// Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
+        ///
+        /// - Parameter completion: The closure called on completion with list of Movies or TraktError
+        func getBoxOffice(completion: @escaping TraktResult<[BoxOfficeMovie]>) {
+            trakt.fetchObject(ofType: [BoxOfficeMovie].self, endpoint: Movies.boxOffice, completion: completion)
+        }
 
-    func getMovieDetails(for movieId: Int, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {
-        fetchObject(ofType: Movie.self,
-                    endpoint: Movies.details(movieId: movieId, infoLevel: infoLevel),
-                    completion: completion)
-    }
+        func getRecentlyUpdatedMovies(pageNumber: Int, startDate: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[UpdatedMoviesResponse]>) {
+            trakt.fetchPaginatedObject(ofType: [UpdatedMoviesResponse].self,
+                                       endpoint: Movies.recentlyUpdated(pageNumber: pageNumber, startDate: startDate, resultsPerPage: resultsPerPage),
+                                       completion: completion)
+        }
 
-    func getAliases(for movieId: Int, completion: @escaping TraktResult<[Alias]>) {
-        fetchObject(ofType: [Alias].self, endpoint: Movies.aliases(movieId: movieId), completion: completion)
-    }
+        func getMovieDetails(for movieId: Int, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {
+            trakt.fetchObject(ofType: Movie.self,
+                              endpoint: Movies.details(movieId: movieId, infoLevel: infoLevel),
+                              completion: completion)
+        }
 
-    func getReleases(for movieId: Int, country: String, completion: @escaping TraktResult<[MovieRelease]>) {
-        fetchObject(ofType: [MovieRelease].self,
-                    endpoint: Movies.releases(movieId: movieId, country: country),
-                    completion: completion)
-    }
+        func getAliases(for movieId: Int, completion: @escaping TraktResult<[Alias]>) {
+            trakt.fetchObject(ofType: [Alias].self, endpoint: Movies.aliases(movieId: movieId), completion: completion)
+        }
 
-    func getComments(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, sort: String, completion: @escaping TraktResult<[Comment]>) {
-        fetchObject(ofType: [Comment].self,
-                    endpoint: Movies.comments(movieId: movieId, sort: sort, pageNumber: pageNumber, resultsPerPage: resultsPerPage), completion: completion)
-    }
+        func getReleases(for movieId: Int, country: String, completion: @escaping TraktResult<[MovieRelease]>) {
+            trakt.fetchObject(ofType: [MovieRelease].self,
+                              endpoint: Movies.releases(movieId: movieId, country: country),
+                              completion: completion)
+        }
 
-    func getLists(for movieId: Int, type: String, sortBy: String, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[List]>) {
-        fetchObject(ofType: [List].self,
-                    endpoint: Movies.lists(movieId: movieId, type: type, sort: sortBy, pageNumber: pageNumber, resultsPerPage: resultsPerPage),
-                    completion: completion)
-    }
+        func getComments(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, sort: String, completion: @escaping TraktResult<[Comment]>) {
+            trakt.fetchObject(ofType: [Comment].self,
+                              endpoint: Movies.comments(movieId: movieId, sort: sort, pageNumber: pageNumber, resultsPerPage: resultsPerPage), completion: completion)
+        }
 
-    func getPeople(for movieId: Int, completion: @escaping TraktResult<CastAndCrew>) {
-        fetchObject(ofType: CastAndCrew.self, endpoint: Movies.people(movieId: movieId), completion: completion)
-    }
+        func getLists(for movieId: Int, type: String, sortBy: String, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[List]>) {
+            trakt.fetchObject(ofType: [List].self,
+                              endpoint: Movies.lists(movieId: movieId, type: type, sort: sortBy, pageNumber: pageNumber, resultsPerPage: resultsPerPage),
+                              completion: completion)
+        }
 
-    func getRatings(for movieId: Int, completion: @escaping TraktResult<RatingDistribution>) {
-        fetchObject(ofType: RatingDistribution.self, endpoint: Movies.ratings(movieId: movieId), completion: completion)
-    }
+        func getPeople(for movieId: Int, completion: @escaping TraktResult<CastAndCrew>) {
+            trakt.fetchObject(ofType: CastAndCrew.self, endpoint: Movies.people(movieId: movieId), completion: completion)
+        }
 
-    func getRelatedMovies(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[Movie]>) {
-        fetchObject(ofType: [Movie].self,
-                    endpoint: Movies.related(movieId: movieId, pageNumber: pageNumber, resultsPerPage: resultsPerPage),
-                    completion: completion)
-    }
+        func getRatings(for movieId: Int, completion: @escaping TraktResult<RatingDistribution>) {
+            trakt.fetchObject(ofType: RatingDistribution.self, endpoint: Movies.ratings(movieId: movieId), completion: completion)
+        }
 
-    func getStats(for movieId: Int, completion: @escaping TraktResult<Stats>) {
-        fetchObject(ofType: Stats.self, endpoint: Movies.stats(movieId: movieId), completion: completion)
-    }
+        func getRelatedMovies(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[Movie]>) {
+            trakt.fetchObject(ofType: [Movie].self,
+                              endpoint: Movies.related(movieId: movieId, pageNumber: pageNumber, resultsPerPage: resultsPerPage),
+                              completion: completion)
+        }
 
-    func getCurrentlyWatching(for movieId: Int, completion: @escaping TraktResult<[User]>) {
-        fetchObject(ofType: [User].self, endpoint: Movies.currentlyWatching(movieId: movieId), completion: completion)
+        func getStats(for movieId: Int, completion: @escaping TraktResult<Stats>) {
+            trakt.fetchObject(ofType: Stats.self, endpoint: Movies.stats(movieId: movieId), completion: completion)
+        }
+
+        func getCurrentlyWatching(for movieId: Int, completion: @escaping TraktResult<[User]>) {
+            trakt.fetchObject(ofType: [User].self, endpoint: Movies.currentlyWatching(movieId: movieId), completion: completion)
+        }
     }
 }
