@@ -23,7 +23,7 @@ class TraktKitTests: TraktKitTestCase {
         ]
         stubHelper.stubWithLocalFile(Movies.trending(pageNumber: 1, resultsPerPage: 10, infoLevel: .min), info: .min, headers: responseHeaders)
 
-        let pagination = try awaitFor { trakt.movies.getTrendingMovies(pageNumber: 1, infoLevel: .min, completion: $0) }.get().pagination
+        let pagination = try awaitFor { trakt.movies.trending(pageNumber: 1, infoLevel: .min, completion: $0) }.get().pagination
 
         XCTAssertNotNil(pagination)
         XCTAssertEqual(pagination?.itemCount, 1)
@@ -53,12 +53,12 @@ class TraktKitTests: TraktKitTestCase {
         }
 
         // First request should be received by the "server"
-        let firstResponse = try awaitFor { trakt.movies.getTrendingMovies(pageNumber: 1, infoLevel: .min, completion: $0) }.get().type
+        let firstResponse = try awaitFor { trakt.movies.trending(pageNumber: 1, infoLevel: .min, completion: $0) }.get().type
 
         XCTAssertEqual(firstResponse.first?.movie.title, "Deadpool 2")
 
         // Second request should not
-        let secondResponse = try awaitFor { trakt.movies.getTrendingMovies(pageNumber: 1, infoLevel: .min, completion: $0) }.get().type
+        let secondResponse = try awaitFor { trakt.movies.trending(pageNumber: 1, infoLevel: .min, completion: $0) }.get().type
 
         XCTAssertEqual(secondResponse.first?.movie.title, "Deadpool 2")
 
