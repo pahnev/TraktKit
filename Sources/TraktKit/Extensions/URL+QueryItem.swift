@@ -35,7 +35,13 @@ public extension URL {
             .appendingLimitQuery(limit: pagination.limit)
     }
 
-    func appendingInfo(_ info: InfoLevel) -> URL {
+    func appendingInfo(_ info: InfoLevel?) -> URL {
+        guard let info = info else { return self }
         return appendingQueryItem(URLQueryItem(name: "extended", value: info.rawValue))
+    }
+
+    func appendingTimePeriod(_ timePeriod: TimePeriod?) -> URL {
+        guard let timePeriod = timePeriod else { return self }
+        return appendingPathComponent(timePeriod.rawValue)
     }
 }

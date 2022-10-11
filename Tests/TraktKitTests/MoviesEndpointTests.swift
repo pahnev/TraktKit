@@ -38,6 +38,17 @@ class MoviesEndpointTests: TraktKitTestCase {
         XCTAssertNotNil(movies)
     }
 
+    func testReturnsRecommendedMovies() throws {
+        stubHelper.stubWithLocalFile(Movies.recommended(pagination: .default, timePeriod: nil, infoLevel: nil))
+
+        let movies = try awaitFor { trakt.movies.recommended(pageNumber: 1, completion: $0) }.get()
+
+        XCTAssertNotNil(movies)
+
+        let firstMovie = try XCTUnwrap(movies.type.first)
+        XCTAssertEqual(firstMovie.userCount, 51)
+    }
+
     func testReturnsMostPlayedMovies() throws {
         stubHelper.stubWithLocalFile(Movies.mostPlayed(pageNumber: 1, timePeriod: "", resultsPerPage: 10))
 

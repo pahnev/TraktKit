@@ -21,6 +21,14 @@ public enum InfoLevel: String {
     case min, full, metadata
 }
 
+public enum TimePeriod: String {
+    case daily
+    case weekly
+    case monthly
+    case yearly
+    case all
+}
+
 public extension Trakt {
     struct MovieEndpoints {
         let trakt: Trakt
@@ -37,6 +45,22 @@ public extension Trakt {
                                        completion: completion)
         }
 
+        /// Returns the most recommended movies in the specified time.
+        ///
+        /// - Parameters:
+        ///   - pageNumber: Number of page of results to be returned.
+        ///   - resultsPerPage: Number of results to return per page.
+        ///   - timePeriod: The `TimePeriod` of the results. Defaults to `weekly`.
+        ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
+        ///   - completion: Result of a `RecommendedMovie` or `TraktError`.
+        func recommended(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[RecommendedMovie]>) {
+            trakt.fetchPaginatedObject(ofType: [RecommendedMovie].self,
+                                       endpoint: Movies.recommended(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
+                                                                    timePeriod: timePeriod,
+                                                                    infoLevel: infoLevel),
+                                       completion: completion)
+        }
+        
         func mostPlayed(pageNumber: Int, timePeriod: String = "", resultsPerPage: Int = 10, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
             trakt.fetchPaginatedObject(ofType: [MostMovie].self,
                                        endpoint: Movies.mostPlayed(pageNumber: pageNumber, timePeriod: timePeriod, resultsPerPage: resultsPerPage),

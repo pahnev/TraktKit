@@ -22,3 +22,7 @@ public struct Pagination {
         self.limit = limit
     }
 }
+
+extension Pagination {
+    static var `default`: Pagination { Pagination(page: 1, limit: 10) }
+}

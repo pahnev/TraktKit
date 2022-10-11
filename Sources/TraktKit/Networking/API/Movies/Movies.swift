@@ -22,6 +22,7 @@ public enum Movies {
     case popular(pageNumber: Int, resultsPerPage: Int)
     case ratings(movieId: Int)
     case recentlyUpdated(pageNumber: Int, startDate: String, resultsPerPage: Int)
+    case recommended(pagination: Pagination, timePeriod: TimePeriod?, infoLevel: InfoLevel?)
     case related(movieId: Int, pageNumber: Int, resultsPerPage: Int)
     case releases(movieId: Int, country: String)
     case stats(movieId: Int)
@@ -82,6 +83,12 @@ extension Movies: Endpoint {
         case .recentlyUpdated(let pageNumber, let startDate, let resultsPerPage):
             return movies.appendingPathComponent("updates/\(startDate)")
                 .appendingPagination(Pagination(page: pageNumber, limit: resultsPerPage))
+        case .recommended(let pagination, let timePeriod, let infoLevel):
+            return movies
+                .appendingPathComponent("recommended")
+                .appendingTimePeriod(timePeriod)
+                .appendingPagination(pagination)
+                .appendingInfo(infoLevel)
         case .related(let movieId, let pageNumber, let resultsPerPage):
             return movies.appendingPathComponent("\(movieId)/related")
                 .appendingPagination(Pagination(page: pageNumber, limit: resultsPerPage))
