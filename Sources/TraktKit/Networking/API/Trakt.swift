@@ -18,9 +18,11 @@ public typealias PaginatedTraktResult<CachedObjectType: Codable> = (Result<Pagin
 public typealias RequestResult<T> = (Result<T, TraktError>) -> Void
 
 public final class Trakt {
+    public lazy var movies = MovieEndpoints(trakt: self)
+    var auth: Authenticator?
+
     private let traktClient: ClientProvider
     private let networkClient: NetworkClient
-    var auth: Authenticator?
 
     init(traktClient: ClientProvider, networkClient: NetworkClient) {
         self.traktClient = traktClient

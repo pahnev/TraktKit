@@ -9,6 +9,11 @@
 import Foundation
 
 public extension URL {
+    func appendingPathComponent(_ component: String?) -> URL {
+        guard let component = component else { return self }
+        return appendingPathComponent(component)
+    }
+
     func appendingQueryItem(_ queryItem: URLQueryItem) -> URL {
         guard var urlComps = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
             preconditionFailure("Invalid url \(self)")
@@ -35,7 +40,13 @@ public extension URL {
             .appendingLimitQuery(limit: pagination.limit)
     }
 
-    func appendingInfo(_ info: InfoLevel) -> URL {
+    func appendingInfo(_ info: InfoLevel?) -> URL {
+        guard let info = info else { return self }
         return appendingQueryItem(URLQueryItem(name: "extended", value: info.rawValue))
+    }
+
+    func appendingTimePeriod(_ timePeriod: TimePeriod?) -> URL {
+        guard let timePeriod = timePeriod else { return self }
+        return appendingPathComponent(timePeriod.rawValue)
     }
 }
