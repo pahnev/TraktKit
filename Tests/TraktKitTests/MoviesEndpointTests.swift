@@ -9,8 +9,8 @@ import XCTest
 @testable import TraktKit
 
 class MoviesEndpointTests: TraktKitTestCase {
-    let darkKnightId = 120
-    let deadPoolId = 190430
+    let darkKnightId = "120"
+    let deadPoolId = "190430"
 
     func testReturnsMinimalTrendingMovies() throws {
         stubHelper.stubWithLocalFile(Movies.trending(pagination: .default, infoLevel: .min), info: .min)
