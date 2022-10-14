@@ -14,7 +14,7 @@ public enum Movies {
     case currentlyWatching(movieId: Int, infoLevel: InfoLevel?)
     case details(movieId: Int, infoLevel: InfoLevel?)
     case lists(movieId: Int, type: ListType?, sort: ListSort?, pagination: Pagination)
-    case mostAnticipated(pagination: Pagination)
+    case mostAnticipated(pagination: Pagination, infoLevel: InfoLevel?)
     case mostCollected(pagination: Pagination, timePeriod: TimePeriod?, infoLevel: InfoLevel?)
     case mostPlayed(pagination: Pagination, timePeriod: TimePeriod?)
     case mostWatched(pagination: Pagination, timePeriod: TimePeriod?, infoLevel: InfoLevel?)
@@ -66,9 +66,10 @@ extension Movies: Endpoint {
                 .appendingPathComponent(type?.rawValue)
                 .appendingPathComponent(sort?.rawValue)
                 .appendingPagination(pagination)
-        case .mostAnticipated(let pagination):
+        case .mostAnticipated(let pagination, let infoLevel):
             return movies.appendingPathComponent("anticipated")
                 .appendingPagination(pagination)
+                .appendingInfo(infoLevel)
         case .mostCollected(let pagination, let timePeriod, let infoLevel):
             return movies.appendingPathComponent("collected")
                 .appendingTimePeriod(timePeriod)

@@ -73,6 +73,14 @@ class MoviesEndpointTests: TraktKitTestCase {
         XCTAssertNotNil(movies)
     }
 
+    func testReturnsMostAnticipatedMovies() throws {
+        stubHelper.stubWithLocalFile(Movies.mostAnticipated(pagination: .default, infoLevel: nil))
+
+        let movies = try awaitFor { trakt.movies.mostAnticipated(pageNumber: 1, completion: $0) }.get().type
+
+        XCTAssertNotNil(movies)
+    }
+
     func testReturnsBoxOfficeMovies() throws {
         stubHelper.stubWithLocalFile(Movies.boxOffice(infoLevel: nil))
 

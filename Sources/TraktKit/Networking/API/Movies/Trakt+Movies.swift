@@ -111,6 +111,21 @@ public extension Trakt {
                                        completion: completion)
         }
 
+        /// Returns the most anticipated movies based on the number of lists a movie appears on.
+        ///
+        /// - Parameters:
+        ///   - pageNumber: Number of page of results to be returned.
+        ///   - resultsPerPage: Number of results to return per page. Defaults to 10.
+        ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
+        ///   - completion: Result of a `[AnticipatedMovie]` or `TraktError`.
+        func mostAnticipated(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[AnticipatedMovie]>) {
+            trakt.fetchPaginatedObject(ofType: [AnticipatedMovie].self,
+                                       endpoint: Movies.mostAnticipated(pagination: Pagination(page: pageNumber
+                                                                                               , limit: resultsPerPage),
+                                                                        infoLevel: infoLevel),
+                                       completion: completion)
+        }
+
         /// Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
         ///
         /// - Parameter completion: The closure called on completion with list of Movies or TraktError
