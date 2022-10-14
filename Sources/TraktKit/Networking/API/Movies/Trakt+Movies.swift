@@ -173,6 +173,18 @@ public extension Trakt {
                               completion: completion)
         }
 
+        /// Returns all translations for a movie, including language and translated values for title, tagline and overview.
+        ///
+        /// - Parameters:
+        ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
+        ///   - language: 2 character country code Example: us.
+        ///   - completion: Result of a `[MovieTranslation]` or `TraktError`.
+        func translations(for movieId: Int, language: String, completion: @escaping TraktResult<[MovieTranslation]>) {
+            trakt.fetchObject(ofType: [MovieTranslation].self,
+                              endpoint: Movies.translations(movieId: movieId,
+                                                            language: language), completion: completion)
+        }
+
         func comments(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, sortBy: CommentSort? = nil, completion: @escaping TraktResult<[Comment]>) {
             trakt.fetchObject(ofType: [Comment].self,
                               endpoint: Movies.comments(movieId: movieId,

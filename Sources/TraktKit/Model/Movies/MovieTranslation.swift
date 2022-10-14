@@ -9,8 +9,9 @@
 import Foundation
 
 public struct MovieTranslation: CodableEquatable {
-    public let title: String
-    public let overview: String
-    public let tagline: String
+    public let title: String?
+    public let overview: String?
+    public let tagline: String?
     public let language: String
+    public let country: String
 }

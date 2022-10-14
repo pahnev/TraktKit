@@ -142,6 +142,14 @@ class MoviesEndpointTests: TraktKitTestCase {
         XCTAssertNotNil(releases)
     }
 
+    func testReturnsTranslations() throws {
+        stubHelper.stubWithLocalFile(Movies.translations(movieId: deadPoolId, language: "fi"))
+
+        let translations = try awaitFor { trakt.movies.translations(for: darkKnightId, language: "fi", completion: $0) }.get()
+
+        XCTAssertNotNil(translations)
+    }
+
     func testReturnsComments() throws {
         stubHelper.stubWithLocalFile(Movies.comments(movieId: darkKnightId, sort: nil, pagination: .default))
 
