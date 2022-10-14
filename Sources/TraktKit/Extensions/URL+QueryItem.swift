@@ -9,6 +9,11 @@
 import Foundation
 
 public extension URL {
+    func appendingPathComponent(_ component: String?) -> URL {
+        guard let component = component else { return self }
+        return appendingPathComponent(component)
+    }
+
     func appendingQueryItem(_ queryItem: URLQueryItem) -> URL {
         guard var urlComps = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
             preconditionFailure("Invalid url \(self)")

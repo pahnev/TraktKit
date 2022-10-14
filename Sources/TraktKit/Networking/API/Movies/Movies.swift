@@ -10,7 +10,7 @@ import Foundation
 public enum Movies {
     case aliases(movieId: Int)
     case boxOffice
-    case comments(movieId: Int, sort: String, pagination: Pagination)
+    case comments(movieId: Int, sort: CommentSort?, pagination: Pagination)
     case currentlyWatching(movieId: Int)
     case details(movieId: Int, infoLevel: InfoLevel?)
     case lists(movieId: Int, type: String, sort: String, pagination: Pagination)
@@ -51,7 +51,8 @@ extension Movies: Endpoint {
         case .boxOffice:
             return movies.appendingPathComponent("boxoffice")
         case .comments(let movieId, let sort, let pagination):
-            return movies.appendingPathComponent("\(movieId)/comments/\(sort)")
+            return movies.appendingPathComponent("\(movieId)/comments")
+                .appendingPathComponent(sort?.rawValue)
                 .appendingPagination(pagination)
         case .currentlyWatching(let movieId):
             return movies.appendingPathComponent("\(movieId)/watching")

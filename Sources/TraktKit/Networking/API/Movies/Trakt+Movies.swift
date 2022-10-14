@@ -29,6 +29,15 @@ public enum TimePeriod: String {
     case all
 }
 
+public enum CommentSort: String {
+    case newest
+    case oldest
+    case likes
+    case replies
+    case highest
+    case lowest
+    case plays
+}
 public extension Trakt {
     struct MovieEndpoints {
         let trakt: Trakt
@@ -112,10 +121,10 @@ public extension Trakt {
                               completion: completion)
         }
 
-        func comments(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, sort: String, completion: @escaping TraktResult<[Comment]>) {
+        func comments(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, sortBy: CommentSort? = nil, completion: @escaping TraktResult<[Comment]>) {
             trakt.fetchObject(ofType: [Comment].self,
                               endpoint: Movies.comments(movieId: movieId,
-                                                        sort: sort,
+                                                        sort: sortBy,
                                                         pagination: Pagination(page: pageNumber, limit: resultsPerPage)),
                               completion: completion)
         }
