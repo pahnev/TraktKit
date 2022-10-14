@@ -154,8 +154,8 @@ public extension Trakt {
         ///   - completion: Result of a `[AnticipatedMovie]` or `TraktError`.
         func mostAnticipated(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[AnticipatedMovie]>) {
             trakt.fetchPaginatedObject(ofType: [AnticipatedMovie].self,
-                                       endpoint: Movies.mostAnticipated(pagination: Pagination(page: pageNumber
-                                                                                               , limit: resultsPerPage),
+                                       endpoint: Movies.mostAnticipated(pagination: Pagination(page: pageNumber,
+                                                                                               limit: resultsPerPage),
                                                                         infoLevel: infoLevel),
                                        completion: completion)
         }
@@ -319,7 +319,7 @@ public extension Trakt {
             trakt.fetchObject(ofType: [Movie].self,
                               endpoint: Movies.related(movieId: movieId,
                                                        pagination: Pagination(page: pageNumber, limit: resultsPerPage),
-                                                      infoLevel: infoLevel),
+                                                       infoLevel: infoLevel),
                               completion: completion)
         }
 
