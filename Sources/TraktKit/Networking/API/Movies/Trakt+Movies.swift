@@ -95,31 +95,37 @@ public extension Trakt {
                                        completion: completion)
         }
 
-        func mostWatched(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+        func mostWatched(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
             trakt.fetchPaginatedObject(ofType: [MostMovie].self,
                                        endpoint: Movies.mostWatched(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
-                                                                    timePeriod: timePeriod),
+                                                                    timePeriod: timePeriod,
+                                                                    infoLevel: infoLevel),
                                        completion: completion)
         }
 
-        func mostCollected(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+        func mostCollected(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
             trakt.fetchPaginatedObject(ofType: [MostMovie].self,
                                        endpoint: Movies.mostCollected(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
-                                                                      timePeriod: timePeriod),
+                                                                      timePeriod: timePeriod,
+                                                                      infoLevel: infoLevel),
                                        completion: completion)
         }
 
         /// Returns the top 10 grossing movies in the U.S. box office last weekend. Updated every Monday morning.
         ///
         /// - Parameter completion: The closure called on completion with list of Movies or TraktError
-        func boxOffice(completion: @escaping TraktResult<[BoxOfficeMovie]>) {
-            trakt.fetchObject(ofType: [BoxOfficeMovie].self, endpoint: Movies.boxOffice, completion: completion)
+        func boxOffice(infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<[BoxOfficeMovie]>) {
+            trakt.fetchObject(ofType: [BoxOfficeMovie].self,
+                              endpoint: Movies.boxOffice(infoLevel: infoLevel),
+                              completion: completion)
         }
 
-        func recentlyUpdated(pageNumber: Int, resultsPerPage: Int = 10, startDate: String = "", completion: @escaping PaginatedTraktResult<[UpdatedMoviesResponse]>) {
+        func recentlyUpdated(pageNumber: Int, resultsPerPage: Int = 10, startDate: String = "", infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[UpdatedMoviesResponse]>) {
             trakt.fetchPaginatedObject(ofType: [UpdatedMoviesResponse].self,
-                                       endpoint: Movies.recentlyUpdated(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
-                                                                        startDate: startDate),
+                                       endpoint: Movies.recentlyUpdated(pagination: Pagination(page: pageNumber,
+                                                                                               limit: resultsPerPage),
+                                                                        startDate: startDate,
+                                                                        infoLevel: infoLevel),
                                        completion: completion)
         }
 
@@ -156,18 +162,21 @@ public extension Trakt {
                               completion: completion)
         }
 
-        func people(for movieId: Int, completion: @escaping TraktResult<CastAndCrew>) {
-            trakt.fetchObject(ofType: CastAndCrew.self, endpoint: Movies.people(movieId: movieId), completion: completion)
+        func people(for movieId: Int, infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<CastAndCrew>) {
+            trakt.fetchObject(ofType: CastAndCrew.self,
+                              endpoint: Movies.people(movieId: movieId, infoLevel: infoLevel),
+                              completion: completion)
         }
 
         func ratings(for movieId: Int, completion: @escaping TraktResult<RatingDistribution>) {
             trakt.fetchObject(ofType: RatingDistribution.self, endpoint: Movies.ratings(movieId: movieId), completion: completion)
         }
 
-        func relatedMovies(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[Movie]>) {
+        func relatedMovies(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<[Movie]>) {
             trakt.fetchObject(ofType: [Movie].self,
                               endpoint: Movies.related(movieId: movieId,
-                                                       pagination: Pagination(page: pageNumber, limit: resultsPerPage)),
+                                                       pagination: Pagination(page: pageNumber, limit: resultsPerPage),
+                                                      infoLevel: infoLevel),
                               completion: completion)
         }
 
@@ -175,8 +184,10 @@ public extension Trakt {
             trakt.fetchObject(ofType: Stats.self, endpoint: Movies.stats(movieId: movieId), completion: completion)
         }
 
-        func usersWatching(_ movieId: Int, completion: @escaping TraktResult<[User]>) {
-            trakt.fetchObject(ofType: [User].self, endpoint: Movies.currentlyWatching(movieId: movieId), completion: completion)
+        func usersWatching(_ movieId: Int, infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<[User]>) {
+            trakt.fetchObject(ofType: [User].self,
+                              endpoint: Movies.currentlyWatching(movieId: movieId, infoLevel: infoLevel),
+                              completion: completion)
         }
     }
 }

@@ -58,7 +58,7 @@ class MoviesEndpointTests: TraktKitTestCase {
     }
 
     func testReturnsMostWatchedMovies() throws {
-        stubHelper.stubWithLocalFile(Movies.mostWatched(pagination: .default, timePeriod: nil))
+        stubHelper.stubWithLocalFile(Movies.mostWatched(pagination: .default, timePeriod: nil, infoLevel: nil))
 
         let movies = try awaitFor { trakt.movies.mostWatched(pageNumber: 1, completion: $0) }.get().type
 
@@ -66,7 +66,7 @@ class MoviesEndpointTests: TraktKitTestCase {
     }
 
     func testReturnsMostCollectedMovies() throws {
-        stubHelper.stubWithLocalFile(Movies.mostCollected(pagination: .default, timePeriod: nil))
+        stubHelper.stubWithLocalFile(Movies.mostCollected(pagination: .default, timePeriod: nil, infoLevel: nil))
 
         let movies = try awaitFor { trakt.movies.mostCollected(pageNumber: 1, completion: $0) }.get().type
 
@@ -74,7 +74,7 @@ class MoviesEndpointTests: TraktKitTestCase {
     }
 
     func testReturnsBoxOfficeMovies() throws {
-        stubHelper.stubWithLocalFile(Movies.boxOffice)
+        stubHelper.stubWithLocalFile(Movies.boxOffice(infoLevel: nil))
 
         let movies = try awaitFor { trakt.movies.boxOffice(completion: $0) }.get()
 
@@ -82,7 +82,7 @@ class MoviesEndpointTests: TraktKitTestCase {
     }
 
     func testReturnsRecentlyUpdatedMovies() throws {
-        stubHelper.stubWithLocalFile(Movies.recentlyUpdated(pagination: .default, startDate: ""))
+        stubHelper.stubWithLocalFile(Movies.recentlyUpdated(pagination: .default, startDate: "", infoLevel: nil))
 
         let movies = try awaitFor { trakt.movies.recentlyUpdated(pageNumber: 1, completion: $0) }.get().type
 
@@ -140,7 +140,7 @@ class MoviesEndpointTests: TraktKitTestCase {
     }
 
     func testReturnsPeople() throws {
-        stubHelper.stubWithLocalFile(Movies.people(movieId: darkKnightId))
+        stubHelper.stubWithLocalFile(Movies.people(movieId: darkKnightId, infoLevel: nil))
 
         let people = try awaitFor { trakt.movies.people(for: darkKnightId, completion: $0) }.get()
 
@@ -156,7 +156,7 @@ class MoviesEndpointTests: TraktKitTestCase {
     }
 
     func testReturnsRelatedMovies() throws {
-        stubHelper.stubWithLocalFile(Movies.related(movieId: darkKnightId, pagination: .default))
+        stubHelper.stubWithLocalFile(Movies.related(movieId: darkKnightId, pagination: .default, infoLevel: nil))
 
         let movies = try awaitFor { trakt.movies.relatedMovies(for: darkKnightId, pageNumber: 1, completion: $0) }.get()
 
@@ -172,7 +172,7 @@ class MoviesEndpointTests: TraktKitTestCase {
     }
 
     func testReturnsCurrentlyWatching() throws {
-        stubHelper.stubWithLocalFile(Movies.currentlyWatching(movieId: deadPoolId))
+        stubHelper.stubWithLocalFile(Movies.currentlyWatching(movieId: deadPoolId, infoLevel: nil))
 
         let watching = try awaitFor { trakt.movies.usersWatching(deadPoolId, completion: $0) }.get()
 
