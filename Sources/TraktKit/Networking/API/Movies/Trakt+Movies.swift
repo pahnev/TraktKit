@@ -38,6 +38,24 @@ public enum CommentSort: String {
     case lowest
     case plays
 }
+
+public enum ListType: String {
+    case all
+    case personal
+    case official
+    case watchlists
+    case recommendations
+}
+
+public enum ListSort: String {
+    case popular
+    case likes
+    case comments
+    case items
+    case added
+    case updated
+}
+
 public extension Trakt {
     struct MovieEndpoints {
         let trakt: Trakt
@@ -129,7 +147,7 @@ public extension Trakt {
                               completion: completion)
         }
 
-        func lists(for movieId: Int, type: String, sortBy: String, pageNumber: Int, resultsPerPage: Int = 10, completion: @escaping TraktResult<[List]>) {
+        func lists(for movieId: Int, pageNumber: Int, resultsPerPage: Int = 10, type: ListType? = nil, sortBy: ListSort? = nil, completion: @escaping TraktResult<[List]>) {
             trakt.fetchObject(ofType: [List].self,
                               endpoint: Movies.lists(movieId: movieId,
                                                      type: type,

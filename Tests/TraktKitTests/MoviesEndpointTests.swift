@@ -132,9 +132,9 @@ class MoviesEndpointTests: TraktKitTestCase {
     }
 
     func testReturnsLists() throws {
-        stubHelper.stubWithLocalFile(Movies.lists(movieId: darkKnightId, type: "", sort: "", pagination: .default))
+        stubHelper.stubWithLocalFile(Movies.lists(movieId: darkKnightId, type: nil, sort: nil, pagination: .default))
 
-        let lists = try awaitFor { trakt.movies.lists(for: darkKnightId, type: "", sortBy: "", pageNumber: 1, completion: $0) }.get()
+        let lists = try awaitFor { trakt.movies.lists(for: darkKnightId, pageNumber: 1, completion: $0) }.get()
 
         XCTAssertNotNil(lists)
     }

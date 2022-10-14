@@ -60,7 +60,9 @@ extension Movies: Endpoint {
             return movies.appendingPathComponent(movieId.description)
                 .appendingInfo(infoLevel)
         case .lists(let movieId, let type, let sort, let pagination):
-            return movies.appendingPathComponent("\(movieId)/lists/\(type)/\(sort)")
+            return movies.appendingPathComponent("\(movieId)/lists")
+                .appendingPathComponent(type?.rawValue)
+                .appendingPathComponent(sort?.rawValue)
                 .appendingPagination(pagination)
         case .mostAnticipated(let pagination):
             return movies.appendingPathComponent("anticipated")
