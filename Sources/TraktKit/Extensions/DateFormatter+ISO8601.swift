@@ -17,3 +17,11 @@ extension DateFormatter {
         return formatter
     }()
 }
+
+extension Date {
+    func dateString(withFormat format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+}

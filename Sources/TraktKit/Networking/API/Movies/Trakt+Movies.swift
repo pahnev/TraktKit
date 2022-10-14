@@ -144,6 +144,19 @@ public extension Trakt {
                                        completion: completion)
         }
 
+        /// Returns all movie Trakt IDs updated since the specified UTC date and time.
+        ///
+        /// - Parameters:
+        ///   - pageNumber: Number of page of results to be returned.
+        ///   - resultsPerPage: Number of results to return per page. Defaults to 10.
+        ///   - completion: Result of a `[Int]` or `TraktError`.
+        func updatedIds(pageNumber: Int, resultsPerPage: Int = 10, startDate: Date, completion: @escaping PaginatedTraktResult<[Int]>) {
+            trakt.fetchPaginatedObject(ofType: [Int].self,
+                                       endpoint: Movies.updates(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
+                                                                startDate: startDate),
+                                       completion: completion)
+        }
+
         func details(for movieId: Int, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {
             trakt.fetchObject(ofType: Movie.self,
                               endpoint: Movies.details(movieId: movieId, infoLevel: infoLevel),

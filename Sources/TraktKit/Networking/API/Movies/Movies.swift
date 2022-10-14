@@ -28,6 +28,7 @@ public enum Movies {
     case stats(movieId: Int)
     case translations(movieId: Int, language: String)
     case trending(pagination: Pagination, infoLevel: InfoLevel?)
+    case updates(pagination: Pagination, startDate: Date)
 }
 
 extension Movies: Endpoint {
@@ -116,6 +117,10 @@ extension Movies: Endpoint {
             return movies.appendingPathComponent("trending")
                 .appendingPagination(pagination)
                 .appendingInfo(infoLevel)
+        case .updates(let pagination, let startDate):
+            return movies.appendingPathComponent("updates/id")
+                .appendingPathComponent(startDate.dateString(withFormat: "yyyy-MM-dd"))
+                .appendingPagination(pagination)
         }
     }
 }

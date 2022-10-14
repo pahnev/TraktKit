@@ -97,6 +97,17 @@ class MoviesEndpointTests: TraktKitTestCase {
         XCTAssertNotNil(movies)
     }
 
+    func testReturnsUpdatedIds() throws {
+        let startDate = Date(timeIntervalSince1970: 1665756513) // October 14, 2022
+
+        stubHelper.stubWithLocalFile(Movies.updates(pagination: .default, startDate: startDate))
+
+        let ids = try awaitFor { trakt.movies.updatedIds(pageNumber: 1, startDate: startDate, completion: $0) }.get().type
+
+        XCTAssertNotNil(ids)
+        XCTAssertEqual(ids.count, 10)
+    }
+
     func testReturnsMinimalMovieDetails() throws {
         stubHelper.stubWithLocalFile(Movies.details(movieId: darkKnightId, infoLevel: .min), info: .min)
 
