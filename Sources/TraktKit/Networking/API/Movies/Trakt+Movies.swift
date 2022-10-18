@@ -62,7 +62,7 @@ public extension Trakt {
         ///   - resultsPerPage: Number of results to return per page. Defaults to 10.
         ///   - infoLevel: The `InfoLevel` of the results.
         ///   - completion: Result of a `[TrendingMovie]` or `TraktError`.
-        func trending(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel?, completion: @escaping PaginatedTraktResult<[TrendingMovie]>) {
+        public func trending(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel?, completion: @escaping PaginatedTraktResult<[TrendingMovie]>) {
             trakt.fetchPaginatedObject(ofType: [TrendingMovie].self,
                                        endpoint: Movies.trending(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
                                                                  infoLevel: infoLevel),
@@ -76,7 +76,7 @@ public extension Trakt {
         ///   - resultsPerPage: Number of results to return per page. Defaults to 10.
         ///   - infoLevel: The `InfoLevel` of the results.
         ///   - completion: Result of a `[Movie]` or `TraktError`.
-        func popular(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[Movie]>) {
+        public func popular(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[Movie]>) {
             trakt.fetchPaginatedObject(ofType: [Movie].self,
                                        endpoint: Movies.popular(pagination: Pagination(page: pageNumber, limit: resultsPerPage)),
                                        completion: completion)
@@ -90,7 +90,7 @@ public extension Trakt {
         ///   - timePeriod: The `TimePeriod` of the results. Defaults to `weekly`.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[RecommendedMovie]` or `TraktError`.
-        func recommended(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[RecommendedMovie]>) {
+        public func recommended(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[RecommendedMovie]>) {
             trakt.fetchPaginatedObject(ofType: [RecommendedMovie].self,
                                        endpoint: Movies.recommended(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
                                                                     timePeriod: timePeriod,
@@ -106,7 +106,7 @@ public extension Trakt {
         ///   - timePeriod: The `TimePeriod` of the results. Defaults to `weekly`.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[MostMovie]` or `TraktError`.
-        func mostPlayed(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+        public func mostPlayed(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
             trakt.fetchPaginatedObject(ofType: [MostMovie].self,
                                        endpoint: Movies.mostPlayed(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
                                                                    timePeriod: timePeriod),
@@ -121,7 +121,7 @@ public extension Trakt {
         ///   - timePeriod: The `TimePeriod` of the results. Defaults to `weekly`.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[MostMovie]` or `TraktError`.
-        func mostWatched(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+        public func mostWatched(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
             trakt.fetchPaginatedObject(ofType: [MostMovie].self,
                                        endpoint: Movies.mostWatched(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
                                                                     timePeriod: timePeriod,
@@ -137,7 +137,7 @@ public extension Trakt {
         ///   - timePeriod: The `TimePeriod` of the results. Defaults to `weekly`.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[MostMovie]` or `TraktError`.
-        func mostCollected(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
+        public func mostCollected(pageNumber: Int, resultsPerPage: Int = 10, timePeriod: TimePeriod? = nil, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[MostMovie]>) {
             trakt.fetchPaginatedObject(ofType: [MostMovie].self,
                                        endpoint: Movies.mostCollected(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
                                                                       timePeriod: timePeriod,
@@ -152,7 +152,7 @@ public extension Trakt {
         ///   - resultsPerPage: Number of results to return per page. Defaults to 10.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[AnticipatedMovie]` or `TraktError`.
-        func mostAnticipated(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[AnticipatedMovie]>) {
+        public func mostAnticipated(pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[AnticipatedMovie]>) {
             trakt.fetchPaginatedObject(ofType: [AnticipatedMovie].self,
                                        endpoint: Movies.mostAnticipated(pagination: Pagination(page: pageNumber,
                                                                                                limit: resultsPerPage),
@@ -165,7 +165,7 @@ public extension Trakt {
         /// - Parameters:
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[BoxOfficeMovie]` or `TraktError`.
-        func boxOffice(infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<[BoxOfficeMovie]>) {
+        public func boxOffice(infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<[BoxOfficeMovie]>) {
             trakt.fetchObject(ofType: [BoxOfficeMovie].self,
                               endpoint: Movies.boxOffice(infoLevel: infoLevel),
                               completion: completion)
@@ -179,7 +179,7 @@ public extension Trakt {
         ///   - startDate: The startDate is only accurate to the hour, for caching purposes. Can only be a maximum of 30 days in the past
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[UpdatedMoviesResponse]` or `TraktError`.
-        func recentlyUpdated(pageNumber: Int, resultsPerPage: Int = 10, startDate: String = "", infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[UpdatedMoviesResponse]>) {
+        public func recentlyUpdated(pageNumber: Int, resultsPerPage: Int = 10, startDate: String = "", infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[UpdatedMoviesResponse]>) {
             trakt.fetchPaginatedObject(ofType: [UpdatedMoviesResponse].self,
                                        endpoint: Movies.recentlyUpdated(pagination: Pagination(page: pageNumber,
                                                                                                limit: resultsPerPage),
@@ -194,7 +194,7 @@ public extension Trakt {
         ///   - pageNumber: Number of page of results to be returned.
         ///   - resultsPerPage: Number of results to return per page. Defaults to 10.
         ///   - completion: Result of a `[Int]` or `TraktError`.
-        func updatedIds(pageNumber: Int, resultsPerPage: Int = 10, startDate: Date, completion: @escaping PaginatedTraktResult<[Int]>) {
+        public func updatedIds(pageNumber: Int, resultsPerPage: Int = 10, startDate: Date, completion: @escaping PaginatedTraktResult<[Int]>) {
             trakt.fetchPaginatedObject(ofType: [Int].self,
                                        endpoint: Movies.updates(pagination: Pagination(page: pageNumber, limit: resultsPerPage),
                                                                 startDate: startDate),
@@ -207,7 +207,7 @@ public extension Trakt {
         ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.full`.
         ///   - completion: Result of a `Movie` or `TraktError`.
-        func details(for movieId: String, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {
+        public func details(for movieId: String, infoLevel: InfoLevel = .full, completion: @escaping TraktResult<Movie>) {
             trakt.fetchObject(ofType: Movie.self,
                               endpoint: Movies.details(movieId: movieId, infoLevel: infoLevel),
                               completion: completion)
@@ -218,7 +218,7 @@ public extension Trakt {
         /// - Parameters:
         ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
         ///   - completion: Result of a `[Alias]` or `TraktError`.
-        func aliases(for movieId: String, completion: @escaping TraktResult<[Alias]>) {
+        public func aliases(for movieId: String, completion: @escaping TraktResult<[Alias]>) {
             trakt.fetchObject(ofType: [Alias].self, endpoint: Movies.aliases(movieId: movieId), completion: completion)
         }
 
@@ -231,7 +231,7 @@ public extension Trakt {
         ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
         ///   - country: 2 character country code Example: us.
         ///   - completion: Result of a `[MovieRelease]` or `TraktError`.
-        func releases(for movieId: String, country: String, completion: @escaping TraktResult<[MovieRelease]>) {
+        public func releases(for movieId: String, country: String, completion: @escaping TraktResult<[MovieRelease]>) {
             trakt.fetchObject(ofType: [MovieRelease].self,
                               endpoint: Movies.releases(movieId: movieId, country: country),
                               completion: completion)
@@ -243,7 +243,7 @@ public extension Trakt {
         ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
         ///   - language: 2 character country code Example: us.
         ///   - completion: Result of a `[MovieTranslation]` or `TraktError`.
-        func translations(for movieId: String, language: String, completion: @escaping TraktResult<[MovieTranslation]>) {
+        public func translations(for movieId: String, language: String, completion: @escaping TraktResult<[MovieTranslation]>) {
             trakt.fetchObject(ofType: [MovieTranslation].self,
                               endpoint: Movies.translations(movieId: movieId,
                                                             language: language), completion: completion)
@@ -258,12 +258,12 @@ public extension Trakt {
         ///   - resultsPerPage: Number of results to return per page. Defaults to 10.
         ///   - sortBy: How to sort the results.
         ///   - completion: Result of a `[Comment]` or `TraktError`.
-        func comments(for movieId: String, pageNumber: Int, resultsPerPage: Int = 10, sortBy: CommentSort? = nil, completion: @escaping TraktResult<[Comment]>) {
-            trakt.fetchObject(ofType: [Comment].self,
-                              endpoint: Movies.comments(movieId: movieId,
-                                                        sort: sortBy,
-                                                        pagination: Pagination(page: pageNumber, limit: resultsPerPage)),
-                              completion: completion)
+        public func comments(for movieId: String, pageNumber: Int, resultsPerPage: Int = 10, sortBy: CommentSort? = nil, completion: @escaping PaginatedTraktResult<[Comment]>) {
+            trakt.fetchPaginatedObject(ofType: [Comment].self,
+                                       endpoint: Movies.comments(movieId: movieId,
+                                                                 sort: sortBy,
+                                                                 pagination: Pagination(page: pageNumber, limit: resultsPerPage)),
+                                       completion: completion)
         }
 
         /// Returns all lists that contain this movie.
@@ -276,13 +276,13 @@ public extension Trakt {
         ///   - type: Filter for a specific list type.
         ///   - sort: How to sort the results.
         ///   - completion: Result of a `[List]` or `TraktError`.
-        func lists(for movieId: String, pageNumber: Int, resultsPerPage: Int = 10, type: ListType? = nil, sortBy: ListSort? = nil, completion: @escaping TraktResult<[List]>) {
-            trakt.fetchObject(ofType: [List].self,
-                              endpoint: Movies.lists(movieId: movieId,
-                                                     type: type,
-                                                     sort: sortBy,
-                                                     pagination: Pagination(page: pageNumber, limit: resultsPerPage)),
-                              completion: completion)
+        public func lists(for movieId: String, pageNumber: Int, resultsPerPage: Int = 10, type: ListType? = nil, sortBy: ListSort? = nil, completion: @escaping PaginatedTraktResult<[List]>) {
+            trakt.fetchPaginatedObject(ofType: [List].self,
+                                       endpoint: Movies.lists(movieId: movieId,
+                                                              type: type,
+                                                              sort: sortBy,
+                                                              pagination: Pagination(page: pageNumber, limit: resultsPerPage)),
+                                       completion: completion)
         }
 
         /// Returns all cast and crew for a movie.
@@ -292,7 +292,7 @@ public extension Trakt {
         ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.full`.
         ///   - completion: Result of a `CastAndCrew` or `TraktError`.
-        func people(for movieId: String, infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<CastAndCrew>) {
+        public func people(for movieId: String, infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<CastAndCrew>) {
             trakt.fetchObject(ofType: CastAndCrew.self,
                               endpoint: Movies.people(movieId: movieId, infoLevel: infoLevel),
                               completion: completion)
@@ -303,7 +303,7 @@ public extension Trakt {
         /// - Parameters:
         ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
         ///   - completion: Result of a `RatingDistribution` or `TraktError`.
-        func ratings(for movieId: String, completion: @escaping TraktResult<RatingDistribution>) {
+        public func ratings(for movieId: String, completion: @escaping TraktResult<RatingDistribution>) {
             trakt.fetchObject(ofType: RatingDistribution.self, endpoint: Movies.ratings(movieId: movieId), completion: completion)
         }
 
@@ -315,12 +315,12 @@ public extension Trakt {
         ///   - resultsPerPage: Number of results to return per page. Defaults to 10.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[Movie]` or `TraktError`.
-        func relatedMovies(for movieId: String, pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<[Movie]>) {
-            trakt.fetchObject(ofType: [Movie].self,
-                              endpoint: Movies.related(movieId: movieId,
-                                                       pagination: Pagination(page: pageNumber, limit: resultsPerPage),
-                                                       infoLevel: infoLevel),
-                              completion: completion)
+        public func relatedMovies(for movieId: String, pageNumber: Int, resultsPerPage: Int = 10, infoLevel: InfoLevel? = nil, completion: @escaping PaginatedTraktResult<[Movie]>) {
+            trakt.fetchPaginatedObject(ofType: [Movie].self,
+                                       endpoint: Movies.related(movieId: movieId,
+                                                                pagination: Pagination(page: pageNumber, limit: resultsPerPage),
+                                                                infoLevel: infoLevel),
+                                       completion: completion)
         }
 
         /// Returns lots of movie stats.
@@ -328,7 +328,7 @@ public extension Trakt {
         /// - Parameters:
         ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
         ///   - completion: Result of a `Stats` or `TraktError`.
-        func stats(for movieId: String, completion: @escaping TraktResult<Stats>) {
+        public func stats(for movieId: String, completion: @escaping TraktResult<Stats>) {
             trakt.fetchObject(ofType: Stats.self, endpoint: Movies.stats(movieId: movieId), completion: completion)
         }
 
@@ -338,7 +338,7 @@ public extension Trakt {
         ///   - movieId: The id of the movie. Either `ID.trakt`, `ID.slug`, or `ID.imdb`.
         ///   - infoLevel: The `InfoLevel` of the results. Defaults to `.min`.
         ///   - completion: Result of a `[User]` or `TraktError`.
-        func usersWatching(_ movieId: String, infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<[User]>) {
+        public func usersWatching(_ movieId: String, infoLevel: InfoLevel? = nil, completion: @escaping TraktResult<[User]>) {
             trakt.fetchObject(ofType: [User].self,
                               endpoint: Movies.currentlyWatching(movieId: movieId, infoLevel: infoLevel),
                               completion: completion)
